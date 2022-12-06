@@ -16,7 +16,7 @@ body {
   width: 100%;
 }
 .name {
-  font-size: 14vw;
+  font-size: 12vw;
   color: black;
   line-height: 0;
 }
@@ -43,5 +43,6 @@ body {
 }
 
 .logo {
-  width: 12vh;
+  width: 25vw;
+  max-width: 200px;
 }
