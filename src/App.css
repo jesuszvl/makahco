@@ -4,12 +4,12 @@
 .navbar {
   max-height: 60px;
   height: 60px;
-  background-color: #c59b49;
+  background-color: #2e2e2e;
 
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding-left: 16px;
+  padding-left: 18px;
 }
 
 .navbar-main {
@@ -23,6 +23,7 @@
 }
 
 .navbar-title {
-  font-size: 34px;
+  font-size: 32px;
   font-weight: bold;
+  color: #ff9900;
 }

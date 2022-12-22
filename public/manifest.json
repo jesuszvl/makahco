@@ -3,8 +3,8 @@
   "name": "Makahco's site",
   "icons": [
     {
-      "src": "makahco.jpg",
-      "type": "image/jpg",
+      "src": "makahco.png",
+      "type": "image/png",
       "sizes": "512x512"
     }
   ],
