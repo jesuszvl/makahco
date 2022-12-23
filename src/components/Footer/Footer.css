@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 24px 24px;
+  padding: 12px 12px;
+  max-height: 200px;
 }
 
 .footer {
