@@ -9,6 +9,7 @@ function App() {
           <span className="navbar-title">makahco</span>
         </div>
       </div>
+      <div className="hero"></div>
     </div>
   );
 }
