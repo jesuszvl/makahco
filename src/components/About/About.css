@@ -13,3 +13,17 @@
 .about-content {
   max-width: 720px;
 }
+
+.contact-button {
+  all: unset;
+  background-color: #1e2124;
+  color: white;
+  font-size: 20px;
+  padding: 16px 24px;
+  border-radius: 5px;
+}
+
+.contact-button:hover {
+  background-color: darkgray;
+  cursor: pointer;
+}
