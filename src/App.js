@@ -1,4 +1,5 @@
 import "./App.css";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
             Whether you need a{" "}
             <b>
               custom software solution, high-quality audio recording, or
-              professional video production,
+              professional video assets,
             </b>{" "}
             we have the skills and experience to help you go bananas over your
             project.
@@ -34,16 +35,7 @@ function App() {
           </p>
         </div>
       </div>
-      <div className="footer-container">
-        <div className="footer">
-          <p className="footer-content">
-            developed by{" "}
-            <a href="https://makahco.com" className="footer-link">
-              makahco ®
-            </a>
-          </p>
-        </div>
-      </div>
+      <Footer />
     </div>
   );
 }
