@@ -1,0 +1,15 @@
+.about {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  flex-direction: column;
+  padding: 24px 16px;
+  font-size: 18px;
+  align-items: center;
+  min-height: calc(100vh - 60px - 450px);
+  background-color: white;
+}
+
+.about-content {
+  max-width: 720px;
+}
