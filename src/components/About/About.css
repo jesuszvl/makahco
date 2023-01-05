@@ -1,17 +1,16 @@
-.about {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  flex-direction: column;
-  padding: 24px 16px;
-  font-size: 18px;
+.about-container {
   align-items: center;
-  min-height: calc(100vh - 60px - 450px);
   background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 24px;
+  text-align: center;
 }
 
 .about-content {
-  max-width: 720px;
+  margin-bottom: 16px;
+  max-width: 700px;
 }
 
 .contact-button {
@@ -26,4 +25,8 @@
 .contact-button:hover {
   background-color: darkgray;
   cursor: pointer;
+}
+
+p {
+  font-size: 18px;
 }

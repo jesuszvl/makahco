@@ -1,9 +1,25 @@
 .gallery {
   background-color: white;
   padding: 16px;
+  text-align: center;
+}
+
+.grid {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
 }
 
 .image {
-  width: 100%;
+  width: calc(33% - 8px);
   padding-bottom: 16px;
+}
+
+@media screen and (max-width: 450px) {
+  .gallery {
+    flex-direction: column;
+  }
+  .image {
+    width: 100%;
+  }
 }

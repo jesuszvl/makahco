@@ -2,7 +2,8 @@ import "./About.css";
 
 const About = () => {
   return (
-    <div className="about">
+    <div className="about-container">
+      <h1>About Us</h1>
       <div className="about-content">
         <p>
           Welcome to <b>Makahco!</b> We are a team of talented professionals who
