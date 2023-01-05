@@ -24,7 +24,6 @@ const About = () => {
           to your creative side!
         </p>
         <br></br>
-        <button className="contact-button">Contact Us!</button>
       </div>
     </div>
   );
