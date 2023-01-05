@@ -24,7 +24,6 @@ const About = () => {
           So don't monkey around, get in touch with us today and let's ape-peal
           to your creative side!
         </p>
-        <br></br>
       </div>
     </div>
   );
