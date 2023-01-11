@@ -6,7 +6,7 @@ const Footer = () => {
       <div className="footer">
         <p className="footer-content">
           developed by{" "}
-          <a href="https://makahco.com" className="footer-link">
+          <a href="https://makah.co" className="footer-link">
             makahco ®
           </a>
         </p>
