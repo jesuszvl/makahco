@@ -4,4 +4,4 @@ This project is a template for a website of a company, images and text context a
 
 ## Demo
 
-[makahco.com](https://makahco.com/)
+[makah.co](https://makah.co/)
