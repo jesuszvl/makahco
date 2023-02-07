@@ -1,4 +1,4 @@
-import ReactGA from "react-ga";
+import ReactGA from "react-ga4";
 
 import "./App.css";
 import About from "./components/About/About";
@@ -8,7 +8,7 @@ import Hero from "./components/Hero/Hero";
 import NavBar from "./components/NavBar/NavBar";
 
 ReactGA.initialize("G-4KN7RH6T6R");
-ReactGA.pageview(window.location.pathname + window.location.search);
+ReactGA.send({ hitType: "pageview", page: "/" });
 
 function App() {
   return (
