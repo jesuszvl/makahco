@@ -8,12 +8,11 @@ import Gallery from "./components/Gallery/Gallery";
 import Hero from "./components/Hero/Hero";
 import NavBar from "./components/NavBar/NavBar";
 
-ReactGA.initialize("G-4KN7RH6T6R", {
-  debug: true,
-});
-
 const App = () => {
   useEffect(() => {
+    ReactGA.initialize("G-4KN7RH6T6R", {
+      debug: true,
+    });
     ReactGA.pageview(window.location.pathname + window.location.search);
   }, []);
 
