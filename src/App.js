@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import ReactGA from "react-ga";
 
 import "./App.css";
@@ -8,9 +9,12 @@ import Hero from "./components/Hero/Hero";
 import NavBar from "./components/NavBar/NavBar";
 
 ReactGA.initialize("G-4KN7RH6T6R");
-ReactGA.pageview(window.location.pathname + window.location.search);
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
+
   return (
     <div className="App">
       <NavBar />
@@ -20,6 +24,6 @@ function App() {
       <Footer />
     </div>
   );
-}
+};
 
 export default App;
