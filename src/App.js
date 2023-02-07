@@ -13,7 +13,7 @@ const App = () => {
     ReactGA.initialize("G-4KN7RH6T6R", {
       debug: true,
     });
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview("/");
   }, []);
 
   return (
