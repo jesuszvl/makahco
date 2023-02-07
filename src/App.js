@@ -10,7 +10,7 @@ import NavBar from "./components/NavBar/NavBar";
 
 const App = () => {
   useEffect(() => {
-    ReactGA.initialize("G-4KN7RH6T6R", {
+    ReactGA.initialize("4604497801", {
       debug: true,
     });
     ReactGA.pageview("/");
