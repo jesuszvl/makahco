@@ -1,18 +1,16 @@
-import "./Footer.css";
+import styles from "./Footer.module.scss";
 
-const Footer = () => {
+export default function Footer() {
   return (
-    <div className="footer-container">
-      <div className="footer">
-        <p className="footer-content">
+    <div className={styles["footer-container"]}>
+      <div className={styles["footer"]}>
+        <p className={styles["footer-content"]}>
           developed by{" "}
-          <a href="https://makah.co" className="footer-link">
+          <a href="https://makah.co" className={styles["footer-link"]}>
             makahco ®
           </a>
         </p>
       </div>
     </div>
   );
-};
-
-export default Footer;
+}

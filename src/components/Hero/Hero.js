@@ -1,11 +1,12 @@
-import "./Hero.css";
+import Image from "next/image";
+import styles from "./Hero.module.scss";
 
-const Hero = () => {
+import makahcoPic from "../../../public/makahco.png";
+
+export default function Hero() {
   return (
-    <div className="hero">
-      <h1 className="hero-title">Makahco</h1>
+    <div className={styles["hero"]}>
+      <Image src={makahcoPic} alt="makahco" width={200} height={230} />
     </div>
   );
-};
-
-export default Hero;
+}
