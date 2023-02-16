@@ -13,6 +13,10 @@
   max-width: 700px;
   border-top: 1px solid #1e2124;
   border-bottom: 1px solid #1e2124;
+
+  p {
+    font-size: 18px;
+  }
 }
 
 .contact-button {
@@ -27,8 +31,4 @@
 .contact-button:hover {
   background-color: darkgray;
   cursor: pointer;
-}
-
-p {
-  font-size: 18px;
 }

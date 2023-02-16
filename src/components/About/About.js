@@ -1,10 +1,10 @@
-import "./About.css";
+import styles from "./About.module.scss";
 
-const About = () => {
+export default function About() {
   return (
-    <div className="about-container">
+    <div className={styles["about-container"]}>
       <h1>About Us</h1>
-      <div className="about-content">
+      <div className={styles["about-content"]}>
         <p>
           Welcome to <b>Makahco!</b> We are a team of talented professionals who
           are passionate about helping our clients bring their creative visions
@@ -27,6 +27,4 @@ const About = () => {
       </div>
     </div>
   );
-};
-
-export default About;
+}
