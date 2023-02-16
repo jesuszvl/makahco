@@ -21,8 +21,8 @@ export default function About() {
           project.
         </p>
         <p>
-          So don't monkey around, get in touch with us today and let's ape-peal
-          to your creative side!
+          So don&apos;t monkey around, get in touch with us today and let&apos;s
+          ape-peal to your creative side!
         </p>
       </div>
     </div>
