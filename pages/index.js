@@ -6,12 +6,10 @@ import Gallery from "../src/components/Gallery/Gallery";
 import Hero from "../src/components/Hero/Hero";
 import Header from "../src/components/Header/Header";
 
-const G_ID = process.env.G_ID;
+const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
-if (G_ID) {
-  ReactGA.initialize(G_ID);
-  ReactGA.send({ hitType: "pageview", page: "/" });
-}
+ReactGA.initialize(NEXT_PUBLIC_ANALYTICS_ID);
+ReactGA.send({ hitType: "pageview", page: "/" });
 
 export default function Home() {
   return (
