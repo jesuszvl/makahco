@@ -6,7 +6,9 @@ import Gallery from "../src/components/Gallery/Gallery";
 import Hero from "../src/components/Hero/Hero";
 import Header from "../src/components/Header/Header";
 
-ReactGA.initialize("G-4KN7RH6T6R");
+const G_ID = process.env.G_ID;
+
+ReactGA.initialize(G_ID);
 ReactGA.send({ hitType: "pageview", page: "/" });
 
 export default function Home() {
