@@ -8,8 +8,10 @@ import Header from "../src/components/Header/Header";
 
 const G_ID = process.env.G_ID;
 
-ReactGA.initialize(G_ID);
-ReactGA.send({ hitType: "pageview", page: "/" });
+if (G_ID) {
+  ReactGA.initialize(G_ID);
+  ReactGA.send({ hitType: "pageview", page: "/" });
+}
 
 export default function Home() {
   return (
