@@ -7,8 +7,6 @@ export default function Gallery({ title, images }) {
       <h1 className={styles["gallery-title"]}>{title}</h1>
       <div className={styles["grid"]}>
         {images.map((img, i) => {
-          console.log("i", i);
-          console.log("img", img);
           return (
             <Image key={i} className={styles["image"]} src={img} alt={i} />
           );
