@@ -5,7 +5,6 @@ import Footer from "../src/components/Footer/Footer";
 import Office from "../src/components/Gallery/Office";
 import Hero from "../src/components/Hero/Hero";
 import Header from "../src/components/Header/Header";
-import People from "../src/components/Gallery/People";
 
 const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
@@ -19,7 +18,6 @@ export default function Home() {
       <Hero />
       <About />
       <Office />
-      <People />
       <Footer />
     </div>
   );

@@ -1,7 +1,14 @@
+.gallery-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .gallery {
   background-color: white;
   padding: 0px 16px 16px;
   text-align: center;
+  padding-bottom: 32px;
+  max-width: 700px;
 }
 
 .gallery-title {
@@ -15,15 +22,26 @@
 }
 
 .image {
-  width: calc(33% - 8px);
   padding-bottom: 16px;
 }
 
-@media screen and (max-width: 450px) {
-  .grid {
-    flex-direction: column;
-  }
-  .image {
-    width: 100%;
-  }
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  font-size: 2rem;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 2rem;
+  cursor: pointer;
+}
+
+.slick-prev {
+  left: 1rem;
+}
+
+.slick-next {
+  right: 2rem;
 }

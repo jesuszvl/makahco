@@ -1,16 +1,42 @@
 import styles from "./Gallery.module.scss";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Image from "next/image";
+
+const settings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 3000,
+  prevArrow: <button className={styles["slick-prev"]}>Previous</button>,
+  nextArrow: <button className={styles["slick-next"]}>Next</button>,
+};
 
 export default function Gallery({ title, images }) {
   return (
-    <div className={styles["gallery"]}>
-      <h1 className={styles["gallery-title"]}>{title}</h1>
-      <div className={styles["grid"]}>
-        {images.map((img, i) => {
-          return (
-            <Image key={i} className={styles["image"]} src={img} alt={i} />
-          );
-        })}
+    <div className={styles["gallery-container"]}>
+      <div className={styles["gallery"]}>
+        <h1 className={styles["gallery-title"]}>{title}</h1>
+        <Slider {...settings}>
+          {images.map((item, index) => {
+            return (
+              <Image
+                key={index}
+                className={styles["image"]}
+                src={item.src.src}
+                alt={item.caption}
+                width="100%"
+                height="100%"
+                layout="responsive"
+                objectFit="contain"
+              />
+            );
+          })}
+        </Slider>
       </div>
     </div>
   );
