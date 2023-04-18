@@ -12,8 +12,6 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 3000,
-  prevArrow: <button className={styles["slick-prev"]}>Previous</button>,
-  nextArrow: <button className={styles["slick-next"]}>Next</button>,
 };
 
 export default function Gallery({ title, images }) {

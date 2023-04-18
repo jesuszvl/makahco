@@ -25,24 +25,3 @@
 .image {
   padding-bottom: 16px;
 }
-
-.slick-prev,
-.slick-next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 1;
-  font-size: 2rem;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 2rem;
-  cursor: pointer;
-}
-
-.slick-prev {
-  left: 1rem;
-}
-
-.slick-next {
-  right: 1rem;
-}
