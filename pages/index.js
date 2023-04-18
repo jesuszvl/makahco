@@ -7,7 +7,9 @@ import Hero from "../src/components/Hero/Hero";
 import Header from "../src/components/Header/Header";
 import People from "../src/components/Gallery/People";
 
-ReactGA.initialize("G-4KN7RH6T6R");
+const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
+
+ReactGA.initialize(NEXT_PUBLIC_ANALYTICS_ID);
 ReactGA.send({ hitType: "pageview", page: "/" });
 
 export default function Home() {
