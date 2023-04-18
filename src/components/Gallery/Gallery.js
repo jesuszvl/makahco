@@ -12,8 +12,6 @@ const settings = {
   slidesToScroll: 1,
   autoplay: true,
   autoplaySpeed: 3000,
-  prevArrow: <button className={styles["slick-prev"]}>Previous</button>,
-  nextArrow: <button className={styles["slick-next"]}>Next</button>,
 };
 
 export default function Gallery({ title, images }) {
@@ -26,13 +24,15 @@ export default function Gallery({ title, images }) {
             return (
               <Image
                 key={index}
-                className={styles["image"]}
                 src={item.src.src}
                 alt={item.caption}
-                width="100%"
-                height="100%"
+                width="700"
+                height="700"
                 layout="responsive"
-                objectFit="contain"
+                style={{
+                  maxWidth: "700px",
+                  width: "100%",
+                }}
               />
             );
           })}
