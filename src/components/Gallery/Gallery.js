@@ -10,7 +10,7 @@ const settings = {
   speed: 500,
   slidesToShow: 1,
   slidesToScroll: 1,
-  autoplay: false,
+  autoplay: true,
   autoplaySpeed: 3000,
   prevArrow: <button className={styles["slick-prev"]}>Previous</button>,
   nextArrow: <button className={styles["slick-next"]}>Next</button>,
