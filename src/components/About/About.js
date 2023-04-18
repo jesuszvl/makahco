@@ -3,7 +3,7 @@ import styles from "./About.module.scss";
 export default function About() {
   return (
     <div className={styles["about-container"]}>
-      <h1>About Us</h1>
+      <h1>About Our Troop</h1>
       <div className={styles["about-content"]}>
         <p>
           Hello! We are a <b>Makahco</b>. A team of talented professionals who
