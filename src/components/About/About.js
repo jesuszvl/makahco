@@ -6,7 +6,7 @@ export default function About() {
       <h1>About Us</h1>
       <div className={styles["about-content"]}>
         <p>
-          Welcome to <b>Makahco!</b> We are a team of talented professionals who
+          Hello! We are a <b>Makahco</b>. A team of talented professionals who
           are passionate about helping our clients bring their creative visions
           to life. Our services include software engineering, music recording,
           and video production
