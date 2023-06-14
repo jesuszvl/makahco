@@ -1,9 +1,11 @@
+@import "colors.constants";
+
 body {
   margin: 0px;
   font-family: "Outfit", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #1e2124;
+  background-color: $main-yellow;
 }
 
 code {
@@ -12,5 +14,21 @@ code {
 }
 
 .home-content {
-  background-color: white;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: 48px;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:-webkit-any-link {
+  text-decoration: none;
+  color: inherit;
 }

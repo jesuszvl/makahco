@@ -6,8 +6,8 @@ export default function Footer() {
       <div className={styles["footer"]}>
         <p className={styles["footer-content"]}>
           developed by{" "}
-          <a href="https://makah.co" className={styles["footer-link"]}>
-            makahco ®
+          <a href="https://jesuszvl.com" className={styles["footer-link"]}>
+            jesuszvl ®
           </a>
         </p>
       </div>
