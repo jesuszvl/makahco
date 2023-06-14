@@ -28,7 +28,6 @@ export default function Gallery({ title, images }) {
                 alt={item.caption}
                 width="700"
                 height="700"
-                layout="responsive"
                 style={{
                   maxWidth: "700px",
                   width: "100%",
