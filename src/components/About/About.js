@@ -1,8 +1,45 @@
+import ServiceCard from "../ServiceCard/ServiceCard";
 import styles from "./About.module.scss";
+
+import headphones from "../../icons/headphones.png";
+import shop from "../../icons/clothes.png";
+
+const services = [
+  {
+    title: "Beats",
+    image: headphones,
+    description:
+      "Unlock your creativity with our extensive collection of 1000+ beats curated from talented Makahco producers and independent artists. Immerse yourself in the mesmerizing rhythms, whether you're seeking relaxation or in need of the perfect study companion. These beats are not just for personal enjoyment; they are also the ideal tool for crafting that long-awaited demo or unleashing your freestyle skills. Best of all, it's all completely free!",
+  },
+  {
+    title: "Shop",
+    image: shop,
+    description:
+      "Find your ultimate style with our amazing range of trendy clothes and accessories, specially crafted by the talented designers at Makahco. Get ready to go bananas as you browse through our handpicked collection, designed to bring out your unique fashion sense. Enjoy a hassle-free shopping experience with secure purchases and convenient home delivery services.",
+  },
+  {
+    title: "Blog",
+    image: shop,
+    description:
+      "Find your ultimate style with our amazing range of trendy clothes and accessories, specially crafted by the talented designers at Makahco. Get ready to go bananas as you browse through our handpicked collection, designed to bring out your unique fashion sense. Enjoy a hassle-free shopping experience with secure purchases and convenient home delivery services.",
+  },
+];
 
 export default function About() {
   return (
     <div className={styles["about-container"]}>
+      <div className={styles["services"]}>
+        {services.map((service) => {
+          return (
+            <ServiceCard
+              key={service.title}
+              title={service.title}
+              image={service.image}
+              description={service.description}
+            />
+          );
+        })}
+      </div>
       <h1>About Our Troop</h1>
       <div className={styles["about-content"]}>
         <p>
