@@ -1,10 +1,6 @@
 import "../src/styles/globals.scss";
 
-import { Outfit } from "next/font/google";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-});
+import { outfit } from "../fonts";
 
 export default function MyApp({ Component, pageProps }) {
   return (

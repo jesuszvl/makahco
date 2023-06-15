@@ -31,3 +31,13 @@
   background-color: darkgray;
   cursor: pointer;
 }
+
+.services {
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+
+  @media (max-width: 560px) {
+    flex-direction: column;
+  }
+}

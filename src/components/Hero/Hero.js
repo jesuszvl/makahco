@@ -6,7 +6,11 @@ import makahcoPic from "../../../public/makahco.png";
 export default function Hero() {
   return (
     <div className={styles["hero"]}>
-      <Image src={makahcoPic} alt="makahco" width={200} height={230} />
+      <h1 className={styles["hero-title"]}>
+        <span>Ape-pealing</span>
+        <span>To The</span>
+        <span>Creative You</span>
+      </h1>
     </div>
   );
 }

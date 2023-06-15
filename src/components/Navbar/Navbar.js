@@ -6,6 +6,8 @@ import MenuIcon from "../../icons/MenuIcon";
 import CloseIcon from "../../icons/CloseIcon";
 import Image from "next/image";
 import makahco from "../../icons/makahco.svg";
+import classNames from "classnames";
+import { righteous } from "../../../fonts";
 
 const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
@@ -51,7 +53,9 @@ const Navbar = () => {
         <Link href="/">
           <div className={styles.logo}>
             <Image src={makahco} alt="Makahco" width={36} height={36} />
-            <span className={styles.company}>MAKAHCO</span>
+            <span className={classNames([styles.company, righteous.className])}>
+              makahco
+            </span>
           </div>
         </Link>
 
