@@ -1,7 +1,14 @@
 import Image from "next/image";
 import styles from "./ServiceCard.module.scss";
+import Link from "next/link";
 
-export default function ServiceCard({ title, description, image, ctaText }) {
+export default function ServiceCard({
+  title,
+  description,
+  image,
+  ctaText,
+  href,
+}) {
   return (
     <div className={styles["card-container"]}>
       <div className={styles["card-content"]}>
@@ -13,7 +20,9 @@ export default function ServiceCard({ title, description, image, ctaText }) {
         </div>
         <div className={styles["card-action"]}>
           <p className={styles["card-description"]}>{description}</p>
-          <button className={styles["card-button"]}>{ctaText}</button>
+          <Link href={href}>
+            <button className={styles["card-button"]}>{ctaText}</button>
+          </Link>
         </div>
       </div>
     </div>

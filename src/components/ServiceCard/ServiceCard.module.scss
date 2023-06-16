@@ -2,15 +2,15 @@
 
 .card-container {
   background-color: $deep-violet;
-  width: 100%;
   color: white;
   border-radius: 12px;
+  padding: 16px;
 }
 
 .card-content {
-  padding: 16px;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
 
 .card-main {
@@ -51,4 +51,5 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  height: 100%;
 }
