@@ -1,3 +1,5 @@
+@import "../../styles/colors.constants";
+
 .about-container {
   align-items: center;
   display: flex;
@@ -48,7 +50,7 @@
 
 .image-container {
   position: relative;
-  background-color: red;
+  background-color: $deep-violet;
   width: 100%;
   padding-top: 50%;
   margin-bottom: 32px;
