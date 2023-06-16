@@ -22,8 +22,6 @@ export default function Index() {
       <Navbar />
       <Hero />
       <About />
-      <Office />
-      <Contact />
       <Footer />
     </div>
   );

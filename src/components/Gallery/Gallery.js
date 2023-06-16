@@ -11,31 +11,16 @@ const settings = {
   slidesToShow: 1,
   slidesToScroll: 1,
   autoplay: true,
-  autoplaySpeed: 3000,
+  autoplaySpeed: 5000,
 };
 
 export default function Gallery({ title, images }) {
   return (
     <div className={styles["gallery-container"]}>
       <div className={styles["gallery"]}>
-        <h1 className={styles["gallery-title"]}>{title}</h1>
-        <Slider {...settings}>
-          {images.map((item, index) => {
-            return (
-              <Image
-                key={index}
-                src={item.src.src}
-                alt={item.caption}
-                width="700"
-                height="700"
-                style={{
-                  maxWidth: "700px",
-                  width: "100%",
-                }}
-              />
-            );
-          })}
-        </Slider>
+        {images.map((item, index) => {
+          return <Image key={index} src={item.src} alt={item.caption} />;
+        })}
       </div>
     </div>
   );
