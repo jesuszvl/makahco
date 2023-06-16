@@ -2,6 +2,7 @@ import ReactGA from "react-ga4";
 import Head from "next/head";
 import Navbar from "../src/components/Navbar/Navbar";
 import Footer from "../src/components/Footer/Footer";
+import { useEffect } from "react";
 
 const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
@@ -9,6 +10,10 @@ ReactGA.initialize(NEXT_PUBLIC_ANALYTICS_ID);
 ReactGA.send({ hitType: "pageview", page: "/beats" });
 
 export default function Beats() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="container">
       <Head>
@@ -17,7 +22,9 @@ export default function Beats() {
       </Head>
       <Navbar />
       <div className="content">
-        <h3>Not ready yet... Listen to my fav jams in the meantime!</h3>
+        <h3 className="page-title">
+          Not ready yet... Listen to my fav jams in the meantime!
+        </h3>
         <iframe
           style={{ borderRadius: "12px" }}
           src="https://open.spotify.com/embed/playlist/2NzyWV9sT9rnKMncFHCkJG?utm_source=generator&theme=0"

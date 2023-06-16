@@ -38,7 +38,7 @@ export default function About() {
   return (
     <div className={styles["about-container"]}>
       <div className={styles["image-container"]}>
-        <Image src={monkeys} layout="fill" objectFit="cover" />
+        <Image src={monkeys} layout="fill" objectFit="cover" alt="music" />
       </div>
       <div className={styles["services"]}>
         {services.map((service) => {
