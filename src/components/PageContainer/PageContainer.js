@@ -7,7 +7,10 @@ const PageContainer = ({ children, title }) => {
     <div>
       <Head>
         <title>{title}</title>
-        <meta name="description" content="Creative Studio"></meta>
+        <meta
+          name="description"
+          content="Ape-pealing To The Creative You!"
+        ></meta>
       </Head>
       <Navbar />
       {children}
