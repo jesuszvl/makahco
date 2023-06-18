@@ -1,26 +1,11 @@
-import ReactGA from "react-ga4";
-import Head from "next/head";
-import Navbar from "../src/components/Navbar/Navbar";
-import Footer from "../src/components/Footer/Footer";
-import { useEffect } from "react";
+import PageContainer from "../src/components/PageContainer/PageContainer";
+import { trackPageView } from "../src/utils/analytics";
 
-const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
-
-ReactGA.initialize(NEXT_PUBLIC_ANALYTICS_ID);
-ReactGA.send({ hitType: "pageview", page: "/beats" });
+trackPageView("/beats");
 
 export default function Beats() {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   return (
-    <div className="container">
-      <Head>
-        <title>Makahco | Beats</title>
-        <meta name="description" content="Creative Studio"></meta>
-      </Head>
-      <Navbar />
+    <PageContainer title="Makahco | Beats">
       <div className="content">
         <h3 className="page-title">
           Not ready yet... Listen to my fav jams in the meantime!
@@ -36,7 +21,6 @@ export default function Beats() {
           loading="lazy"
         />
       </div>
-      <Footer />
-    </div>
+    </PageContainer>
   );
 }

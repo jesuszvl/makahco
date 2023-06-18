@@ -1,7 +1,4 @@
-import Image from "next/image";
 import styles from "./Hero.module.scss";
-
-import makahcoPic from "../../../public/makahco.png";
 
 export default function Hero() {
   return (

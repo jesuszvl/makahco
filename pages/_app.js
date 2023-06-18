@@ -1,6 +1,12 @@
+import { initializeAnalytics } from "../src/utils/analytics";
+import { Outfit } from "next/font/google";
 import "../src/styles/globals.scss";
 
-import { outfit } from "../fonts";
+const outfit = Outfit({
+  subsets: ["latin"],
+});
+
+initializeAnalytics();
 
 export default function MyApp({ Component, pageProps }) {
   return (
