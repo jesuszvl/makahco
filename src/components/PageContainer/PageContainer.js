@@ -4,7 +4,7 @@ import Footer from "../Footer/Footer";
 
 const PageContainer = ({ children, title }) => {
   return (
-    <div className={styles["page-container"]}>
+    <div>
       <Head>
         <title>{title}</title>
         <meta name="description" content="Creative Studio"></meta>
