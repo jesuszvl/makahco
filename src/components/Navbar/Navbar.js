@@ -60,9 +60,9 @@ const Navbar = () => {
         </Link>
 
         <div className={styles.menu}>
-          {links.map((link, index) => (
+          {links.map((link) => (
             <Link
-              key={index}
+              key={link.href}
               href={link.href}
               className={styles.link}
               onClick={() => trackLinkClick(link.name)}
