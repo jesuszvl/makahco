@@ -1,0 +1,21 @@
+@import "../../styles/colors.constants";
+
+.mode-selector {
+  display: flex;
+  gap: 16px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mode-container {
+  cursor: pointer;
+  padding: 0px 4px 8px 4px;
+  text-align: center;
+  align-items: center;
+  display: flex;
+}
+
+.mode-active {
+  border-bottom: 3px solid $deep-violet;
+  font-size: 18px;
+}

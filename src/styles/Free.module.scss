@@ -1,0 +1,35 @@
+@import "colors.constants";
+
+.mode-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 32px 16px;
+}
+
+.mode-active {
+  border-bottom: 2px solid $deep-violet;
+}
+
+.mode-word {
+  text-align: center;
+  font-size: 48px;
+}
+
+.mode-button {
+  all: unset;
+  cursor: pointer;
+  border: 2px solid $main-black;
+  color: $main-black;
+  border-radius: 6px;
+  padding: 8px 26px;
+  font-size: 24px;
+  font-weight: 600;
+
+  &:hover {
+    background-color: $deep-violet;
+    color: $main-white;
+    border-color: $main-white;
+  }
+}
