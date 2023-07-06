@@ -36,6 +36,7 @@ export default function Free() {
 
   const handleStop = () => {
     stop();
+    setCurrentWord("-");
     setIntervalId(null);
   };
 

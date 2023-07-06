@@ -1,9 +1,9 @@
 import { Configuration, OpenAIApi } from "openai";
-import { getRandomWordFromArray } from "./randomWordsBank";
+import { getRandomWordFromArray } from "../../src/utils/randomWordsBank";
 
 const configuration = new Configuration({
-  apiKey: "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",
-  organization: "org-uhTkxUgjVByxD1hKdXLl89GT",
+  apiKey: process.env.NEXT_PUBLIC_OPENAI_SECRET,
+  organization: process.env.NEXT_PUBLIC_OPENAI_ORGANIZATION,
 });
 
 const openai = new OpenAIApi(configuration);
@@ -17,6 +17,7 @@ export async function getRandomSpanishWord() {
         model: "text-davinci-003",
         prompt:
           "Genera una palabra random que tenga más de 5 letras pero menos de 10",
+        max_tokens: 10,
       });
       const randomWord = completion.data.choices[0].text.trim();
       return randomWord;
