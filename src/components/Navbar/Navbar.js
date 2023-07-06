@@ -17,6 +17,7 @@ const Navbar = () => {
     { name: "Beats", href: "/beats" },
     { name: "Shop", href: "/shop" },
     { name: "Blog", href: "/blog" },
+    { name: "Free", href: "/free" },
   ];
 
   const trackLinkClick = (linkName) => {
