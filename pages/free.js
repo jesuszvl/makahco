@@ -10,13 +10,24 @@ import { getRandomSpanishWord } from "./api/randomWords";
 
 trackPageView("/free");
 
+const songs = [
+  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_1.mp3",
+  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_2.mp3",
+  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_3.mp3",
+  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_4.mp3",
+  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_5.mp3",
+];
+
+const getRandomSongUrl = () => {
+  const randomIndex = Math.floor(Math.random() * songs.length);
+  return songs[randomIndex];
+};
+
 export default function Free() {
   const [currentMode, setCurrentMode] = useState(MODES[0]);
   const [currentWord, setCurrentWord] = useState("-");
   const [intervalId, setIntervalId] = useState(null);
-  const [play, { stop }] = useSound(
-    "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_1.mp3?t=2023-06-18T13%3A18%3A43.252Z"
-  );
+  const [play, { stop }] = useSound(getRandomSongUrl());
 
   useEffect(() => {
     if (intervalId) {
