@@ -30,16 +30,15 @@
 .hero-cta {
   all: unset;
   cursor: pointer;
-  border: 2px solid $main-black;
-  color: $main-black;
+  background-color: $deep-violet;
+  border: 2px solid $main-white;
+  color: $main-white;
   border-radius: 6px;
   padding: 8px 26px;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
 
   &:hover {
-    background-color: $deep-violet;
-    color: $main-white;
-    border-color: $main-white;
+    background-color: $deeper-violet;
   }
 }

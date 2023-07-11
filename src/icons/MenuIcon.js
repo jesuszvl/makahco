@@ -3,7 +3,7 @@ import React from "react";
 export default function MenuIcon({
   width = 32,
   height = 32,
-  stroke = "#766afe",
+  stroke = "#8436b3",
 }) {
   return (
     <svg

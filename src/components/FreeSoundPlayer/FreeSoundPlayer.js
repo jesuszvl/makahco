@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styles from "./FreeSoundPlayer.module.scss";
-import Image from "next/image";
 
-import playIcon from "../../icons/PlayIcon.svg";
-import stopIcon from "../../icons/StopIcon.svg";
+import PlayIcon from "../../icons/PlayIcon";
+import StopIcon from "../../icons/StopIcon";
 
 import { Howl } from "howler";
 
@@ -57,11 +56,11 @@ const FreeSoundPlayer = ({ onPlay, onWordClear }) => {
     <div className={styles["sound-player"]}>
       {isPlaying ? (
         <button className={styles["player-button"]} onClick={handleStop}>
-          <Image src={stopIcon} alt="Stop" width={32} height={32} />
+          <StopIcon />
         </button>
       ) : (
         <button className={styles["player-button"]} onClick={handlePlay}>
-          <Image src={playIcon} alt="Play" width={32} height={32} />
+          <PlayIcon />
         </button>
       )}
     </div>

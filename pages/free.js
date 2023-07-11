@@ -11,6 +11,7 @@ import styles from "../src/styles/Free.module.scss";
 import classNames from "classnames";
 import { getSizeOfLongestWord } from "../src/utils/randomUtils";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
+import { supabaseClient } from "../src/utils/supabaseClient";
 
 const initialWord = { word: "-", category: "..." };
 
@@ -21,8 +22,18 @@ export default function Free() {
 
   const wordInterval = currentMode.id === "FIVE" ? 5000 : 10000;
 
+  const fetchBeats = async () => {
+    // const { data, error } = await supabaseClient.from("beats").select();
+    // if (error) {
+    //   console.error(error);
+    // } else {
+    //   console.log(data);
+    // }
+  };
+
   useEffect(() => {
     trackPageView("/free");
+    fetchBeats();
   }, []);
 
   useEffect(() => {
