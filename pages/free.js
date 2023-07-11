@@ -50,7 +50,7 @@ export default function Free() {
   return (
     <PageContainer
       title="Makahco | Entrena tu free"
-      content="Mejora tu freestyle con nuestros beats gratuitos y amplía tu vocabulario con nuestro generador de palabras e imágenes impulsado por IA."
+      description="Mejora tu freestyle con nuestros beats gratuitos y amplía tu vocabulario con nuestro generador de palabras e imágenes impulsado por IA."
     >
       <div className="content">
         <FreeModeSelector currentMode={currentMode} onModeClick={onModeClick} />

@@ -7,7 +7,7 @@ export default function Beats() {
   return (
     <PageContainer
       title="Makahco | Beats"
-      content="Unlock your creativity with our extensive collection of 1000+ beats curated from talented Makahco producers and independent artists."
+      description="Unlock your creativity with our extensive collection of 1000+ beats curated from talented Makahco producers and independent artists."
     >
       <div className="content">
         <h3 className="page-title">
