@@ -1,7 +1,11 @@
 import Apptimize from "@apptimize/apptimize-web-sdk";
 
 export const isFeatureFlagEnabled = (featureFlagName) => {
-  return Apptimize.isFeatureFlagEnabled(featureFlagName);
+  // Check if the window object is defined before accessing Apptimize
+  if (typeof window !== "undefined") {
+    return Apptimize.isFeatureFlagEnabled(featureFlagName);
+  }
+  return false; // Return a default value if window is not defined
 };
 
 function onApptimizeInitialized() {
@@ -13,5 +17,8 @@ function onApptimizeInitialized() {
   );
 }
 
-Apptimize.setOnApptimizeInitializedCallback(onApptimizeInitialized);
-Apptimize.setup(process.env.NEXT_PUBLIC_APPTIMIZE_KEY);
+// Check if the window object is defined before setting up Apptimize
+if (typeof window !== "undefined") {
+  Apptimize.setOnApptimizeInitializedCallback(onApptimizeInitialized);
+  Apptimize.setup(process.env.NEXT_PUBLIC_APPTIMIZE_KEY);
+}
