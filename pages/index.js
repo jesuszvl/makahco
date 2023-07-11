@@ -7,7 +7,10 @@ trackPageView("/");
 
 export default function Index() {
   return (
-    <PageContainer title="Makahco | Creative Studio">
+    <PageContainer
+      title="Makahco | Home"
+      content="Ape-pealing To The Creative You!"
+    >
       <Hero />
       <About />
     </PageContainer>

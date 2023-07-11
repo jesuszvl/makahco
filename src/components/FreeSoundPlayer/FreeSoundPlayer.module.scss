@@ -1,0 +1,18 @@
+@import "../../styles/colors.constants";
+
+.player-button {
+  all: unset;
+  cursor: pointer;
+  border: 2px solid $main-white;
+  color: $main-white;
+  border-radius: 12px;
+  background-color: $deep-violet;
+  display: flex;
+  padding: 16px 32px;
+
+  &:hover {
+    background-color: $deeper-violet;
+    color: $main-white;
+    border-color: $main-white;
+  }
+}

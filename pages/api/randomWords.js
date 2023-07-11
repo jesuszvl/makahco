@@ -1,5 +1,9 @@
 import { Configuration, OpenAIApi } from "openai";
-import { getRandomWordFromArray } from "../../src/utils/randomWordsBank";
+import {
+  getRandomWordCategory,
+  getRandomWordFromArray,
+} from "../../src/utils/randomUtils";
+import { isFeatureFlagEnabled } from "../../src/utils/apptimize";
 
 const configuration = new Configuration({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_SECRET,
@@ -8,19 +12,39 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const useOpenAI = false; // Set this flag to true to use OpenAI API, or false to use local array
+const useOpenAI = isFeatureFlagEnabled("new_feature_flag_variable"); // Set this flag to true to use OpenAI API, or false to use local array
 
 export async function getRandomSpanishWord() {
+  const randomCategory = getRandomWordCategory();
+
   if (useOpenAI) {
     try {
-      const completion = await openai.createCompletion({
-        model: "text-davinci-003",
-        prompt:
-          "Genera una palabra random que tenga más de 5 letras pero menos de 10",
-        max_tokens: 10,
+      const completion = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [
+          {
+            role: "user",
+            content:
+              "1 palabra comun y aleatoria en español. Maximo 15 caracteres. Categoria: " +
+              randomCategory,
+          },
+        ],
+        temperature: 2,
       });
-      const randomWord = completion.data.choices[0].text.trim();
-      return randomWord;
+      const randomWord = completion.data.choices[0].message.content
+        .trim()
+        .replace(/[".]/g, " ");
+      // const completionMeaning = await openai.createCompletion({
+      //   model: "text-davinci-003",
+      //   prompt:
+      //     "En menos de 50 palabras, dime cual es el significado de " +
+      //     randomWord +
+      //     "?",
+      // });
+
+      // const randomMeaning = completionMeaning.data.choices[0].text;
+
+      return { word: randomWord, category: randomCategory };
     } catch (error) {
       if (error.response) {
         console.log(error.response.status);
@@ -29,12 +53,12 @@ export async function getRandomSpanishWord() {
         console.log(error.message);
       }
 
-      const randomWord = getRandomWordFromArray();
-      return randomWord;
+      const randomWord = getRandomWordFromArray(randomCategory);
+      return { word: randomWord, category: randomCategory };
     }
   } else {
     // Use local array of words instead
-    const randomWord = getRandomWordFromArray();
-    return randomWord;
+    const randomWord = getRandomWordFromArray(randomCategory);
+    return { word: randomWord, category: randomCategory };
   }
 }
