@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
 
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
@@ -49,7 +48,10 @@ export default function Free() {
   const isBigWord = getSizeOfLongestWord(currentWord.word) > 9;
 
   return (
-    <PageContainer title="Makahco | Free">
+    <PageContainer
+      title="Makahco | Entrena tu free"
+      content="Mejora tu freestyle con nuestros beats gratuitos y amplía tu vocabulario con nuestro generador de palabras e imágenes impulsado por IA."
+    >
       <div className="content">
         <FreeModeSelector currentMode={currentMode} onModeClick={onModeClick} />
         <div className={styles["mode-content"]}>
