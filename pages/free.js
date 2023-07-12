@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
 import { MODES } from "../src/utils/constants";
-import { getRandomSpanishWord } from "./api/randomWords";
+import { getRandomSpanishWord, getRandomImage } from "./api/randomWords";
 import { trackPageView } from "../src/utils/analytics";
+import monkeys from "../public/monkeys.jpeg";
 
 import styles from "../src/styles/Free.module.scss";
 
@@ -12,13 +13,17 @@ import classNames from "classnames";
 import { getSizeOfLongestWord } from "../src/utils/randomUtils";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
 import { supabaseClient } from "../src/utils/supabaseClient";
+import Image from "next/image";
 
 const initialWord = { word: "-", category: "..." };
 
 export default function Free() {
   const [currentMode, setCurrentMode] = useState(MODES[0]);
   const [currentWord, setCurrentWord] = useState(initialWord);
+  const [currentImage, setCurrentImage] = useState(monkeys);
   const [intervalId, setIntervalId] = useState(null);
+
+  const isImageMode = currentMode.id === "IMG";
 
   const wordInterval = currentMode.id === "FIVE" ? 5000 : 10000;
 
@@ -39,13 +44,18 @@ export default function Free() {
   useEffect(() => {
     if (intervalId) {
       const interval = setInterval(async () => {
-        const randomWord = await getRandomSpanishWord();
-        setCurrentWord(randomWord);
-      }, wordInterval);
+        if (isImageMode) {
+          const randomImage = await getRandomImage();
+          setCurrentImage(randomImage);
+        } else {
+          const randomWord = await getRandomSpanishWord();
+          setCurrentWord(randomWord);
+        }
+      }, currentMode.interval);
 
       return () => clearInterval(interval);
     }
-  }, [intervalId, wordInterval]);
+  }, [intervalId, isImageMode, currentMode]);
 
   const onModeClick = (mode) => {
     setCurrentMode(mode);
@@ -53,6 +63,7 @@ export default function Free() {
 
   const onWordClear = () => {
     setCurrentWord(initialWord);
+    setCurrentImage(monkeys);
     setIntervalId(null);
   };
 
@@ -66,14 +77,29 @@ export default function Free() {
       <div className="content">
         <FreeModeSelector currentMode={currentMode} onModeClick={onModeClick} />
         <div className={styles["mode-content"]}>
-          <p
-            className={classNames(styles["mode-word"], {
-              [styles["mode-big-word"]]: isBigWord,
-            })}
-          >
-            {currentWord.word}
-          </p>
-          <p className={styles["mode-word-meaning"]}>{currentWord.category}</p>
+          {isImageMode ? (
+            <div className={styles["image-container"]}>
+              <Image
+                src={currentImage}
+                layout="fill"
+                objectFit="cover"
+                alt="music"
+              />
+            </div>
+          ) : (
+            <>
+              <p
+                className={classNames(styles["mode-word"], {
+                  [styles["mode-big-word"]]: isBigWord,
+                })}
+              >
+                {currentWord.word}
+              </p>
+              <p className={styles["mode-word-meaning"]}>
+                {currentWord.category}
+              </p>
+            </>
+          )}
         </div>
         <FreeSoundPlayer
           onWordClear={onWordClear}

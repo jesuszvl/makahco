@@ -31,3 +31,13 @@
 .mode-big-word {
   font-size: 38px;
 }
+
+.image-container {
+  position: relative;
+  background-color: $deep-violet;
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+
+  overflow: hidden;
+}

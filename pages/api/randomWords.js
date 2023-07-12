@@ -2,6 +2,7 @@ import { Configuration, OpenAIApi } from "openai";
 import {
   getRandomWordCategory,
   getRandomWordFromArray,
+  getRandomImageFromArray,
 } from "../../src/utils/randomUtils";
 import { isFeatureFlagEnabled } from "../../src/utils/apptimize";
 
@@ -34,15 +35,6 @@ export async function getRandomSpanishWord() {
       const randomWord = completion.data.choices[0].message.content
         .trim()
         .replace(/[".]/g, " ");
-      // const completionMeaning = await openai.createCompletion({
-      //   model: "text-davinci-003",
-      //   prompt:
-      //     "En menos de 50 palabras, dime cual es el significado de " +
-      //     randomWord +
-      //     "?",
-      // });
-
-      // const randomMeaning = completionMeaning.data.choices[0].text;
 
       return { word: randomWord, category: randomCategory };
     } catch (error) {
@@ -61,4 +53,44 @@ export async function getRandomSpanishWord() {
     const randomWord = getRandomWordFromArray(randomCategory);
     return { word: randomWord, category: randomCategory };
   }
+}
+
+export async function getRandomImage() {
+  //const randomCategory = getRandomWordCategory();
+
+  // if (useOpenAI) {
+  //   try {
+  //     const completion = await openai.createChatCompletion({
+  //       model: "gpt-3.5-turbo",
+  //       messages: [
+  //         {
+  //           role: "user",
+  //           content:
+  //             "1 palabra comun y aleatoria en español. Maximo 15 caracteres. Categoria: " +
+  //             randomCategory,
+  //         },
+  //       ],
+  //       temperature: 2,
+  //     });
+  //     const randomWord = completion.data.choices[0].message.content
+  //       .trim()
+  //       .replace(/[".]/g, " ");
+
+  //     return { word: randomWord, category: randomCategory };
+  //   } catch (error) {
+  //     if (error.response) {
+  //       console.log(error.response.status);
+  //       console.log(error.response.data);
+  //     } else {
+  //       console.log(error.message);
+  //     }
+
+  //     const randomWord = getRandomWordFromArray(randomCategory);
+  //     return { word: randomWord, category: randomCategory };
+  //   }
+  // } else {
+  // Use local array of words instead
+  const randomImage = getRandomImageFromArray();
+  return randomImage;
+  //}
 }
