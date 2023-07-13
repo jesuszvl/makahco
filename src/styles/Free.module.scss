@@ -28,6 +28,26 @@
   text-transform: uppercase;
 }
 
+.time-counter {
+  font-size: 18px;
+}
+
 .mode-big-word {
   font-size: 38px;
+}
+
+.image-container {
+  position: relative;
+  background-color: $deep-violet;
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+  border: 2px solid $deep-violet;
+  overflow: hidden;
+  z-index: -1;
+
+  @media (max-width: 365px) {
+    width: 250px;
+    height: 250px;
+  }
 }

@@ -918,6 +918,20 @@ const wordBankList = {
   deportes,
 };
 
+const images = [
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image1.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image2.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image3.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image4.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image5.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image6.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image7.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image8.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image9.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image10.jpg",
+  "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/images/image11.jpg",
+];
+
 export function getRandomWordFromArray(category) {
   const categorySet = wordBankList[category];
   const randomIndex = Math.floor(Math.random() * categorySet.length);
@@ -927,6 +941,11 @@ export function getRandomWordFromArray(category) {
 export function getRandomWordCategory() {
   const randomIndex = Math.floor(Math.random() * wordCategories.length);
   return wordCategories[randomIndex];
+}
+
+export function getRandomImageFromArray() {
+  const randomIndex = Math.floor(Math.random() * images.length);
+  return images[randomIndex];
 }
 
 export function getSizeOfLongestWord(str) {

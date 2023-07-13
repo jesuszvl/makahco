@@ -1,51 +1,70 @@
 import { useState, useEffect } from "react";
+import { useStopwatch } from "react-timer-hook";
 
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
 import { MODES } from "../src/utils/constants";
-import { getRandomSpanishWord } from "./api/randomWords";
+import { getRandomSpanishWord, getRandomImage } from "./api/randomWords";
 import { trackPageView } from "../src/utils/analytics";
+import monkeys from "../public/monkeys.jpeg";
 
 import styles from "../src/styles/Free.module.scss";
 
 import classNames from "classnames";
 import { getSizeOfLongestWord } from "../src/utils/randomUtils";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
-import { supabaseClient } from "../src/utils/supabaseClient";
+import Image from "next/image";
 
 const initialWord = { word: "-", category: "..." };
+const initialBeat = { src: "", beat_drop: 10 };
 
 export default function Free() {
   const [currentMode, setCurrentMode] = useState(MODES[0]);
   const [currentWord, setCurrentWord] = useState(initialWord);
-  const [intervalId, setIntervalId] = useState(null);
+  const [currentImage, setCurrentImage] = useState(monkeys);
+  const [currentBeat, setCurrentBeat] = useState(initialBeat);
 
-  const wordInterval = currentMode.id === "FIVE" ? 5000 : 10000;
+  const { seconds, minutes, totalSeconds, isRunning, start, reset } =
+    useStopwatch({
+      autoStart: false,
+    });
 
-  const fetchBeats = async () => {
-    // const { data, error } = await supabaseClient.from("beats").select();
-    // if (error) {
-    //   console.error(error);
-    // } else {
-    //   console.log(data);
-    // }
-  };
+  const isImageMode = currentMode.id === "IMG";
 
+  // tracking
   useEffect(() => {
     trackPageView("/free");
-    fetchBeats();
   }, []);
 
+  // Countdown effect
   useEffect(() => {
-    if (intervalId) {
-      const interval = setInterval(async () => {
+    const fetchNewStimulus = async () => {
+      if (isImageMode) {
+        const randomImage = await getRandomImage();
+        setCurrentImage(randomImage);
+      } else {
         const randomWord = await getRandomSpanishWord();
         setCurrentWord(randomWord);
-      }, wordInterval);
+      }
+    };
 
-      return () => clearInterval(interval);
+    const countdownSeconds = currentBeat.beat_drop - totalSeconds;
+
+    if (countdownSeconds >= 1 && countdownSeconds <= 3) {
+      setCurrentWord({ word: countdownSeconds.toString(), category: "" });
     }
-  }, [intervalId, wordInterval]);
+
+    if (
+      totalSeconds > currentBeat.beat_drop &&
+      countdownSeconds % currentBeat.spb === 0
+    ) {
+      fetchNewStimulus();
+    }
+
+    if (totalSeconds === currentBeat.beat_drop) {
+      fetchNewStimulus();
+    }
+  }, [totalSeconds, currentBeat, isImageMode]);
 
   const onModeClick = (mode) => {
     setCurrentMode(mode);
@@ -53,7 +72,7 @@ export default function Free() {
 
   const onWordClear = () => {
     setCurrentWord(initialWord);
-    setIntervalId(null);
+    setCurrentImage(monkeys);
   };
 
   const isBigWord = getSizeOfLongestWord(currentWord.word) > 9;
@@ -66,18 +85,43 @@ export default function Free() {
       <div className="content">
         <FreeModeSelector currentMode={currentMode} onModeClick={onModeClick} />
         <div className={styles["mode-content"]}>
-          <p
-            className={classNames(styles["mode-word"], {
-              [styles["mode-big-word"]]: isBigWord,
-            })}
-          >
-            {currentWord.word}
-          </p>
-          <p className={styles["mode-word-meaning"]}>{currentWord.category}</p>
+          {isImageMode ? (
+            <div className={styles["image-container"]}>
+              <Image
+                src={currentImage}
+                layout="fill"
+                objectFit="cover"
+                alt=""
+              />
+            </div>
+          ) : (
+            <>
+              <p
+                className={classNames(styles["mode-word"], {
+                  [styles["mode-big-word"]]: isBigWord,
+                })}
+              >
+                {currentWord.word}
+              </p>
+              <p className={styles["mode-word-meaning"]}>
+                {currentWord.category}
+              </p>
+            </>
+          )}
         </div>
+        <p className={styles["time-counter"]}>
+          {minutes.toString().padStart(2, "0")}:
+          {seconds.toString().padStart(2, "0")}
+        </p>
         <FreeSoundPlayer
           onWordClear={onWordClear}
-          onPlay={() => setIntervalId(1)}
+          onPlay={(newBeat) => {
+            setCurrentBeat(newBeat);
+            start();
+          }}
+          onStop={() => {
+            reset(0, false);
+          }}
         />
       </div>
     </PageContainer>
