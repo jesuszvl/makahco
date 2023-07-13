@@ -44,9 +44,10 @@
   border-radius: 12px;
   border: 2px solid $deep-violet;
   overflow: hidden;
+  z-index: -1;
+
   @media (max-width: 365px) {
     width: 250px;
     height: 250px;
   }
-  z-index: -1;
 }
