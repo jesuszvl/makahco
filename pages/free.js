@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useStopwatch } from "react-timer-hook";
 
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
@@ -12,50 +13,58 @@ import styles from "../src/styles/Free.module.scss";
 import classNames from "classnames";
 import { getSizeOfLongestWord } from "../src/utils/randomUtils";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
-import { supabaseClient } from "../src/utils/supabaseClient";
 import Image from "next/image";
 
 const initialWord = { word: "-", category: "..." };
+const initialBeat = { src: "", beat_drop: 10 };
 
 export default function Free() {
   const [currentMode, setCurrentMode] = useState(MODES[0]);
   const [currentWord, setCurrentWord] = useState(initialWord);
   const [currentImage, setCurrentImage] = useState(monkeys);
-  const [intervalId, setIntervalId] = useState(null);
+  const [currentBeat, setCurrentBeat] = useState(initialBeat);
+
+  const { seconds, minutes, totalSeconds, isRunning, start, reset } =
+    useStopwatch({
+      autoStart: false,
+    });
 
   const isImageMode = currentMode.id === "IMG";
 
-  const wordInterval = currentMode.id === "FIVE" ? 5000 : 10000;
-
-  const fetchBeats = async () => {
-    // const { data, error } = await supabaseClient.from("beats").select();
-    // if (error) {
-    //   console.error(error);
-    // } else {
-    //   console.log(data);
-    // }
-  };
-
+  // tracking
   useEffect(() => {
     trackPageView("/free");
-    fetchBeats();
   }, []);
 
+  // Countdown effect
   useEffect(() => {
-    if (intervalId) {
-      const interval = setInterval(async () => {
-        if (isImageMode) {
-          const randomImage = await getRandomImage();
-          setCurrentImage(randomImage);
-        } else {
-          const randomWord = await getRandomSpanishWord();
-          setCurrentWord(randomWord);
-        }
-      }, currentMode.interval);
+    const fetchNewStimulus = async () => {
+      if (isImageMode) {
+        const randomImage = await getRandomImage();
+        setCurrentImage(randomImage);
+      } else {
+        const randomWord = await getRandomSpanishWord();
+        setCurrentWord(randomWord);
+      }
+    };
 
-      return () => clearInterval(interval);
+    const countdownSeconds = currentBeat.beat_drop - totalSeconds;
+
+    if (countdownSeconds >= 1 && countdownSeconds <= 3) {
+      setCurrentWord({ word: countdownSeconds.toString(), category: "" });
     }
-  }, [intervalId, isImageMode, currentMode]);
+
+    if (
+      totalSeconds > currentBeat.beat_drop &&
+      countdownSeconds % currentBeat.spb === 0
+    ) {
+      fetchNewStimulus();
+    }
+
+    if (totalSeconds === currentBeat.beat_drop) {
+      fetchNewStimulus();
+    }
+  }, [totalSeconds, currentBeat, isImageMode]);
 
   const onModeClick = (mode) => {
     setCurrentMode(mode);
@@ -64,7 +73,6 @@ export default function Free() {
   const onWordClear = () => {
     setCurrentWord(initialWord);
     setCurrentImage(monkeys);
-    setIntervalId(null);
   };
 
   const isBigWord = getSizeOfLongestWord(currentWord.word) > 9;
@@ -83,7 +91,7 @@ export default function Free() {
                 src={currentImage}
                 layout="fill"
                 objectFit="cover"
-                alt="music"
+                alt=""
               />
             </div>
           ) : (
@@ -101,9 +109,19 @@ export default function Free() {
             </>
           )}
         </div>
+        <p className={styles["time-counter"]}>
+          {minutes.toString().padStart(2, "0")}:
+          {seconds.toString().padStart(2, "0")}
+        </p>
         <FreeSoundPlayer
           onWordClear={onWordClear}
-          onPlay={() => setIntervalId(1)}
+          onPlay={(newBeat) => {
+            setCurrentBeat(newBeat);
+            start();
+          }}
+          onStop={() => {
+            reset(0, false);
+          }}
         />
       </div>
     </PageContainer>

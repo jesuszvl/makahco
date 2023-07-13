@@ -7,15 +7,40 @@ import StopIcon from "../../icons/StopIcon";
 import { Howl } from "howler";
 
 const songs = [
-  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_1.mp3",
-  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_2.mp3",
-  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_3.mp3",
-  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_4.mp3",
-  "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_5.mp3",
+  {
+    src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_1.mp3",
+    beat_drop: 20,
+    bpm: 94,
+    spb: 10,
+  },
+  {
+    src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_2.mp3",
+    beat_drop: 24,
+    bpm: 80,
+    spb: 12,
+  },
+  {
+    src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_3.mp3",
+    beat_drop: 24,
+    bpm: 81,
+    spb: 12,
+  },
+  {
+    src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_4.mp3",
+    beat_drop: 20,
+    bpm: 92,
+    spb: 10,
+  },
+  {
+    src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_5.mp3",
+    beat_drop: 18,
+    bpm: 100,
+    spb: 10,
+  },
 ];
 
-const FreeSoundPlayer = ({ onPlay, onWordClear }) => {
-  const getRandomSongUrl = () => {
+const FreeSoundPlayer = ({ onPlay, onStop, onWordClear }) => {
+  const getRandomBeat = () => {
     const randomIndex = Math.floor(Math.random() * songs.length);
     return songs[randomIndex];
   };
@@ -25,14 +50,15 @@ const FreeSoundPlayer = ({ onPlay, onWordClear }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlay = () => {
+    const newBeat = getRandomBeat();
     const sound = new Howl({
-      src: [getRandomSongUrl()],
+      src: [newBeat.src],
       html5: true,
       volume: 0.7,
     });
 
     const id = sound.play();
-    onPlay();
+    onPlay(newBeat);
 
     setSoundId(id);
     setSoundObj(sound);
@@ -50,6 +76,7 @@ const FreeSoundPlayer = ({ onPlay, onWordClear }) => {
     }
     setIsPlaying(false);
     onWordClear();
+    onStop();
   };
 
   return (
