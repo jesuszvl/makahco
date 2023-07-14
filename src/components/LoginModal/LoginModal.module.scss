@@ -1,0 +1,70 @@
+@import "../../styles/colors.constants";
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 350px;
+  width: calc(100vw - 16px);
+  background: $main-yellow;
+  border: 2px solid $deep-violet;
+  border-radius: 12px;
+  outline: none;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  background: rgba(21, 21, 21, 0.85);
+  transition: background 200ms;
+}
+
+.login-header {
+  display: flex;
+  justify-content: center;
+  background-color: $deep-violet;
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+
+.input {
+  all: unset;
+  font-size: 18px;
+  padding: 8px 0px;
+  border-bottom: 1px solid $main-black;
+}
+
+.input::placeholder {
+  color: $main-black;
+}
+
+.button {
+  all: unset;
+  cursor: pointer;
+  background-color: $deep-violet;
+  border: 2px solid $main-white;
+  color: $main-white;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 8px 64px;
+  text-align: center;
+
+  &:hover {
+    background-color: $deeper-violet;
+  }
+}

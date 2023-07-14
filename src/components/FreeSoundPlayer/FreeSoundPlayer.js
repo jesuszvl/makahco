@@ -29,7 +29,7 @@ const songs = [
     src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_4.mp3",
     beat_drop: 20,
     bpm: 92,
-    spb: 10,
+    spb: 12,
   },
   {
     src: "https://kigaieivrduiqliboora.supabase.co/storage/v1/object/public/beats/base_5.mp3",

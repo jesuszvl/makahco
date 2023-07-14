@@ -34,9 +34,10 @@
   border: 2px solid $main-white;
   color: $main-white;
   border-radius: 6px;
-  padding: 8px 26px;
   font-size: 22px;
   font-weight: 600;
+  padding: 8px 64px;
+  text-align: center;
 
   &:hover {
     background-color: $deeper-violet;

@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function StopIcon({
-  width = 32,
-  height = 32,
+  width = 28,
+  height = 28,
   stroke = "#ffffff",
 }) {
   return (

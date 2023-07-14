@@ -1,10 +1,6 @@
 import { initializeAnalytics } from "../src/utils/analytics";
-import { Outfit } from "next/font/google";
+import { outfit } from "../fonts";
 import "../src/styles/globals.scss";
-
-const outfit = Outfit({
-  subsets: ["latin"],
-});
 
 initializeAnalytics();
 

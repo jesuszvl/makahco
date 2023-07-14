@@ -1,11 +1,9 @@
 import ServiceCard from "../ServiceCard/ServiceCard";
 import styles from "./About.module.scss";
 
-import monkeys from "../../../public/monkeys.jpeg";
 import headphones from "../../icons/headphones.png";
 import shop from "../../icons/clothes.png";
 import blog from "../../icons/blog.png";
-import Image from "next/image";
 
 const services = [
   {
