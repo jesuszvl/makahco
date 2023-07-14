@@ -50,6 +50,10 @@ export default function Free() {
 
     const countdownSeconds = currentBeat.beat_drop - totalSeconds;
 
+    if (totalSeconds > 1 && countdownSeconds === 10) {
+      setCurrentWord({ word: "¿LISTO?", category: "" });
+    }
+
     if (countdownSeconds >= 1 && countdownSeconds <= 3) {
       setCurrentWord({ word: countdownSeconds.toString(), category: "" });
     }

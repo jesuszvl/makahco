@@ -1,6 +1,9 @@
+import { useState } from "react";
+import LoginModal from "../LoginModal/LoginModal";
 import styles from "./Hero.module.scss";
 
 export default function Hero() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className={styles["hero"]}>
       <h1 className={styles["hero-title"]}>
@@ -8,7 +11,21 @@ export default function Hero() {
         <span>To The</span>
         <span>Creative You!</span>
       </h1>
-      <button className={styles["hero-cta"]}>SIGN UP NOW</button>
+      <button
+        className={styles["hero-cta"]}
+        onClick={() => {
+          setIsOpen(true);
+        }}
+      >
+        Log In
+      </button>
+
+      <LoginModal
+        isOpen={isOpen}
+        onHide={() => {
+          setIsOpen(false);
+        }}
+      />
     </div>
   );
 }
