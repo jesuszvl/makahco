@@ -9,7 +9,7 @@ export default function Hero() {
       <h1 className={styles["hero-title"]}>
         <span>Ape-pealing</span>
         <span>To The</span>
-        <span>Creative You!</span>
+        <span>Creative You</span>
       </h1>
       <button
         className={styles["hero-cta"]}
@@ -17,7 +17,7 @@ export default function Hero() {
           setIsOpen(true);
         }}
       >
-        Log In
+        Join Our Troop!
       </button>
 
       <LoginModal

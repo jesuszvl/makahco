@@ -3,17 +3,16 @@
 .player-button {
   all: unset;
   cursor: pointer;
-  border: 2px solid $main-white;
-  color: $main-white;
+  border: 1.5px solid $main-black;
+  color: $main-black;
   border-radius: 12px;
-  background-color: $deep-violet;
+  background-color: $deeper-blue;
   display: flex;
-  padding: 12px 24px;
+  padding: 12px 32px;
   font-size: 30px;
 
   &:hover {
-    background-color: $deeper-violet;
-    color: $main-white;
+    background-color: $deep-blue;
   }
 }
 

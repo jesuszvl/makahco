@@ -41,23 +41,12 @@
   padding: 16px;
 }
 
-.input {
-  all: unset;
-  font-size: 18px;
-  padding: 8px 0px;
-  border-bottom: 1px solid $main-black;
-}
-
-.input::placeholder {
-  color: $main-black;
-}
-
 .button {
   all: unset;
   cursor: pointer;
-  background-color: $deep-violet;
-  border: 2px solid $main-white;
-  color: $main-white;
+  background-color: $deeper-blue;
+  border: 1px solid $main-black;
+  color: $main-black;
   border-radius: 6px;
   font-size: 18px;
   font-weight: 600;
@@ -65,6 +54,6 @@
   text-align: center;
 
   &:hover {
-    background-color: $deeper-violet;
+    background-color: $deep-blue;
   }
 }

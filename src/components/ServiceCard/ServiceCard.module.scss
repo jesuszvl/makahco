@@ -39,14 +39,17 @@
 .card-button {
   all: unset;
   cursor: pointer;
-  border: 1px solid $main-white;
+  border: 1px solid $main-black;
   width: 100%;
   height: 40px;
   border-radius: 4px;
   margin-top: 16px;
+  background-color: $deeper-blue;
+  color: $main-black;
+  font-weight: 700;
 
   &:hover {
-    background-color: $deeper-violet;
+    background-color: $deep-blue;
   }
 }
 
