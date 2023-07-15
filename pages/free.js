@@ -1,19 +1,17 @@
-import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
 
-import PageContainer from "../src/components/PageContainer/PageContainer";
-import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
-import { MODES } from "../src/utils/constants";
-import { getRandomSpanishWord, getRandomImage } from "./api/randomWords";
-import { trackPageView } from "../src/utils/analytics";
 import monkeys from "../public/monkeys.jpeg";
-
-import styles from "../src/styles/Free.module.scss";
-
-import classNames from "classnames";
-import { getSizeOfLongestWord } from "../src/utils/randomUtils";
+import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
-import Image from "next/image";
+import FreeStimulusContent from "../src/components/FreeStimulusContent/FreeStimulusContent";
+import PageContainer from "../src/components/PageContainer/PageContainer";
+import styles from "../src/styles/Free.module.scss";
+import { trackPageView } from "../src/utils/analytics";
+import { MODES } from "../src/utils/constants";
+import { supabaseClient } from "../src/utils/supabaseClient";
+import { getRandomImage, getRandomSpanishWord } from "./api/randomWords";
 
 const initialWord = { word: "-", category: "..." };
 const initialBeat = { src: "", beat_drop: 10 };
@@ -23,6 +21,8 @@ export default function Free() {
   const [currentWord, setCurrentWord] = useState(initialWord);
   const [currentImage, setCurrentImage] = useState(monkeys);
   const [currentBeat, setCurrentBeat] = useState(initialBeat);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const router = useRouter();
 
   const { seconds, minutes, totalSeconds, isRunning, start, reset } =
     useStopwatch({
@@ -34,6 +34,30 @@ export default function Free() {
   // tracking
   useEffect(() => {
     trackPageView("/free");
+  }, []);
+
+  // session
+  useEffect(() => {
+    const fetchUser = async () => {
+      const {
+        data: { user },
+      } = await supabaseClient.auth.getUser();
+      if (!user) {
+        setIsLoggedIn(true);
+      }
+    };
+    fetchUser();
+  }, []);
+
+  //Magic Link Login Side Effect
+  useEffect(() => {
+    supabaseClient.auth.onAuthStateChange((event, session) => {
+      // handle auth state changes
+      if (event === "SIGNED_IN") {
+        // user signed in
+        console.log("logged in");
+      }
+    });
   }, []);
 
   // Countdown effect
@@ -79,8 +103,6 @@ export default function Free() {
     setCurrentImage(monkeys);
   };
 
-  const isBigWord = getSizeOfLongestWord(currentWord.word) > 9;
-
   return (
     <PageContainer
       title="Makahco | Entrena tu free"
@@ -88,31 +110,10 @@ export default function Free() {
     >
       <div className="content">
         <FreeModeSelector currentMode={currentMode} onModeClick={onModeClick} />
-        <div className={styles["mode-content"]}>
-          {isImageMode ? (
-            <div className={styles["image-container"]}>
-              <Image
-                src={currentImage}
-                layout="fill"
-                objectFit="cover"
-                alt=""
-              />
-            </div>
-          ) : (
-            <>
-              <p
-                className={classNames(styles["mode-word"], {
-                  [styles["mode-big-word"]]: isBigWord,
-                })}
-              >
-                {currentWord.word}
-              </p>
-              <p className={styles["mode-word-meaning"]}>
-                {currentWord.category}
-              </p>
-            </>
-          )}
-        </div>
+        <FreeStimulusContent
+          isImageMode={isImageMode}
+          currentStimulus={currentWord}
+        />
         <p className={styles["time-counter"]}>
           {minutes.toString().padStart(2, "0")}:
           {seconds.toString().padStart(2, "0")}

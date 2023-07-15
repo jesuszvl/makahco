@@ -1,9 +1,8 @@
+import blog from "../../icons/blog.png";
+import shop from "../../icons/clothes.png";
+import headphones from "../../icons/headphones.png";
 import ServiceCard from "../ServiceCard/ServiceCard";
 import styles from "./About.module.scss";
-
-import headphones from "../../icons/headphones.png";
-import shop from "../../icons/clothes.png";
-import blog from "../../icons/blog.png";
 
 const services = [
   {

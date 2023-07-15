@@ -1,6 +1,6 @@
-@import "colors.constants";
+@import "../../styles/colors.constants";
 
-.mode-content {
+.stimulus-content {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -9,17 +9,7 @@
   height: 50dvh;
 }
 
-.mode-active {
-  border-bottom: 2px solid $deep-violet;
-}
-
-.time-counter {
-  font-size: 24px;
-  margin: 0;
-  padding-bottom: 12px;
-}
-
-.image-container {
+.stimulus-image {
   position: relative;
   background-color: $deep-violet;
   width: 300px;
@@ -33,4 +23,23 @@
     width: 250px;
     height: 250px;
   }
+}
+
+.stimulus-word {
+  text-align: center;
+  font-size: 48px;
+  font-weight: bold;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+}
+
+.stimulus-word-meaning {
+  font-size: 14px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.stimulus-big-word {
+  font-size: 38px;
 }

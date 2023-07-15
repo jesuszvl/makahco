@@ -1,4 +1,5 @@
 import { useState } from "react";
+
 import LoginModal from "../LoginModal/LoginModal";
 import styles from "./Hero.module.scss";
 

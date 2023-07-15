@@ -1,7 +1,8 @@
-import React from "react";
-import styles from "./FreeModeSelector.module.scss";
 import classNames from "classnames";
+import React from "react";
+
 import { MODES } from "../../utils/constants";
+import styles from "./FreeModeSelector.module.scss";
 
 const FreeModeSelector = ({ currentMode, onModeClick }) => {
   return (

@@ -1,4 +1,5 @@
 import Link from "next/link";
+
 import MenuIcon from "../../icons/MenuIcon";
 import styles from "./Header.module.scss";
 

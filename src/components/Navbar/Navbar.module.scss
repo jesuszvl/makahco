@@ -59,8 +59,9 @@
 }
 
 .dropdown-menu {
+  height: calc(100dvh - 60px);
   width: 100%;
-  background-color: $deep-violet;
+  background-color: rgba(0, 0, 0, 0.3);
   position: absolute;
   border-top: 1px solid $main-yellow;
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.3);
@@ -85,6 +86,7 @@
   font-weight: 700;
   font-size: 18px;
   text-align: center;
+  background-color: $deep-violet;
 
   border-bottom: 1px solid $main-gray;
 }

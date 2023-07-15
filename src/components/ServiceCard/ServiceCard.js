@@ -1,6 +1,7 @@
 import Image from "next/image";
-import styles from "./ServiceCard.module.scss";
 import Link from "next/link";
+
+import styles from "./ServiceCard.module.scss";
 
 export default function ServiceCard({
   title,
