@@ -40,3 +40,7 @@
   border-radius: 8px;
   font-family: "Instagram Sans Condensed", sans-serif;
 }
+
+.input::placeholder {
+  color: $medium-gray;
+}

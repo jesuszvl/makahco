@@ -24,21 +24,36 @@
   transition: background 200ms;
 }
 
-.login-header {
+.modal-button {
+  all: unset;
+  cursor: pointer;
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.login-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: $deep-violet;
   color: white;
   padding: 16px;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
+}
+
+.login-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
 }
 
 .login-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
-  padding: 16px;
 }
 
 .button {
@@ -47,7 +62,7 @@
   background-color: $deeper-blue;
   border: 1px solid $main-black;
   color: $main-black;
-  border-radius: 6px;
+  border-radius: 24px;
   font-size: 18px;
   font-weight: 600;
   padding: 8px 64px;

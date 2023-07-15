@@ -1,13 +1,14 @@
+import classNames from "classnames";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import ReactGA from "react-ga4";
-import Link from "next/link";
-import styles from "./Navbar.module.scss";
-import MenuIcon from "../../icons/MenuIcon";
-import CloseIcon from "../../icons/CloseIcon";
-import Image from "next/image";
-import makahco from "../../icons/makahco.svg";
-import classNames from "classnames";
+
 import { righteous } from "../../../fonts";
+import CloseIcon from "../../icons/CloseIcon";
+import makahco from "../../icons/makahco.svg";
+import MenuIcon from "../../icons/MenuIcon";
+import styles from "./Navbar.module.scss";
 
 const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 

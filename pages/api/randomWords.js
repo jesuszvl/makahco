@@ -1,10 +1,11 @@
 import { Configuration, OpenAIApi } from "openai";
+
+import { isFeatureFlagEnabled } from "../../src/utils/apptimize";
 import {
+  getRandomImageFromArray,
   getRandomWordCategory,
   getRandomWordFromArray,
-  getRandomImageFromArray,
 } from "../../src/utils/randomUtils";
-import { isFeatureFlagEnabled } from "../../src/utils/apptimize";
 
 const configuration = new Configuration({
   apiKey: process.env.NEXT_PUBLIC_OPENAI_SECRET,

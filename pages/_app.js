@@ -1,6 +1,7 @@
-import { initializeAnalytics } from "../src/utils/analytics";
-import { outfit } from "../fonts";
 import "../src/styles/globals.scss";
+
+import { outfit } from "../fonts";
+import { initializeAnalytics } from "../src/utils/analytics";
 
 initializeAnalytics();
 

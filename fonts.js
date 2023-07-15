@@ -1,4 +1,4 @@
-import { Righteous, Outfit } from "next/font/google";
+import { Outfit, Righteous } from "next/font/google";
 
 export const righteous = Righteous({
   weight: "400",

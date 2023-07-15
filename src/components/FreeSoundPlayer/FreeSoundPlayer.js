@@ -1,10 +1,9 @@
+import { Howl } from "howler";
 import React, { useState } from "react";
-import styles from "./FreeSoundPlayer.module.scss";
 
 import PlayIcon from "../../icons/PlayIcon";
 import StopIcon from "../../icons/StopIcon";
-
-import { Howl } from "howler";
+import styles from "./FreeSoundPlayer.module.scss";
 
 const songs = [
   {
