@@ -9,9 +9,7 @@ export default function Hero() {
     <div className={styles["hero-container"]}>
       <div className={styles["hero"]}>
         <h1 className={styles["hero-title"]}>
-          <span>Ape-pealing</span>
-          <span>To The</span>
-          <span>Creative You</span>
+          <span>Creatividad En Manada</span>
         </h1>
         <button
           className={styles["hero-cta"]}
@@ -19,7 +17,7 @@ export default function Hero() {
             setIsOpen(true);
           }}
         >
-          Join Our Troop!
+          ÚNETE HOY
         </button>
         <LoginModal
           isOpen={isOpen}

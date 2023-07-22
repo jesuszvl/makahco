@@ -18,7 +18,6 @@ const Navbar = () => {
     { name: "Beats", href: "/beats" },
     { name: "Shop", href: "/shop" },
     { name: "Blog", href: "/blog" },
-    { name: "Free", href: "/free" },
   ];
 
   const trackLinkClick = (linkName) => {
@@ -80,7 +79,11 @@ const Navbar = () => {
             setIsMenuActive(!isMenuActive);
           }}
         >
-          {!isMenuActive ? <MenuIcon /> : <CloseIcon />}
+          {!isMenuActive ? (
+            <MenuIcon stroke="white" />
+          ) : (
+            <CloseIcon stroke="white" />
+          )}
         </div>
       </div>
       {isMenuActive && renderDropdownMenu()}
