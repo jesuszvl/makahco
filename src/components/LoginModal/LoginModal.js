@@ -58,7 +58,7 @@ const LoginModal = ({ isOpen, onHide, page }) => {
               onChange={(event) => setEmail(event.target.value)}
             />
             <button className={styles["button"]} type="submit">
-              Login
+              Iniciar Sesión
             </button>
           </form>
         )}

@@ -14,7 +14,7 @@ import { MODES } from "../src/utils/constants";
 import { supabaseClient } from "../src/utils/supabaseClient";
 import { getRandomImage, getRandomSpanishWord } from "./api/randomWords";
 
-const initialWord = { word: "-", category: "..." };
+const initialWord = { word: "", category: "..." };
 const initialBeat = { src: "", beat_drop: 10 };
 
 export default function Beats() {
@@ -115,27 +115,32 @@ export default function Beats() {
       description="Mejora tu freestyle con nuestros beats gratuitos y amplía tu vocabulario con nuestro generador de palabras e imágenes impulsado por IA."
     >
       <div className="beat-content">
-        <FreeModeSelector currentMode={currentMode} onModeClick={onModeClick} />
-        <FreeStimulusContent
-          isImageMode={isImageMode}
-          currentStimulus={currentWord}
-        />
-        <p className={styles["time-counter"]}>
-          {minutes.toString().padStart(2, "0")}:
-          {seconds.toString().padStart(2, "0")}
-        </p>
-        <FreeSoundPlayer
-          onWordClear={onWordClear}
-          onPlay={(newBeat) => {
-            setCurrentBeat(newBeat);
-            start();
-          }}
-          onStop={() => {
-            reset(0, false);
-          }}
-          isDisabled={!isLoggedIn}
-          onDisabledClick={onDisabledClick}
-        />
+        <div className={styles["free-container"]}>
+          <FreeModeSelector
+            currentMode={currentMode}
+            onModeClick={onModeClick}
+          />
+          <FreeStimulusContent
+            isImageMode={isImageMode}
+            currentStimulus={currentWord}
+          />
+          <p className={styles["time-counter"]}>
+            {minutes.toString().padStart(2, "0")}:
+            {seconds.toString().padStart(2, "0")}
+          </p>
+          <FreeSoundPlayer
+            onWordClear={onWordClear}
+            onPlay={(newBeat) => {
+              setCurrentBeat(newBeat);
+              start();
+            }}
+            onStop={() => {
+              reset(0, false);
+            }}
+            isDisabled={!isLoggedIn}
+            onDisabledClick={onDisabledClick}
+          />
+        </div>
       </div>
       <LoginModal
         isOpen={isOpen}

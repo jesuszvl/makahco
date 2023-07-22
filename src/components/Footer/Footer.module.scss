@@ -1,16 +1,12 @@
 @import "../../styles/colors.constants";
 
-.footer-container {
+.footer {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 4px;
-}
-
-.footer {
-  max-width: 700px;
+  height: 60px;
 }
 
 .footer-link {
@@ -19,6 +15,5 @@
 }
 
 .footer-content {
-  font-size: 16px;
-  padding-bottom: 0px;
+  font-size: 14px;
 }

@@ -54,9 +54,7 @@ const Navbar = () => {
         <Link href="/">
           <div className={styles.logo}>
             <Image src={makahco} alt="Makahco" width={36} height={36} />
-            <span className={classNames([styles.company, righteous.className])}>
-              makahco
-            </span>
+            <span className={styles["company"]}>makahco</span>
           </div>
         </Link>
 
