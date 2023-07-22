@@ -6,6 +6,7 @@ import monkeys from "../public/monkeys.jpeg";
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
 import FreeStimulusContent from "../src/components/FreeStimulusContent/FreeStimulusContent";
+import LoginModal from "../src/components/LoginModal/LoginModal";
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import styles from "../src/styles/Free.module.scss";
 import { trackPageView } from "../src/utils/analytics";
@@ -22,6 +23,7 @@ export default function Free() {
   const [currentImage, setCurrentImage] = useState(monkeys);
   const [currentBeat, setCurrentBeat] = useState(initialBeat);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const router = useRouter();
 
   const { seconds, minutes, totalSeconds, isRunning, start, reset } =
@@ -42,7 +44,7 @@ export default function Free() {
       const {
         data: { user },
       } = await supabaseClient.auth.getUser();
-      if (!user) {
+      if (user) {
         setIsLoggedIn(true);
       }
     };
@@ -103,6 +105,10 @@ export default function Free() {
     setCurrentImage(monkeys);
   };
 
+  const onDisabledClick = () => {
+    setIsOpen(true);
+  };
+
   return (
     <PageContainer
       title="Makahco | Entrena tu free"
@@ -127,8 +133,16 @@ export default function Free() {
           onStop={() => {
             reset(0, false);
           }}
+          isDisabled={!isLoggedIn}
+          onDisabledClick={onDisabledClick}
         />
       </div>
+      <LoginModal
+        isOpen={isOpen}
+        onHide={() => {
+          setIsOpen(false);
+        }}
+      />
     </PageContainer>
   );
 }

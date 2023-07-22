@@ -3,7 +3,6 @@ import ReactGA from "react-ga4";
 const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
 
 export function initializeAnalytics() {
-  console.log(process.env.NODE_ENV);
   if (process.env.NODE_ENV === "production") {
     ReactGA.initialize(NEXT_PUBLIC_ANALYTICS_ID);
   }

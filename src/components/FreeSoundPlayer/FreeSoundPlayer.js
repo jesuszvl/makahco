@@ -38,7 +38,13 @@ const songs = [
   },
 ];
 
-const FreeSoundPlayer = ({ onPlay, onStop, onWordClear }) => {
+const FreeSoundPlayer = ({
+  onPlay,
+  onStop,
+  onWordClear,
+  isDisabled,
+  onDisabledClick,
+}) => {
   const getRandomBeat = () => {
     const randomIndex = Math.floor(Math.random() * songs.length);
     return songs[randomIndex];
@@ -49,6 +55,10 @@ const FreeSoundPlayer = ({ onPlay, onStop, onWordClear }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePlay = () => {
+    if (isDisabled) {
+      onDisabledClick();
+      return;
+    }
     const newBeat = getRandomBeat();
     const sound = new Howl({
       src: [newBeat.src],

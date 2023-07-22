@@ -21,7 +21,6 @@ export default function Hero() {
         >
           Join Our Troop!
         </button>
-
         <LoginModal
           isOpen={isOpen}
           onHide={() => {
