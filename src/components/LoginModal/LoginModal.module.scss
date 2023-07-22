@@ -63,13 +63,13 @@
   background-color: $deeper-blue;
   border: 1px solid $main-black;
   color: $main-black;
-  border-radius: 24px;
+  border-radius: 12px;
   font-size: 18px;
   font-weight: 600;
   padding: 8px 64px;
   text-align: center;
 
-  &:hover {
+  &:active {
     background-color: $deep-blue;
   }
 }

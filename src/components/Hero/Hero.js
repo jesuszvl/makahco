@@ -8,9 +8,10 @@ export default function Hero() {
   return (
     <div className={styles["hero-container"]}>
       <div className={styles["hero"]}>
-        <h1 className={styles["hero-title"]}>
-          <span>Mata Al Karma Ahora, Hazlo Con Orden</span>
-        </h1>
+        <span className={styles["hero-title"]}>
+          <span>¡Mata Al Karma Ahora!</span>
+          <span>Hazlo Con Orden</span>
+        </span>
         <button
           className={styles["hero-cta"]}
           onClick={() => {
