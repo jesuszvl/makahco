@@ -9,7 +9,7 @@ export default function Index() {
   return (
     <PageContainer
       title="Makahco | Home"
-      description="Ape-pealing To The Creative You!"
+      description="Mata Al Karma Ahora, Hazlo Con Orden"
     >
       <Hero />
       <About />

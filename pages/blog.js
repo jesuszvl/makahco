@@ -7,7 +7,7 @@ export default function Blog() {
   return (
     <PageContainer
       title="Makahco | Blog"
-      description="Explore an abundance of exciting hands-on experiences in our captivating blog."
+      description="Explora una enorme cantidad de experiencias de primera mano y tips en nuestro blog."
     >
       <div className="content">✍🏽</div>
     </PageContainer>

@@ -7,7 +7,7 @@ export default function Shop() {
   return (
     <PageContainer
       title="Makahco | Shop"
-      description="Find your ultimate style with our amazing range of trendy clothes and accessories."
+      description="Descubre tu estilo único con nuestra alucinante selección de ropa y accesorios de moda."
     >
       <div className="content">🛒</div>
     </PageContainer>
