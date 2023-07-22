@@ -7,10 +7,11 @@
   transform: translate(-50%, -50%);
   max-width: 350px;
   width: calc(100vw - 16px);
-  background: $main-yellow;
+  background: $secondary-color;
   border: 2px solid $deep-violet;
   border-radius: 12px;
   outline: none;
+  color: $main-black;
 }
 
 .modal-overlay {

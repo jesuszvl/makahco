@@ -8,12 +8,12 @@ import { supabaseClient } from "../../utils/supabaseClient";
 import TextInput from "../TextInput/TextInput";
 import styles from "./LoginModal.module.scss";
 
-const LoginModal = ({ isOpen, onHide }) => {
+const LoginModal = ({ isOpen, onHide, page }) => {
   const [email, setEmail] = useState("");
   const [isMagicLinkSent, setIsMagicLinkSent] = useState(false);
 
   const handleLogin = async (e) => {
-    const magicLinkUrl = window.location.origin + "/free";
+    const magicLinkUrl = window.location.href;
     e.preventDefault();
     try {
       const result = await supabaseClient.auth.signInWithOtp({
@@ -38,7 +38,7 @@ const LoginModal = ({ isOpen, onHide }) => {
       ariaHideApp={false}
     >
       <div className={styles["login-header"]}>
-        {isMagicLinkSent ? "Check Your Inbox" : "Enter Your Email"}
+        {isMagicLinkSent ? "Revisa tu Bandeja" : "Ingresa Tu Correo"}
         <button className={styles["modal-button"]} onClick={onHide}>
           <CloseIcon width={24} height={24} stroke="#ffffff" />
         </button>
@@ -46,7 +46,8 @@ const LoginModal = ({ isOpen, onHide }) => {
       <div className={styles["login-content"]}>
         {isMagicLinkSent ? (
           <p>
-            We have sent an email to <b>{email}</b> with a link to log in.
+            Enviamos un correo a <b>{email}</b> con un enlace para iniciar
+            sesión.
           </p>
         ) : (
           <form onSubmit={handleLogin} className={styles["login-form"]}>

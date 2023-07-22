@@ -24,10 +24,12 @@
 }
 
 .hero-title {
-  font-size: 64px;
+  color: white;
+  font-size: 58px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   margin-top: 0;
 
   @media (max-width: 560px) {
@@ -38,18 +40,18 @@
 .hero-cta {
   all: unset;
   cursor: pointer;
-  background-color: $deeper-blue;
+  background-color: $third-color;
   color: $main-black;
   border: 1px solid $main-black;
-  border-radius: 24px;
-  font-size: 22px;
+  border-radius: 12px;
+  font-size: 20px;
   font-weight: 600;
-  padding: 8px 0px;
+  padding: 12px 0px;
   text-align: center;
   width: 100%;
   max-width: 480px;
 
   &:hover {
-    background-color: $deep-blue;
+    background-color: $sub-third-color;
   }
 }
