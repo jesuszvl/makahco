@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import BaseButton from "../BaseButton/BaseButton";
 import styles from "./ServiceCard.module.scss";
 
 export default function ServiceCard({
@@ -22,7 +23,7 @@ export default function ServiceCard({
         <div className={styles["card-action"]}>
           <p className={styles["card-description"]}>{description}</p>
           <Link href={href}>
-            <button className={styles["card-button"]}>{ctaText}</button>
+            <BaseButton content={ctaText} isPurple isSmall />
           </Link>
         </div>
       </div>

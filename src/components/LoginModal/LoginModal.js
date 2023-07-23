@@ -5,6 +5,7 @@ import Modal from "react-modal";
 import { outfit } from "../../../fonts";
 import CloseIcon from "../../icons/CloseIcon";
 import { supabaseClient } from "../../utils/supabaseClient";
+import BaseButton from "../BaseButton/BaseButton";
 import TextInput from "../TextInput/TextInput";
 import styles from "./LoginModal.module.scss";
 
@@ -57,9 +58,7 @@ const LoginModal = ({ isOpen, onHide, page }) => {
               value={email}
               onChange={(event) => setEmail(event.target.value)}
             />
-            <button className={styles["button"]} type="submit">
-              Iniciar Sesión
-            </button>
+            <BaseButton content={"INICIAR SESIÓN"} type="submit" isSmall />
           </form>
         )}
       </div>

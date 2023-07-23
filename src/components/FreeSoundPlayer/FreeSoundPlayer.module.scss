@@ -6,13 +6,13 @@
   border: 1.5px solid $main-black;
   color: $main-black;
   border-radius: 12px;
-  background-color: $deeper-blue;
+  background-color: $third-color;
   display: flex;
   padding: 12px 64px;
   font-size: 30px;
 
   &:active {
-    background-color: $deep-blue;
+    background-color: $sub-third-color;
   }
 }
 

@@ -12,14 +12,14 @@
 }
 
 .company {
-  font-size: 32px;
+  font-size: 34px;
   font-weight: 600;
   line-height: 1;
+  letter-spacing: -1.3px;
 }
 
 .logo {
   display: flex;
-  gap: 2px;
 }
 
 .menu {
@@ -61,9 +61,8 @@
   flex-direction: column;
 
   a {
-    color: $main-white;
     &:hover {
-      background-color: $deeper-violet;
+      background-color: $sub-main-color;
     }
   }
 
@@ -74,11 +73,10 @@
 
 .dropdown-menu-link {
   padding: 24px;
-  color: white;
   font-weight: 700;
   font-size: 18px;
   text-align: center;
-  background-color: $deep-violet;
+  background-color: $main-color;
 
-  border-bottom: 1px solid $main-gray;
+  border-bottom: 1px solid $main-black;
 }

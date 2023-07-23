@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+import BaseButton from "../BaseButton/BaseButton";
 import LoginModal from "../LoginModal/LoginModal";
 import styles from "./Hero.module.scss";
 
@@ -12,14 +13,12 @@ export default function Hero() {
           <span>¡Mata Al Karma Ahora!</span>
           <span>Hazlo Con Orden</span>
         </span>
-        <button
-          className={styles["hero-cta"]}
+        <BaseButton
+          content={"ÚNETE A LA MANADA"}
           onClick={() => {
             setIsOpen(true);
           }}
-        >
-          ÚNETE A LA MANADA
-        </button>
+        />
         <LoginModal
           isOpen={isOpen}
           onHide={() => {

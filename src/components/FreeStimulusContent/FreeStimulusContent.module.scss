@@ -11,11 +11,10 @@
 
 .stimulus-image {
   position: relative;
-  background-color: $deep-violet;
   width: 300px;
   height: 300px;
   border-radius: 12px;
-  border: 2px solid $deep-violet;
+  border: 2px solid $main-color;
   overflow: hidden;
   z-index: -1;
 

@@ -33,17 +33,3 @@
     flex-direction: column;
   }
 }
-
-.image-container {
-  position: relative;
-  background-color: $deep-violet;
-  width: 100%;
-  padding-top: 30%;
-  margin-bottom: 32px;
-  border-radius: 12px;
-
-  @media (max-width: 560px) {
-    padding-top: 100%;
-  }
-  overflow: hidden;
-}

@@ -38,23 +38,6 @@
   text-justify: inter-word;
 }
 
-.card-button {
-  all: unset;
-  cursor: pointer;
-  width: 100%;
-  padding: 12px 0px;
-  border-radius: 12px;
-  margin-top: 16px;
-  border: 1px solid black;
-  background-color: $main-color;
-  color: $main-white;
-  font-weight: 700;
-
-  &:active {
-    background-color: $sub-main-color;
-  }
-}
-
 .card-action {
   display: flex;
   flex-direction: column;
