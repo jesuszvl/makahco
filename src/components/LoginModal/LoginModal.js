@@ -15,6 +15,7 @@ const LoginModal = ({ isOpen, onHide, page }) => {
 
   const handleLogin = async (e) => {
     const magicLinkUrl = window.location.href;
+    console.log(magicLinkUrl);
     e.preventDefault();
     try {
       const result = await supabaseClient.auth.signInWithOtp({
