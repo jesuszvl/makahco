@@ -15,6 +15,7 @@ const FreeModeSelector = ({ currentMode, onModeClick }) => {
               [styles["mode-active"]]: currentMode.id === mode.id,
             })}
             onClick={() => onModeClick(mode)}
+            title={mode.label}
           >
             {mode.label}
           </div>
