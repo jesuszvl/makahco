@@ -1,5 +1,5 @@
 export const MODES = [
-  { id: "TEN", label: "Básico" },
-  { id: "FIVE", label: "Díficil" },
-  { id: "IMG", label: "Imágenes" },
+  { id: "4FB", label: "4FB" },
+  { id: "IZI", label: "IZI" },
+  // { id: "IMG", label: "IMG" },
 ];

@@ -1,8 +1,6 @@
-import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
 
-import monkeys from "../public/monkeys.jpeg";
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
 import FreeStimulusContent from "../src/components/FreeStimulusContent/FreeStimulusContent";
@@ -11,98 +9,73 @@ import PageContainer from "../src/components/PageContainer/PageContainer";
 import styles from "../src/styles/Free.module.scss";
 import { trackPageView } from "../src/utils/analytics";
 import { MODES } from "../src/utils/constants";
-import { supabaseClient } from "../src/utils/supabaseClient";
-import { getRandomImage, getRandomSpanishWord } from "./api/randomWords";
+import { getRandomFour, getRandomSpanishWord } from "./api/randomWords";
 
-const initialWord = { word: "", category: "..." };
 const initialBeat = { src: "", beat_drop: 10 };
 
 export default function Beats() {
   const [currentMode, setCurrentMode] = useState(MODES[0]);
-  const [currentWord, setCurrentWord] = useState(initialWord);
-  const [currentImage, setCurrentImage] = useState(monkeys);
+  const [currentWords, setCurrentWords] = useState([]);
   const [currentBeat, setCurrentBeat] = useState(initialBeat);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter();
 
-  const { seconds, minutes, totalSeconds, isRunning, start, reset } =
-    useStopwatch({
-      autoStart: false,
-    });
+  const { seconds, minutes, totalSeconds, start, reset } = useStopwatch({
+    autoStart: false,
+  });
 
-  const isImageMode = currentMode.id === "IMG";
+  const is4FBMode = currentMode.id === "4FB";
 
   // tracking
   useEffect(() => {
     trackPageView("/beats");
   }, []);
 
-  // session
-  useEffect(() => {
-    const fetchUser = async () => {
-      const {
-        data: { user },
-      } = await supabaseClient.auth.getUser();
-      if (user) {
-        setIsLoggedIn(true);
-      }
-    };
-    fetchUser();
-  }, []);
-
-  //Magic Link Login Side Effect
-  useEffect(() => {
-    supabaseClient.auth.onAuthStateChange((event, session) => {
-      // handle auth state changes
-      if (event === "SIGNED_IN") {
-        // user signed in
-        console.log("logged in");
-      }
-    });
-  }, []);
-
   // Countdown effect
   useEffect(() => {
     const fetchNewStimulus = async () => {
-      if (isImageMode) {
-        const randomImage = await getRandomImage();
-        setCurrentImage(randomImage);
+      if (is4FBMode) {
+        const randomFour = await getRandomFour();
+        setCurrentWords(randomFour);
       } else {
         const randomWord = await getRandomSpanishWord();
-        setCurrentWord(randomWord);
+        setCurrentWords(randomWord);
       }
     };
 
     const countdownSeconds = currentBeat.beat_drop - totalSeconds;
 
+    // Are you ready?
     if (totalSeconds > 1 && countdownSeconds === 10) {
-      setCurrentWord({ word: "¿LISTO?", category: "" });
+      setCurrentWords(["¿LISTO?"]);
     }
 
+    // Se lo damos en...
     if (countdownSeconds >= 1 && countdownSeconds <= 3) {
-      setCurrentWord({ word: countdownSeconds.toString(), category: "" });
+      setCurrentWords([countdownSeconds.toString()]);
     }
 
+    // Tiempo
+    if (countdownSeconds === 0 && totalSeconds === currentBeat.beat_drop) {
+      setCurrentWords(["¡TIEMPO!"]);
+    }
+
+    // Fetching palabras
     if (
-      totalSeconds > currentBeat.beat_drop &&
-      countdownSeconds % currentBeat.spb === 0
+      (countdownSeconds < 0 && totalSeconds === currentBeat.beat_drop + 1) ||
+      (totalSeconds > currentBeat.beat_drop &&
+        countdownSeconds % currentBeat.spb === 0)
     ) {
       fetchNewStimulus();
     }
-
-    if (totalSeconds === currentBeat.beat_drop) {
-      fetchNewStimulus();
-    }
-  }, [totalSeconds, currentBeat, isImageMode]);
+  }, [totalSeconds, currentBeat, is4FBMode]);
 
   const onModeClick = (mode) => {
     setCurrentMode(mode);
   };
 
   const onWordClear = () => {
-    setCurrentWord(initialWord);
-    setCurrentImage(monkeys);
+    setCurrentWords([]);
   };
 
   const onDisabledClick = () => {
@@ -121,8 +94,8 @@ export default function Beats() {
             onModeClick={onModeClick}
           />
           <FreeStimulusContent
-            isImageMode={isImageMode}
-            currentStimulus={currentWord}
+            currentMode={currentMode}
+            currentWords={currentWords}
           />
           <p className={styles["time-counter"]}>
             {minutes.toString().padStart(2, "0")}:
