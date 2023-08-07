@@ -1,28 +1,20 @@
 import classNames from "classnames";
-import Image from "next/image";
-import React from "react";
 
-import { getSizeOfLongestWord } from "../../utils/randomUtils";
 import styles from "./FreeStimulusContent.module.scss";
 
-const FreeStimulusContent = ({ currentMode, currentWords }) => {
-  const isBigWord = true; // getSizeOfLongestWord(currentStimulus.word) > 9;
-
+const FreeStimulusContent = ({ words }) => {
   return (
     <div className={styles["stimulus-content"]}>
       <p
         className={classNames(styles["stimulus-word"], {
-          [styles["stimulus-big-word"]]: isBigWord,
+          [styles["stimulus-big-word"]]: true,
         })}
       >
-        {currentWords.map((word) => {
-          return (
-            <>
-              <span key={word}>{word}</span>
-              <br />
-            </>
-          );
-        })}
+        <span className={styles["stimulus-words"]}>
+          {words.map((word) => {
+            return <span key={word}>{word}</span>;
+          })}
+        </span>
       </p>
     </div>
   );
