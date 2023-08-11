@@ -1,7 +1,7 @@
-# Makahco Site
+# Makahco
 
-This project is a template for a website of a company, images and text content is generated via IA.
+This project is for a tool to practice freestyle rap giving random words to the user generated via IA
 
 ## Demo
 
-[makahco.mx](https://makahco.mx/)
+[makah.co](https://makah.co/)
