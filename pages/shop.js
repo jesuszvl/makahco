@@ -11,8 +11,6 @@ const fetcher = (...args) => fetch(...args).then((res) => res.json());
 export default function Shop() {
   const { data } = useSWR("https://dummyjson.com/products", fetcher);
 
-  console.log(data);
-
   return (
     <PageContainer
       title="Makahco | Shop"

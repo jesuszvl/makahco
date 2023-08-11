@@ -27,7 +27,8 @@
     "react-modal": "^3.16.1",
     "react-timer-hook": "^3.0.6",
     "sass": "1.62.1",
-    "swr": "^2.0.3"
+    "swr": "^2.0.3",
+    "unsplash-js": "^7.0.18"
   },
   "devDependencies": {
     "eslint": "8.20.0",

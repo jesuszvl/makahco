@@ -2,6 +2,7 @@ import { Howl } from "howler";
 import { useRouter } from "next/router";
 import { useCallback, useEffect, useState } from "react";
 import { useStopwatch } from "react-timer-hook";
+import { createApi } from "unsplash-js";
 
 import FreeModeSelector from "../src/components/FreeModeSelector/FreeModeSelector";
 import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
@@ -15,25 +16,31 @@ import { getRandomWords } from "./api/random";
 
 const initialBeat = { src: "", beat_drop: 10 };
 
+const unsplash = createApi({
+  accessKey: "XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08",
+});
+
 export default function Beats() {
   const [mode, setMode] = useState(MODES[0]);
   const [words, setWords] = useState([]);
   const [beat, setBeat] = useState(initialBeat);
   const [sound, setSound] = useState(null);
+  const [image, setImage] = useState(null);
 
   const { seconds, minutes, totalSeconds, start, reset } = useStopwatch({
     autoStart: false,
   });
 
+  const isImageMode = mode.id === "IMG";
   const is4FBMode = mode.id === "4FB";
 
   const handleStop = useCallback(() => {
-    console.log("stopping");
     if (sound) sound.stop();
     setSound(null);
     setBeat(initialBeat);
     setWords([]);
     reset(0, false);
+    setImage(null);
   });
 
   // tracking
@@ -44,8 +51,17 @@ export default function Beats() {
   // Countdown effect
   useEffect(() => {
     const fetchNewStimulus = async () => {
-      const randomWords = await getRandomWords(is4FBMode ? 4 : 1);
-      setWords(randomWords);
+      if (isImageMode) {
+        unsplash.photos.getRandom().then((res) => {
+          if (!res.errors) {
+            const randomImage = res.response;
+            setImage(randomImage.urls.regular);
+          }
+        });
+      } else {
+        const randomWords = await getRandomWords(is4FBMode ? 4 : 1);
+        setWords(randomWords);
+      }
     };
 
     const countdownSeconds = beat.beat_drop - totalSeconds;
@@ -72,7 +88,7 @@ export default function Beats() {
     ) {
       fetchNewStimulus();
     }
-  }, [totalSeconds, beat, is4FBMode]);
+  }, [totalSeconds, beat, is4FBMode, isImageMode]);
 
   const onModeClick = (newMode) => {
     setMode(newMode);
@@ -106,7 +122,7 @@ export default function Beats() {
       <div className="beat-content">
         <div className={styles["free-container"]}>
           <FreeModeSelector currentMode={mode} onModeClick={onModeClick} />
-          <FreeStimulusContent words={words} />
+          <FreeStimulusContent words={words} image={image} />
           <p className={styles["time-counter"]}>
             {minutes.toString().padStart(2, "0")}:
             {seconds.toString().padStart(2, "0")}

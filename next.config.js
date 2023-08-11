@@ -11,7 +11,7 @@ const nextConfig = {
     defaultLocale: "en",
   },
   images: {
-    domains: ["fsivvquhttqtxpvvfyla.supabase.co", "i.dummyjson.com"],
+    domains: ["images.unsplash.com", "i.dummyjson.com"],
   },
 };
 

@@ -1,8 +1,9 @@
 import classNames from "classnames";
+import Image from "next/image";
 
 import styles from "./FreeStimulusContent.module.scss";
 
-const FreeStimulusContent = ({ words }) => {
+const FreeStimulusContent = ({ words, image }) => {
   return (
     <div className={styles["stimulus-content"]}>
       <p
@@ -11,9 +12,15 @@ const FreeStimulusContent = ({ words }) => {
         })}
       >
         <span className={styles["stimulus-words"]}>
-          {words.map((word) => {
-            return <span key={word}>{word}</span>;
-          })}
+          {image ? (
+            <div className={styles["stimulus-image"]}>
+              <Image src={image} layout="fill" objectFit="cover" alt="" />
+            </div>
+          ) : (
+            words.map((word) => {
+              return <span key={word}>{word}</span>;
+            })
+          )}
         </span>
       </p>
     </div>
