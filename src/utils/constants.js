@@ -1,7 +1,7 @@
 export const MODES = [
-  { id: "4FB", label: "4 For Bar" },
-  { id: "IZI", label: "Easy Mode" },
-  { id: "IMG", label: "Image" },
+  { id: "IZI", label: "Clásico" },
+  { id: "4FB", label: "4 x Barra" },
+  { id: "IMG", label: "Imágenes" },
 ];
 
 export const beats = [

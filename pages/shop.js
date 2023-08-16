@@ -9,7 +9,7 @@ trackPageView("/shop");
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 export default function Shop() {
-  const { data } = useSWR("https://dummyjson.com/products", fetcher);
+  const { data } = { data: null }; // useSWR("https://dummyjson.com/products", fetcher);
 
   return (
     <PageContainer
