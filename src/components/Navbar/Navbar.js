@@ -1,10 +1,7 @@
-import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import ReactGA from "react-ga4";
 
-import { righteous } from "../../../fonts";
 import CloseIcon from "../../icons/CloseIcon";
 import makahco from "../../icons/makahco.svg";
 import MenuIcon from "../../icons/MenuIcon";
@@ -20,14 +17,6 @@ const Navbar = () => {
     { name: "Blog", href: "/blog" },
   ];
 
-  const trackLinkClick = (linkName) => {
-    ReactGA.initialize(NEXT_PUBLIC_ANALYTICS_ID);
-    ReactGA.event({
-      category: "Navbar",
-      action: `Clicked ${linkName} link`,
-    });
-  };
-
   const renderDropdownMenu = () => {
     return (
       <div className={styles["dropdown-menu"]}>
@@ -37,7 +26,6 @@ const Navbar = () => {
             href={link.href}
             className={styles["dropdown-menu-link"]}
             onClick={() => {
-              trackLinkClick(link.name);
               setIsMenuActive(!isMenuActive);
             }}
           >
@@ -60,12 +48,7 @@ const Navbar = () => {
 
         <div className={styles.menu}>
           {links.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.link}
-              onClick={() => trackLinkClick(link.name)}
-            >
+            <Link key={link.href} href={link.href} className={styles.link}>
               {link.name}
             </Link>
           ))}
@@ -73,7 +56,6 @@ const Navbar = () => {
         <div
           className={styles["menu-icon"]}
           onClick={() => {
-            trackLinkClick("Menu");
             setIsMenuActive(!isMenuActive);
           }}
         >

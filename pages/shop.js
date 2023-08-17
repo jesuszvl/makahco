@@ -2,9 +2,6 @@ import useSWR from "swr";
 
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import ProductCard from "../src/components/ProductCard/ProductCard";
-import { trackPageView } from "../src/utils/analytics";
-
-trackPageView("/shop");
 
 const fetcher = (...args) => fetch(...args).then((res) => res.json());
 

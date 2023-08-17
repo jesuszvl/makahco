@@ -1,14 +1,14 @@
 import "../src/styles/globals.scss";
 
-import { outfit } from "../fonts";
-import { initializeAnalytics } from "../src/utils/analytics";
+import { Analytics } from "@vercel/analytics/react";
 
-initializeAnalytics();
+import { outfit } from "../fonts";
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <main className={outfit.className}>
       <Component {...pageProps} />
+      <Analytics />
     </main>
   );
 }

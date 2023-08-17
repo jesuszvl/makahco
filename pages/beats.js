@@ -9,7 +9,6 @@ import FreeSoundPlayer from "../src/components/FreeSoundPlayer/FreeSoundPlayer";
 import FreeStimulusContent from "../src/components/FreeStimulusContent/FreeStimulusContent";
 import PageContainer from "../src/components/PageContainer/PageContainer";
 import styles from "../src/styles/Free.module.scss";
-import { trackPageView } from "../src/utils/analytics";
 import { MODES } from "../src/utils/constants";
 import { getRandomBeat } from "../src/utils/randomUtils";
 import { getRandomWords } from "./api/random";
@@ -42,11 +41,6 @@ export default function Beats() {
     reset(0, false);
     setImage(null);
   });
-
-  // tracking
-  useEffect(() => {
-    trackPageView("/beats");
-  }, []);
 
   // Countdown effect
   useEffect(() => {
