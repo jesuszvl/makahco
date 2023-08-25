@@ -8,7 +8,7 @@ const BaseButton = ({
   onClick,
   type,
   isSmall = false,
-  isPurple = false,
+  isPurple = true,
 }) => {
   return (
     <button

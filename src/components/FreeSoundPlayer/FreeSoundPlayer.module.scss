@@ -3,16 +3,16 @@
 .player-button {
   all: unset;
   cursor: pointer;
-  border: 1.5px solid $main-black;
-  color: $main-black;
+  border: 1.5px solid $main-white;
+  color: $main-white;
   border-radius: 12px;
-  background-color: $third-color;
+  background-color: $main-color;
   display: flex;
   padding: 12px 64px;
   font-size: 30px;
 
   &:active {
-    background-color: $sub-third-color;
+    background-color: $sub-main-color;
   }
 }
 

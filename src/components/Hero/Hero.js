@@ -14,6 +14,7 @@ export default function Hero() {
           <span>Hazlo Con Orden</span>
         </span>
         <BaseButton
+          isPurple
           content={"ÚNETE A LA MANADA"}
           onClick={() => {
             setIsOpen(true);

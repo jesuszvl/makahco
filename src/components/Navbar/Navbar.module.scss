@@ -13,7 +13,7 @@
 
 .company {
   font-size: 34px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1;
   letter-spacing: -1.3px;
 }
@@ -46,7 +46,7 @@
   text-decoration: none !important;
 
   &:hover {
-    color: $main-black;
+    color: $main-color;
   }
 }
 
@@ -59,6 +59,7 @@
   box-shadow: 0px 8px 8px rgba(0, 0, 0, 0.3);
   display: none;
   flex-direction: column;
+  color: $main-white;
 
   a {
     &:hover {

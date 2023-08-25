@@ -7,8 +7,6 @@ import makahco from "../../icons/makahco.svg";
 import MenuIcon from "../../icons/MenuIcon";
 import styles from "./Navbar.module.scss";
 
-const NEXT_PUBLIC_ANALYTICS_ID = process.env.NEXT_PUBLIC_ANALYTICS_ID;
-
 const Navbar = () => {
   const [isMenuActive, setIsMenuActive] = useState(false);
   const links = [
@@ -60,9 +58,9 @@ const Navbar = () => {
           }}
         >
           {!isMenuActive ? (
-            <MenuIcon stroke="white" />
+            <MenuIcon stroke="black" />
           ) : (
-            <CloseIcon stroke="white" />
+            <CloseIcon stroke="black" />
           )}
         </div>
       </div>

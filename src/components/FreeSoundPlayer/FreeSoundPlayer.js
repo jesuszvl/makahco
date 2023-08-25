@@ -7,11 +7,11 @@ const FreeSoundPlayer = ({ onPlay, onStop, sound }) => {
     <div className={styles["sound-player"]}>
       {sound ? (
         <button className={styles["player-button"]} onClick={onStop}>
-          <StopIcon stroke="#000000" />
+          <StopIcon stroke="#ffffff" />
         </button>
       ) : (
         <button className={styles["player-button"]} onClick={onPlay}>
-          <PlayIcon stroke="#000000" />
+          <PlayIcon stroke="#ffffff" />
         </button>
       )}
     </div>
