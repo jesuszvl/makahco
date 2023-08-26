@@ -5,8 +5,8 @@ export default function Footer() {
     <footer className={styles["footer"]}>
       <span className={styles["footer-content"]}>
         developed by{" "}
-        <a href="https://jesuszvl.com" className={styles["footer-link"]}>
-          jesuszvl ®
+        <a href="https://zvl.dev" className={styles["footer-link"]}>
+          zvl.dev ®
         </a>
       </span>
     </footer>
