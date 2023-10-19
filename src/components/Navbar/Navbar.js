@@ -8,63 +8,16 @@ import MenuIcon from "../../icons/MenuIcon";
 import styles from "./Navbar.module.scss";
 
 const Navbar = () => {
-  const [isMenuActive, setIsMenuActive] = useState(false);
-  const links = [
-    { name: "Beats", href: "/beats" },
-    { name: "Shop", href: "/shop" },
-    { name: "Blog", href: "/blog" },
-  ];
-
-  const renderDropdownMenu = () => {
-    return (
-      <div className={styles["dropdown-menu"]}>
-        {links.map((link) => (
-          <Link
-            key={link.name}
-            href={link.href}
-            className={styles["dropdown-menu-link"]}
-            onClick={() => {
-              setIsMenuActive(!isMenuActive);
-            }}
-          >
-            {link.name}
-          </Link>
-        ))}
-      </div>
-    );
-  };
-
   return (
     <>
       <div className={styles.navbar}>
         <Link href="/">
           <div className={styles.logo}>
             <Image src={makahco} alt="Makahco" width={36} height={36} />
-            <span className={styles["company"]}>makahco</span>
+            <span className={styles["company"]}>makah.co</span>
           </div>
         </Link>
-
-        <div className={styles.menu}>
-          {links.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.link}>
-              {link.name}
-            </Link>
-          ))}
-        </div>
-        <div
-          className={styles["menu-icon"]}
-          onClick={() => {
-            setIsMenuActive(!isMenuActive);
-          }}
-        >
-          {!isMenuActive ? (
-            <MenuIcon stroke="black" />
-          ) : (
-            <CloseIcon stroke="black" />
-          )}
-        </div>
       </div>
-      {isMenuActive && renderDropdownMenu()}
     </>
   );
 };
