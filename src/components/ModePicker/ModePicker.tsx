@@ -1,17 +1,26 @@
 import classNames from "classnames";
 import styles from "./ModePicker.module.scss";
-import { Mode } from "../../App";
+
+export interface Mode {
+  id: string;
+  label: string;
+}
 
 type ModePickerProps = {
-  modes: Mode[];
   currentMode: Mode;
   onModeClick: (mode: Mode) => void;
 };
 
-const ModePicker = ({ modes, currentMode, onModeClick }: ModePickerProps) => {
+export const MODES: Mode[] = [
+  { id: "IZI", label: "Clásico" },
+  { id: "4FB", label: "4 x Barra" },
+  { id: "IMG", label: "Imágenes" },
+];
+
+const ModePicker = ({ currentMode, onModeClick }: ModePickerProps) => {
   return (
     <div className={styles["mode-picker-container"]}>
-      {modes.map((mode) => {
+      {MODES.map((mode) => {
         return (
           <div
             key={mode.id}

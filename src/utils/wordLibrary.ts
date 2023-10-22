@@ -1,3 +1,7 @@
+interface WordLibrary {
+  [key: string]: string[];
+}
+
 const ito = [
   "mito",
   "escrito",
@@ -1542,7 +1546,7 @@ export const terminacionesList = [
   "uso",
 ];
 
-export const terminaciones = {
+export const terminaciones: WordLibrary = {
   ito,
   ina,
   ero,

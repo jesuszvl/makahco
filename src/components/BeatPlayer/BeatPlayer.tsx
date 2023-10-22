@@ -2,7 +2,13 @@ import PlayIcon from "../../icons/PlayIcon";
 import StopIcon from "../../icons/StopIcon";
 import styles from "./BeatPlayer.module.scss";
 
-const BeatPlayer = ({ onPlay, onStop, sound }) => {
+type BeatPlayerProps = {
+  onPlay: () => void;
+  onStop: () => void;
+  sound: unknown;
+};
+
+const BeatPlayer = ({ onPlay, onStop, sound }: BeatPlayerProps) => {
   return (
     <div className={styles["sound-player"]}>
       {sound ? (

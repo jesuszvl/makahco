@@ -1,35 +1,23 @@
 import { Howl } from "howler";
 import { useCallback, useEffect, useState } from "react";
-import ModePicker from "./components/ModePicker/ModePicker";
+import ModePicker, { MODES, Mode } from "./components/ModePicker/ModePicker";
 import StimulusContent from "./components/StimulusContent/StimulusContent";
 import BeatPlayer from "./components/BeatPlayer/BeatPlayer";
 import { useStopwatch } from "react-timer-hook";
-import { getRandomBeat, getRandomWords } from "./utils/randomUtils";
 import { createApi } from "unsplash-js";
-
-export interface Mode {
-  id: string;
-  label: string;
-}
-
-const MODES: Array<Mode> = [
-  { id: "IZI", label: "Clásico" },
-  { id: "4FB", label: "4 x Barra" },
-  { id: "IMG", label: "Imágenes" },
-];
-
-const initialBeat = { src: "", beat_drop: 10 };
+import { BEAT_INITIAL, Beat, getRandomBeat } from "./utils/beats";
+import PageContainer from "./components/PageContainer/PageContainer";
+import { STIMULUS_INITIAL, Stimulus, getRandomWords } from "./utils/stimulus";
 
 const unsplash = createApi({
   accessKey: "XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08",
 });
 
 const App = () => {
-  const [mode, setMode] = useState(MODES[0]);
-  const [words, setWords] = useState([]);
-  const [beat, setBeat] = useState(initialBeat);
-  const [sound, setSound] = useState(null);
-  const [image, setImage] = useState(null);
+  const [mode, setMode] = useState<Mode>(MODES[0]);
+  const [beat, setBeat] = useState<Beat>(BEAT_INITIAL);
+  const [sound, setSound] = useState<Howl | null>(null);
+  const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
 
   const { seconds, minutes, totalSeconds, start, reset } = useStopwatch({
     autoStart: false,
@@ -42,15 +30,17 @@ const App = () => {
   useEffect(() => {
     const fetchNewStimulus = async () => {
       if (isImageMode) {
-        unsplash.photos.getRandom().then((res) => {
+        unsplash.photos.getRandom({}).then((res) => {
           if (!res.errors) {
-            const randomImage = res.response;
-            setImage(randomImage.urls.regular);
+            const randomImage = Array.isArray(res.response)
+              ? res.response[0]
+              : res.response;
+            setStimulus({ type: "image", values: [randomImage.urls.small] });
           }
         });
       } else {
         const randomWords = await getRandomWords(is4FBMode ? 4 : 1);
-        setWords(randomWords);
+        setStimulus({ type: "word", values: randomWords });
       }
     };
 
@@ -58,17 +48,17 @@ const App = () => {
 
     // Are you ready?
     if (totalSeconds > 1 && countdownSeconds === 10) {
-      setWords(["¿LISTO?"]);
+      setStimulus({ type: "word", values: ["¿LISTO?"] });
     }
 
-    // Se lo damos en...
+    // Se lo damos en...3, 2, 1
     if (countdownSeconds >= 1 && countdownSeconds <= 3) {
-      setWords([countdownSeconds.toString()]);
+      setStimulus({ type: "word", values: [countdownSeconds.toString()] });
     }
 
-    // Tiempo
+    // Tiempo!
     if (countdownSeconds === 0 && totalSeconds === beat.beat_drop) {
-      setWords(["¡TIEMPO!"]);
+      setStimulus({ type: "word", values: ["¡TIEMPO!"] });
     }
 
     // Fetching palabras
@@ -83,11 +73,10 @@ const App = () => {
   const handleStop = useCallback(() => {
     if (sound) sound.stop();
     setSound(null);
-    setBeat(initialBeat);
-    setWords([]);
-    reset(0, false);
-    setImage(null);
-  });
+    setBeat(BEAT_INITIAL);
+    setStimulus(STIMULUS_INITIAL);
+    reset(new Date(0), false);
+  }, [sound, reset]);
 
   const handlePlay = () => {
     const newBeat = getRandomBeat();
@@ -110,36 +99,22 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <header>
-        <span>makahco</span>
-      </header>
-      <main>
-        <div className="free">
-          <ModePicker
-            modes={MODES}
-            currentMode={mode}
-            onModeClick={(mode) => {
-              setMode(mode);
-            }}
-          />
-          <StimulusContent words={words} image={image} />
-          <p className="time-counter">
-            {minutes.toString().padStart(2, "0")}:
-            {seconds.toString().padStart(2, "0")}
-          </p>
-          <BeatPlayer onPlay={handlePlay} onStop={handleStop} sound={sound} />
+    <PageContainer>
+      <div className="free">
+        <ModePicker
+          currentMode={mode}
+          onModeClick={(mode) => {
+            setMode(mode);
+          }}
+        />
+        <StimulusContent stimulus={stimulus} />
+        <div className="time-counter">
+          {minutes.toString().padStart(2, "0")}:
+          {seconds.toString().padStart(2, "0")}
         </div>
-      </main>
-      <footer>
-        <span>
-          desarrollado por{" "}
-          <a href="https://zvl.dev" className="footer-link">
-            zvl.dev
-          </a>
-        </span>
-      </footer>
-    </div>
+        <BeatPlayer onPlay={handlePlay} onStop={handleStop} sound={sound} />
+      </div>
+    </PageContainer>
   );
 };
 
