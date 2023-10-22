@@ -1,6 +1,6 @@
 # Makahco
 
-This project is for a tool to practice freestyle rap giving random words to the user generated via IA
+Enhance your freestyle skills with this TS-based random word and image generator.
 
 ## Demo
 
