@@ -12,11 +12,19 @@ const BeatPlayer = ({ onPlay, onStop, sound }: BeatPlayerProps) => {
   return (
     <div className={styles["sound-player"]}>
       {sound ? (
-        <button className={styles["player-button"]} onClick={onStop}>
+        <button
+          className={styles["player-button"]}
+          onClick={onStop}
+          aria-label="stop"
+        >
           <StopIcon />
         </button>
       ) : (
-        <button className={styles["player-button"]} onClick={onPlay}>
+        <button
+          className={styles["player-button"]}
+          onClick={onPlay}
+          aria-label="play"
+        >
           <PlayIcon />
         </button>
       )}
