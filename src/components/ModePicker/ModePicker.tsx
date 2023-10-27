@@ -27,7 +27,9 @@ const ModePicker = ({ currentMode, onModeClick }: ModePickerProps) => {
             className={classNames(styles["mode-container"], {
               [styles["mode-active"]]: currentMode.id === mode.id,
             })}
-            onClick={() => onModeClick(mode)}
+            onClick={() => {
+              onModeClick(mode);
+            }}
             title={mode.label}
           >
             {mode.label}
