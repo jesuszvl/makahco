@@ -1,23 +1,23 @@
 import { Howl } from "howler";
 
 import { useCallback, useEffect, useState } from "react";
-import ModePicker, { MODES, Mode } from "./components/ModePicker/ModePicker";
+import { MODES, Mode } from "./components/ModePicker/ModePicker";
 import StimulusContent from "./components/StimulusContent/StimulusContent";
 import BeatPlayer from "./components/BeatPlayer/BeatPlayer";
 import { useStopwatch } from "react-timer-hook";
-import { createApi } from "unsplash-js";
-import { BEAT_INITIAL, Beat, getRandomBeat } from "./utils/beats";
 import PageContainer from "./components/PageContainer/PageContainer";
-import { STIMULUS_INITIAL, Stimulus, getRandomWords } from "./utils/stimulus";
+import {
+  STIMULUS_INITIAL,
+  Stimulus,
+  getRandomImage,
+  getRandomWords,
+} from "./utils/stimulus";
 import BeatModal from "./components/BeatModal/BeatModal";
-
-const unsplash = createApi({
-  accessKey: "XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08",
-});
+import { useBeatStore } from "./store/beatStore";
 
 const App = () => {
+  const { beat } = useBeatStore();
   const [mode, setMode] = useState<Mode>(MODES[0]);
-  const [beat, setBeat] = useState<Beat>(BEAT_INITIAL);
   const [sound, setSound] = useState<Howl | null>(null);
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -33,14 +33,8 @@ const App = () => {
   useEffect(() => {
     const fetchNewStimulus = async () => {
       if (isImageMode) {
-        unsplash.photos.getRandom({}).then((res) => {
-          if (!res.errors) {
-            const randomImage = Array.isArray(res.response)
-              ? res.response[0]
-              : res.response;
-            setStimulus({ type: "image", values: [randomImage.urls.small] });
-          }
-        });
+        const randomImage = await getRandomImage();
+        setStimulus({ type: "image", values: [randomImage] });
       } else {
         const randomWords = await getRandomWords(is4FBMode ? 4 : 1);
         setStimulus({ type: "word", values: randomWords });
@@ -74,15 +68,13 @@ const App = () => {
   const handleStop = useCallback(() => {
     if (sound) sound.stop();
     setSound(null);
-    setBeat(BEAT_INITIAL);
     setStimulus(STIMULUS_INITIAL);
     reset(new Date(0), false);
   }, [sound, reset]);
 
   const handlePlay = () => {
-    const newBeat = getRandomBeat();
     const howlerSound = new Howl({
-      src: [newBeat.src],
+      src: [beat.src],
       html5: true,
       volume: 0.5,
     });
@@ -91,7 +83,6 @@ const App = () => {
     start();
 
     setSound(howlerSound);
-    setBeat(newBeat);
 
     // Fires when the sound finishes playing.
     howlerSound.on("end", function () {

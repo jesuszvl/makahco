@@ -10,15 +10,6 @@ export interface Beat {
 const BEATS_BASE_URL =
   "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/beats/";
 
-export const BEAT_INITIAL = {
-  src: "",
-  beat_drop: 10,
-  bpm: 94,
-  spb: 10,
-  name: "",
-  author: "",
-};
-
 export const BEATS: Beat[] = [
   {
     src: BEATS_BASE_URL + "base_1.mp3",
@@ -61,6 +52,8 @@ export const BEATS: Beat[] = [
     author: "Walter White",
   },
 ];
+
+export const BEAT_INITIAL = BEATS[0];
 
 export const getRandomBeat = (): Beat => {
   const randomIndex = Math.floor(Math.random() * BEATS.length);
