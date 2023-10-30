@@ -1,0 +1,38 @@
+.card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  padding: 16px;
+  align-items: center;
+  gap: 16px;
+
+  &:hover {
+    background-color: #c259ff;
+  }
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+
+.author {
+  font-size: 14px;
+}
+
+.selection {
+  width: 28px;
+  height: 28px;
+  border: 1px solid white;
+  border-radius: 50%;
+
+  &.selected {
+    background-color: white;
+  }
+}

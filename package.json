@@ -16,6 +16,7 @@
     "howler": "^2.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-modal": "^3.16.1",
     "react-timer-hook": "^3.0.7",
     "sass": "^1.69.4",
     "unsplash-js": "^7.0.18"
@@ -24,6 +25,7 @@
     "@types/howler": "^2.2.10",
     "@types/react": "^18.2.33",
     "@types/react-dom": "^18.2.14",
+    "@types/react-modal": "^3.16.2",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.9.0",
     "@vitejs/plugin-react-swc": "^3.3.2",

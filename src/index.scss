@@ -38,5 +38,10 @@ a:-webkit-any-link {
 .time-counter {
   font-size: 24px;
   margin: 0;
-  padding-bottom: 16px;
+}
+
+.beat-container {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
 }

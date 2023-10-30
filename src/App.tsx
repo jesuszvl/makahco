@@ -1,4 +1,5 @@
 import { Howl } from "howler";
+
 import { useCallback, useEffect, useState } from "react";
 import ModePicker, { MODES, Mode } from "./components/ModePicker/ModePicker";
 import StimulusContent from "./components/StimulusContent/StimulusContent";
@@ -8,6 +9,7 @@ import { createApi } from "unsplash-js";
 import { BEAT_INITIAL, Beat, getRandomBeat } from "./utils/beats";
 import PageContainer from "./components/PageContainer/PageContainer";
 import { STIMULUS_INITIAL, Stimulus, getRandomWords } from "./utils/stimulus";
+import BeatModal from "./components/BeatModal/BeatModal";
 
 const unsplash = createApi({
   accessKey: "XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08",
@@ -18,6 +20,7 @@ const App = () => {
   const [beat, setBeat] = useState<Beat>(BEAT_INITIAL);
   const [sound, setSound] = useState<Howl | null>(null);
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
+  const [modalIsOpen, setIsOpen] = useState(false);
 
   const { seconds, minutes, totalSeconds, start, reset } = useStopwatch({
     autoStart: false,
@@ -48,17 +51,15 @@ const App = () => {
 
     // Are you ready?
     if (totalSeconds > 1 && countdownSeconds === 10) {
-      setStimulus({ type: "word", values: ["¿LISTO?"] });
+      setStimulus({ type: "word", values: ["¿ESTAS LISTO?"] });
     }
 
     // Se lo damos en...3, 2, 1
-    if (countdownSeconds >= 1 && countdownSeconds <= 3) {
-      setStimulus({ type: "word", values: [countdownSeconds.toString()] });
-    }
-
-    // Tiempo!
-    if (countdownSeconds === 0 && totalSeconds === beat.beat_drop) {
-      setStimulus({ type: "word", values: ["¡TIEMPO!"] });
+    if (countdownSeconds >= 2 && countdownSeconds <= 4) {
+      setStimulus({
+        type: "word",
+        values: [(countdownSeconds - 1).toString()],
+      });
     }
 
     // Fetching palabras
@@ -98,21 +99,39 @@ const App = () => {
     });
   };
 
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   return (
     <PageContainer>
+      <BeatModal
+        isOpen={modalIsOpen}
+        onClose={() => {
+          closeModal();
+        }}
+      />
       <div className="free">
-        <ModePicker
-          currentMode={mode}
-          onModeClick={(mode) => {
-            setMode(mode);
-          }}
-        />
         <StimulusContent stimulus={stimulus} />
         <div className="time-counter">
           {minutes.toString().padStart(2, "0")}:
           {seconds.toString().padStart(2, "0")}
         </div>
-        <BeatPlayer onPlay={handlePlay} onStop={handleStop} sound={sound} />
+        <BeatPlayer
+          onPlay={handlePlay}
+          onStop={handleStop}
+          sound={sound}
+          onMusic={() => {
+            openModal();
+          }}
+          onSettings={() => {
+            console.log("opening settings");
+          }}
+        />
       </div>
     </PageContainer>
   );

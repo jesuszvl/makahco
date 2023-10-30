@@ -5,7 +5,10 @@ export interface Stimulus {
   values: string[];
 }
 
-export const STIMULUS_INITIAL = { type: "word", values: [] };
+export const STIMULUS_INITIAL = {
+  type: "word",
+  values: ["clic a play"],
+};
 
 export const getRandomFourCategory = () => {
   const randomIndex = Math.floor(Math.random() * terminacionesList.length);

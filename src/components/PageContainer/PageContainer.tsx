@@ -13,14 +13,6 @@ const PageContainer = ({ children }: PageContainerProps) => {
         <span>makahco</span>
       </header>
       <main>{children}</main>
-      <footer>
-        <span>
-          desarrollado por{" "}
-          <a href="https://zvl.dev" className={styles["footer-link"]}>
-            zvl.dev
-          </a>
-        </span>
-      </footer>
     </div>
   );
 };
