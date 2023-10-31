@@ -19,11 +19,12 @@
 .name {
   font-size: 22px;
   font-weight: 700;
-  color: white;
+  color: #ffe766;
 }
 
 .author {
   font-size: 14px;
+  color: white;
 }
 
 .selection {
@@ -33,6 +34,6 @@
   border-radius: 50%;
 
   &.selected {
-    background-color: white;
+    background-color: #ffe766;
   }
 }

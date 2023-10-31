@@ -1,7 +1,5 @@
 import Modal from "react-modal";
-import CloseIcon from "../../icons/CloseIcon";
 import styles from "./BeatModal.module.scss";
-import BaseButton from "../BaseButton/BaseButton";
 import { BEATS } from "../../utils/beats";
 import BeatCard from "../BeatCard/BeatCard";
 import { useBeatStore } from "../../store/beatStore";
@@ -35,8 +33,8 @@ const BeatModal = ({ isOpen, onClose }: BeatModalProps) => {
         })}
       </div>
 
-      <div className={styles["modal-action"]}>
-        <BaseButton onClick={onClose} icon={<CloseIcon />}></BaseButton>
+      <div className={styles["modal-action"]} onClick={onClose}>
+        CERRAR
       </div>
     </Modal>
   );
