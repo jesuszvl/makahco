@@ -8,7 +8,7 @@ export interface Stimulus {
 
 export const STIMULUS_INITIAL = {
   type: "word",
-  values: ["clic a play"],
+  values: ["TAP TO START"],
 };
 
 const unsplash = createApi({

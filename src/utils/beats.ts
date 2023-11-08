@@ -16,7 +16,7 @@ export const BEATS: Beat[] = [
     beat_drop: 20,
     bpm: 94,
     spb: 10,
-    name: "Starman",
+    name: "Reggae",
     author: "Muelas de Gallo",
   },
   {
@@ -24,7 +24,7 @@ export const BEATS: Beat[] = [
     beat_drop: 24,
     bpm: 79,
     spb: 12,
-    name: "Tennessee Whiskey",
+    name: "Boom Bap",
     author: "Saul Goodman",
   },
   {
@@ -32,7 +32,7 @@ export const BEATS: Beat[] = [
     beat_drop: 24,
     bpm: 81,
     spb: 11,
-    name: "Tuff Luv",
+    name: "Drill",
     author: "Michael Scott",
   },
   {
@@ -40,7 +40,7 @@ export const BEATS: Beat[] = [
     beat_drop: 21,
     bpm: 90,
     spb: 11,
-    name: "Soul Days",
+    name: "Jazz",
     author: "Eddie Kaspbrak",
   },
   {
@@ -48,7 +48,7 @@ export const BEATS: Beat[] = [
     beat_drop: 19,
     bpm: 100,
     spb: 10,
-    name: "Iconic",
+    name: "Rock",
     author: "Walter White",
   },
 ];

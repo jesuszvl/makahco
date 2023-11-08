@@ -9,6 +9,10 @@
   &:hover {
     background-color: #c259ff;
   }
+
+  &.selected {
+    background-color: #c259ff;
+  }
 }
 
 .info {
@@ -17,23 +21,12 @@
 }
 
 .name {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
-  color: #ffe766;
+  color: white;
 }
 
 .author {
   font-size: 14px;
-  color: white;
-}
-
-.selection {
-  width: 28px;
-  height: 28px;
-  border: 1px solid white;
-  border-radius: 50%;
-
-  &.selected {
-    background-color: #ffe766;
-  }
+  color: black;
 }

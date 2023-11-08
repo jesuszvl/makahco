@@ -1,7 +1,6 @@
 import { Howl } from "howler";
 
 import { useCallback, useEffect, useState } from "react";
-import { MODES, Mode } from "./components/ModePicker/ModePicker";
 import StimulusContent from "./components/StimulusContent/StimulusContent";
 import BeatPlayer from "./components/BeatPlayer/BeatPlayer";
 import { useStopwatch } from "react-timer-hook";
@@ -12,15 +11,15 @@ import {
   getRandomImage,
   getRandomWords,
 } from "./utils/stimulus";
-import BeatModal from "./components/BeatModal/BeatModal";
 import { useBeatStore } from "./store/beatStore";
+import ModeSelector from "./components/ModeSelector/ModeSelector";
+import BeatSelector from "./components/BeatSelector/BeatSelector";
+import SettingSelector from "./components/SettingSelector/SettingSelector";
 
 const App = () => {
-  const { beat } = useBeatStore();
-  const [mode, setMode] = useState<Mode>(MODES[0]);
+  const { beat, mode, openModal } = useBeatStore();
   const [sound, setSound] = useState<Howl | null>(null);
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
-  const [modalIsOpen, setIsOpen] = useState(false);
 
   const { seconds, minutes, totalSeconds, start, reset } = useStopwatch({
     autoStart: false,
@@ -65,14 +64,14 @@ const App = () => {
     }
   }, [totalSeconds, beat, is4FBMode, isImageMode]);
 
-  const handleStop = useCallback(() => {
+  const onStop = useCallback(() => {
     if (sound) sound.stop();
     setSound(null);
     setStimulus(STIMULUS_INITIAL);
     reset(new Date(0), false);
   }, [sound, reset]);
 
-  const handlePlay = () => {
+  const onPlay = () => {
     const howlerSound = new Howl({
       src: [beat.src],
       html5: true,
@@ -86,41 +85,43 @@ const App = () => {
 
     // Fires when the sound finishes playing.
     howlerSound.on("end", function () {
-      handleStop();
+      onStop();
     });
   };
 
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function closeModal() {
-    setIsOpen(false);
-  }
-
   return (
     <PageContainer>
-      <BeatModal
-        isOpen={modalIsOpen}
-        onClose={() => {
-          closeModal();
-        }}
-      />
       <div className="free">
-        <StimulusContent stimulus={stimulus} />
-        <div className="time-counter">
-          {minutes.toString().padStart(2, "0")}:
-          {seconds.toString().padStart(2, "0")}
-        </div>
-        <BeatPlayer
-          onPlay={handlePlay}
-          onStop={handleStop}
-          sound={sound}
-          onMusic={() => {
-            openModal();
+        <SettingSelector
+          setting={beat.name}
+          onBack={() => {
+            console.log("back beat");
           }}
-          onSettings={() => {
-            console.log("opening settings");
+          onNext={() => {
+            console.log("next beat");
+          }}
+          onSettingClick={() => {
+            openModal("beats");
+          }}
+        />
+        <StimulusContent
+          stimulus={stimulus}
+          onPlay={onPlay}
+          onStop={onStop}
+          sound={sound}
+          minutes={minutes}
+          seconds={seconds}
+        />
+        <SettingSelector
+          setting={mode}
+          onBack={() => {
+            console.log("back mode");
+          }}
+          onNext={() => {
+            console.log("next mode");
+          }}
+          onSettingClick={() => {
+            openModal("settings");
           }}
         />
       </div>

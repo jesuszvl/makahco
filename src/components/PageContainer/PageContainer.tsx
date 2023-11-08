@@ -1,3 +1,4 @@
+import ModalManager from "../Modals/ModalManager/ModalManager";
 import styles from "./PageContainer.module.scss";
 
 import { ReactNode } from "react";
@@ -8,12 +9,12 @@ type PageContainerProps = {
 
 const PageContainer = ({ children }: PageContainerProps) => {
   return (
-    <div className={styles["container"]}>
-      <header>
-        <span>makahco</span>
-      </header>
-      <main>{children}</main>
-    </div>
+    <>
+      <ModalManager />
+      <div className={styles["container"]}>
+        <main>{children}</main>
+      </div>
+    </>
   );
 };
 

@@ -1,8 +1,8 @@
 import Modal from "react-modal";
 import styles from "./BeatModal.module.scss";
-import { BEATS } from "../../utils/beats";
+import { BEATS } from "../../../utils/beats";
 import BeatCard from "../BeatCard/BeatCard";
-import { useBeatStore } from "../../store/beatStore";
+import { useBeatStore } from "../../../store/beatStore";
 
 type BeatModalProps = {
   isOpen: boolean;
