@@ -1,11 +1,6 @@
 import { terminaciones, terminacionesList } from "./wordLibrary";
 import { createApi } from "unsplash-js";
 
-export interface Stimulus {
-  type: string;
-  values: string[];
-}
-
 export const STIMULUS_INITIAL = {
   type: "word",
   values: ["TAP TO START"],

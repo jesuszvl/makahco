@@ -10,7 +10,7 @@ const ModalManager = () => {
     return <BeatModal isOpen={modal.isOpen} onClose={closeModal} />;
   }
 
-  if (modal.type === "settings") {
+  if (modal.type === "mode") {
     return <SettingsModal isOpen={modal.isOpen} onClose={closeModal} />;
   }
 

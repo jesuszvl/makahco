@@ -1,6 +1,7 @@
 import Modal from "react-modal";
 import styles from "./SettingsModal.module.scss";
-import { Mode, useBeatStore } from "../../../store/beatStore";
+import { useBeatStore } from "../../../store/beatStore";
+import { Mode } from "../../../types/types";
 
 type SettingsModalProps = {
   isOpen: boolean;
@@ -10,7 +11,7 @@ type SettingsModalProps = {
 export const MODES: Mode[] = ["clásico", "terminaciones", "visuales"];
 
 const SettingsModal = ({ isOpen, onClose }: SettingsModalProps) => {
-  const { mode: currentMode, updateMode } = useBeatStore();
+  const { updateMode } = useBeatStore();
   return (
     <Modal
       className={styles["modal"]}

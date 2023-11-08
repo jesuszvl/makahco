@@ -1,13 +1,6 @@
 import { create } from "zustand";
-import { BEATS, Beat } from "../utils/beats";
-
-type ModalType = "beats" | "settings" | "none";
-export type Mode = "clásico" | "terminaciones" | "visuales";
-
-interface Modal {
-  type: ModalType;
-  isOpen: boolean;
-}
+import { BEATS } from "../utils/beats";
+import { Beat, Modal, ModalType, Mode } from "../types/types";
 
 interface BeatState {
   beat: Beat;

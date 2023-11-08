@@ -1,11 +1,4 @@
-export interface Beat {
-  src: string;
-  beat_drop: number;
-  bpm: number;
-  spb: number;
-  name: string;
-  author: string;
-}
+import { Beat } from "../types/types";
 
 const BEATS_BASE_URL =
   "https://fsivvquhttqtxpvvfyla.supabase.co/storage/v1/object/public/beats/";

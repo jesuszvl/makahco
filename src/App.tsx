@@ -2,7 +2,6 @@ import { Howl } from "howler";
 
 import { useCallback, useEffect, useState } from "react";
 import StimulusContent from "./components/StimulusContent/StimulusContent";
-import BeatPlayer from "./components/BeatPlayer/BeatPlayer";
 import { useStopwatch } from "react-timer-hook";
 import PageContainer from "./components/PageContainer/PageContainer";
 import {
@@ -12,8 +11,6 @@ import {
   getRandomWords,
 } from "./utils/stimulus";
 import { useBeatStore } from "./store/beatStore";
-import ModeSelector from "./components/ModeSelector/ModeSelector";
-import BeatSelector from "./components/BeatSelector/BeatSelector";
 import SettingSelector from "./components/SettingSelector/SettingSelector";
 
 const App = () => {
@@ -25,8 +22,8 @@ const App = () => {
     autoStart: false,
   });
 
-  const isImageMode = mode.id === "IMG";
-  const is4FBMode = mode.id === "4FB";
+  const isImageMode = mode === "visuales";
+  const is4FBMode = mode === "terminaciones";
 
   // Countdown effect
   useEffect(() => {
@@ -93,15 +90,15 @@ const App = () => {
     <PageContainer>
       <div className="free">
         <SettingSelector
-          setting={beat.name}
+          setting={mode}
           onBack={() => {
-            console.log("back beat");
+            console.log("back mode");
           }}
           onNext={() => {
-            console.log("next beat");
+            console.log("next mode");
           }}
           onSettingClick={() => {
-            openModal("beats");
+            openModal("mode");
           }}
         />
         <StimulusContent
@@ -112,16 +109,17 @@ const App = () => {
           minutes={minutes}
           seconds={seconds}
         />
+
         <SettingSelector
-          setting={mode}
+          setting={beat.name}
           onBack={() => {
-            console.log("back mode");
+            console.log("back beat");
           }}
           onNext={() => {
-            console.log("next mode");
+            console.log("next beat");
           }}
           onSettingClick={() => {
-            openModal("settings");
+            openModal("beats");
           }}
         />
       </div>

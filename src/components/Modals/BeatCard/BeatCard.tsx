@@ -1,5 +1,5 @@
+import { Beat } from "../../../types/types";
 import styles from "./BeatCard.module.scss";
-import { Beat } from "../../../utils/beats";
 import classNames from "classnames";
 
 type BeatCardProps = {

@@ -1,4 +1,4 @@
-import { Stimulus } from "../../utils/stimulus";
+import { Stimulus } from "../../types/types";
 import styles from "./StimulusContent.module.scss";
 
 interface StimulusContentProps {
