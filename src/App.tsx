@@ -6,12 +6,12 @@ import { useStopwatch } from "react-timer-hook";
 import PageContainer from "./components/PageContainer/PageContainer";
 import {
   STIMULUS_INITIAL,
-  Stimulus,
   getRandomImage,
   getRandomWords,
 } from "./utils/stimulus";
 import { useBeatStore } from "./store/beatStore";
 import SettingSelector from "./components/SettingSelector/SettingSelector";
+import { Stimulus } from "./types/types";
 
 const App = () => {
   const { beat, mode, openModal } = useBeatStore();
