@@ -1,6 +1,4 @@
-interface WordLibrary {
-  [key: string]: string[];
-}
+import { WordLibrary } from "../types/types";
 
 const ito = [
   "mito",
