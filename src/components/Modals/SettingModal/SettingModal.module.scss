@@ -6,13 +6,11 @@
   min-width: 300px;
   width: calc(100vw - 48px);
   height: calc(100vh - 86px);
-  background: #8436b3;
-  border: 2px solid white;
-  border-radius: 12px;
   outline: none;
   max-width: 500px;
   display: flex;
   flex-direction: column;
+  background-color: #ffe766;
 }
 
 .modal-overlay {
@@ -26,30 +24,30 @@
   transition: background 200ms;
 }
 
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: white;
-  color: #8436b3;
-  padding: 16px;
-  font-size: 26px;
-  font-weight: 900;
-  border-radius: 6px 6px 0 0;
-}
-
 .modal-content {
   display: flex;
   flex-direction: column;
-  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.modal-action {
-  cursor: pointer;
+.modal-card {
   display: flex;
+  align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 22px;
-  font-weight: 700;
-  padding: 16px;
+  flex-grow: 1;
+  width: 100%;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 24px;
+  text-transform: uppercase;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
 }

@@ -10,7 +10,6 @@ export const BEATS: Beat[] = [
     bpm: 94,
     spb: 10,
     name: "Reggae",
-    author: "Muelas de Gallo",
   },
   {
     src: BEATS_BASE_URL + "base_2.mp3",
@@ -18,7 +17,6 @@ export const BEATS: Beat[] = [
     bpm: 79,
     spb: 12,
     name: "Boom Bap",
-    author: "Saul Goodman",
   },
   {
     src: BEATS_BASE_URL + "base_3.mp3",
@@ -26,7 +24,6 @@ export const BEATS: Beat[] = [
     bpm: 81,
     spb: 11,
     name: "Drill",
-    author: "Michael Scott",
   },
   {
     src: BEATS_BASE_URL + "base_4.mp3",
@@ -34,7 +31,6 @@ export const BEATS: Beat[] = [
     bpm: 90,
     spb: 11,
     name: "Jazz",
-    author: "Eddie Kaspbrak",
   },
   {
     src: BEATS_BASE_URL + "base_5.mp3",
@@ -42,7 +38,6 @@ export const BEATS: Beat[] = [
     bpm: 100,
     spb: 10,
     name: "Rock",
-    author: "Walter White",
   },
 ];
 

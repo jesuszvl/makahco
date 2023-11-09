@@ -4,7 +4,6 @@ export interface Beat {
   bpm: number;
   spb: number;
   name: string;
-  author: string;
 }
 
 export interface Stimulus {
@@ -24,3 +23,5 @@ export interface Modal {
   type: ModalType;
   isOpen: boolean;
 }
+
+export type Option = Beat | Mode;
