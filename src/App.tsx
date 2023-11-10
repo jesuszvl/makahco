@@ -1,4 +1,5 @@
 import { Howl } from "howler";
+import Modal from "react-modal";
 
 import { useCallback, useEffect, useState } from "react";
 import StimulusContent from "./components/StimulusContent/StimulusContent";
@@ -12,6 +13,8 @@ import {
 import { useBeatStore } from "./store/beatStore";
 import SettingSelector from "./components/SettingSelector/SettingSelector";
 import { Stimulus } from "./types/types";
+
+if (process.env.NODE_ENV !== "test") Modal.setAppElement("#root");
 
 const App = () => {
   const { beat, mode, openModal } = useBeatStore();

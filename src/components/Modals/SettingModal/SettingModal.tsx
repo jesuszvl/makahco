@@ -9,8 +9,6 @@ type SettingModalProps = {
   onOptionClick: (option: Option) => void;
 };
 
-Modal.setAppElement("#root");
-
 const SettingModal = ({
   options,
   isOpen,
