@@ -3,7 +3,7 @@ import { createApi } from "unsplash-js";
 
 export const STIMULUS_INITIAL = {
   type: "word",
-  values: ["TAP & START"],
+  values: ["TAP & RAP"],
 };
 
 const unsplash = createApi({

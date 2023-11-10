@@ -92,6 +92,14 @@ const App = () => {
   return (
     <PageContainer>
       <div className="free">
+        <StimulusContent
+          stimulus={stimulus}
+          onPlay={onPlay}
+          onStop={onStop}
+          sound={sound}
+          minutes={minutes}
+          seconds={seconds}
+        />
         <SettingSelector
           setting={mode}
           onBack={() => {
@@ -104,15 +112,6 @@ const App = () => {
             openModal("mode");
           }}
         />
-        <StimulusContent
-          stimulus={stimulus}
-          onPlay={onPlay}
-          onStop={onStop}
-          sound={sound}
-          minutes={minutes}
-          seconds={seconds}
-        />
-
         <SettingSelector
           setting={beat.name}
           onBack={() => {
