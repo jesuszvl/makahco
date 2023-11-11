@@ -6,27 +6,27 @@ describe("SettingSelector", () => {
     render(
       <SettingSelector
         type="modo"
-        setting="mode"
+        setting="clasico"
         onSettingClick={() => {}}
         onBack={() => {}}
         onNext={() => {}}
       />
     );
 
-    expect(screen.getByText("mode")).toBeDefined();
+    expect(screen.getByText("clasico")).toBeDefined();
   });
 
   test("should render setting selector for Beat correctly", () => {
     render(
       <SettingSelector
         type="beat"
-        setting="beat"
+        setting="reggae"
         onSettingClick={() => {}}
         onBack={() => {}}
         onNext={() => {}}
       />
     );
 
-    expect(screen.getByText("beat")).toBeDefined();
+    expect(screen.getByText("reggae")).toBeDefined();
   });
 });
