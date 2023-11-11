@@ -5,6 +5,7 @@ describe("SettingSelector", () => {
   test("should render setting selector for Mode correctly", () => {
     render(
       <SettingSelector
+        type="modo"
         setting="mode"
         onSettingClick={() => {}}
         onBack={() => {}}
@@ -18,6 +19,7 @@ describe("SettingSelector", () => {
   test("should render setting selector for Beat correctly", () => {
     render(
       <SettingSelector
+        type="beat"
         setting="beat"
         onSettingClick={() => {}}
         onBack={() => {}}
