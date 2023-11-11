@@ -2,12 +2,14 @@ import styles from "./SettingSelector.module.scss";
 
 type SettingSelectorProps = {
   setting: string;
+  type: string;
   onBack: () => void;
   onNext: () => void;
   onSettingClick: () => void;
 };
 
 const SettingSelector = ({
+  type,
   setting,
   onBack,
   onNext,
@@ -19,7 +21,8 @@ const SettingSelector = ({
         {"<<"}
       </button>
       <button className={styles["selector-button"]} onClick={onSettingClick}>
-        {setting}
+        <span className={styles["selector-button-setting"]}>{setting}</span>
+        <span className={styles["selector-button-type"]}>{type}</span>
       </button>
       <button className={styles["selector-button"]} onClick={onNext}>
         {">>"}

@@ -12,7 +12,7 @@ describe("SettingSelector", () => {
       />
     );
 
-    expect(screen.getByText("mode")).toBeInTheDocument();
+    expect(screen.getByText("mode")).toBeDefined();
   });
 
   test("should render setting selector for Beat correctly", () => {
@@ -25,6 +25,6 @@ describe("SettingSelector", () => {
       />
     );
 
-    expect(screen.getByText("beat")).toBeInTheDocument();
+    expect(screen.getByText("beat")).toBeDefined();
   });
 });
