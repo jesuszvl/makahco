@@ -101,6 +101,7 @@ const App = () => {
           seconds={seconds}
         />
         <SettingSelector
+          type={"modo"}
           setting={mode}
           onBack={() => {
             console.log("back mode");
@@ -110,18 +111,6 @@ const App = () => {
           }}
           onSettingClick={() => {
             openModal("mode");
-          }}
-        />
-        <SettingSelector
-          setting={beat.name}
-          onBack={() => {
-            console.log("back beat");
-          }}
-          onNext={() => {
-            console.log("next beat");
-          }}
-          onSettingClick={() => {
-            openModal("beats");
           }}
         />
       </div>

@@ -23,6 +23,10 @@ const StimulusContent = ({
       className={styles["stimulus-content"]}
       onClick={sound ? onStop : onPlay}
     >
+      <div className={styles["time-counter"]}>
+        {minutes.toString().padStart(2, "0")}:
+        {seconds.toString().padStart(2, "0")}
+      </div>
       <div className={styles["stimulus-word"]}>
         <span className={styles["stimulus-words"]}>
           {stimulus.type === "image" ? (
@@ -39,10 +43,6 @@ const StimulusContent = ({
             })
           )}
         </span>
-      </div>
-      <div className="time-counter">
-        {minutes.toString().padStart(2, "0")}:
-        {seconds.toString().padStart(2, "0")}
       </div>
     </div>
   );

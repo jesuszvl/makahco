@@ -1,15 +1,20 @@
+@import "../../styles/utils";
+
 .setting-selector-container {
   display: flex;
   align-items: center;
   justify-content: space-around;
   width: 100%;
   height: 60px;
+  background-color: $main-purple;
+  color: white;
 }
 
 .selector-button {
   all: unset;
   cursor: pointer;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   flex-grow: 1;
@@ -17,11 +22,13 @@
   text-transform: uppercase;
   height: 100%;
 
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+  @include hoverable-dark;
+}
 
-  &:active {
-    background-color: rgba(0, 0, 0, 0.2);
-  }
+.selector-button-setting {
+  font-size: 16px;
+}
+
+.selector-button-type {
+  font-size: 10px;
 }
