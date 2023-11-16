@@ -15,9 +15,18 @@ export interface WordLibrary {
   [key: string]: string[];
 }
 
-export type Mode = "clásico" | "terminaciones" | "visuales";
+export enum Mode {
+  CLASICO = "CLÁSICO",
+  TERMINACIONES = "TERMINACIONES",
+  VISUALES = "VISUALES",
+}
 
-export type ModalType = "beats" | "mode" | "none";
+export enum Setting {
+  BEAT = "BEAT",
+  MODO = "MODO",
+}
+
+export type ModalType = Setting | "none";
 
 export interface Modal {
   type: ModalType;

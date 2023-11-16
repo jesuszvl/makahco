@@ -1,25 +1,34 @@
 import { create } from "zustand";
 import { BEATS } from "../utils/beats";
-import { Beat, Modal, ModalType, Mode } from "../types/types";
+import { Beat, Mode, Setting } from "../types/types";
 
 interface BeatState {
   beat: Beat;
-  modal: Modal;
   mode: Mode;
+  setting: Setting;
+  isModalOpen: boolean;
   updateBeat: (newBeat: Beat) => void;
-  openModal: (type: ModalType) => void;
-  closeModal: () => void;
   updateMode: (newMode: Mode) => void;
+  updateSetting: (newSetting: Setting) => void;
+  openModal: () => void;
+  closeModal: () => void;
+  getCurrentSettingValue: () => string;
 }
 
-export const useBeatStore = create<BeatState>()((set) => ({
+export const useBeatStore = create<BeatState>((set, get) => ({
   beat: BEATS[0],
-  modal: { type: "none", isOpen: false },
-  mode: "clásico",
+  mode: Mode.CLASICO,
+  setting: Setting.MODO,
+  isModalOpen: false,
   updateBeat: (newBeat) => set({ beat: newBeat }),
-  openModal: (type) =>
-    set((state) => ({ modal: { ...state.modal, isOpen: true, type: type } })),
-  closeModal: () =>
-    set((state) => ({ modal: { ...state.modal, isOpen: false } })),
   updateMode: (newMode) => set({ mode: newMode }),
+  updateSetting: (newSetting) => set({ setting: newSetting }),
+  openModal: () => set({ isModalOpen: true }),
+  closeModal: () => set({ isModalOpen: false }),
+  getCurrentSettingValue: () => {
+    const { beat, mode, setting } = get();
+    if (setting === Setting.MODO) return mode;
+    if (setting === Setting.BEAT) return beat.name;
+    return "";
+  },
 }));

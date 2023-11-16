@@ -12,12 +12,12 @@ import {
 } from "./utils/stimulus";
 import { useBeatStore } from "./store/beatStore";
 import SettingSelector from "./components/SettingSelector/SettingSelector";
-import { Stimulus } from "./types/types";
+import { Mode, Stimulus } from "./types/types";
 
 if (process.env.NODE_ENV !== "test") Modal.setAppElement("#root");
 
 const App = () => {
-  const { beat, mode, openModal } = useBeatStore();
+  const { beat, mode } = useBeatStore();
   const [sound, setSound] = useState<Howl | null>(null);
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
 
@@ -25,17 +25,15 @@ const App = () => {
     autoStart: false,
   });
 
-  const isImageMode = mode === "visuales";
-  const is4FBMode = mode === "terminaciones";
-
   // Countdown effect
   useEffect(() => {
     const fetchNewStimulus = async () => {
-      if (isImageMode) {
+      if (mode === Mode.VISUALES) {
         const randomImage = await getRandomImage();
         setStimulus({ type: "image", values: [randomImage] });
       } else {
-        const randomWords = await getRandomWords(is4FBMode ? 4 : 1);
+        const wordsPerBar = mode === Mode.TERMINACIONES ? 4 : 1;
+        const randomWords = await getRandomWords(wordsPerBar);
         setStimulus({ type: "word", values: randomWords });
       }
     };
@@ -62,7 +60,7 @@ const App = () => {
     ) {
       fetchNewStimulus();
     }
-  }, [totalSeconds, beat, is4FBMode, isImageMode]);
+  }, [totalSeconds, beat, mode]);
 
   const onStop = useCallback(() => {
     if (sound) sound.stop();
@@ -100,19 +98,7 @@ const App = () => {
           minutes={minutes}
           seconds={seconds}
         />
-        <SettingSelector
-          type={"modo"}
-          setting={mode}
-          onBack={() => {
-            console.log("back mode");
-          }}
-          onNext={() => {
-            console.log("next mode");
-          }}
-          onSettingClick={() => {
-            openModal("mode");
-          }}
-        />
+        <SettingSelector />
       </div>
     </PageContainer>
   );
