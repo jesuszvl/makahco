@@ -5,45 +5,40 @@ const BEATS_BASE_URL =
 
 export const BEATS: Beat[] = [
   {
-    src: BEATS_BASE_URL + "base_1.mp3",
-    beat_drop: 20,
-    bpm: 94,
-    spb: 10,
+    src: BEATS_BASE_URL + "reggae_1.mp3",
+    beat_drop: 24,
+    bpm: 84,
+    spb: 12,
     name: "Reggae",
   },
   {
-    src: BEATS_BASE_URL + "base_2.mp3",
-    beat_drop: 24,
-    bpm: 79,
-    spb: 12,
+    src: BEATS_BASE_URL + "bb_1.mp3",
+    beat_drop: 22,
+    bpm: 87,
+    spb: 11,
     name: "Boom Bap",
   },
   {
-    src: BEATS_BASE_URL + "base_3.mp3",
-    beat_drop: 24,
-    bpm: 81,
-    spb: 11,
+    src: BEATS_BASE_URL + "drill_1.mp3",
+    beat_drop: 32,
+    bpm: 139,
+    spb: 14,
     name: "Drill",
   },
   {
-    src: BEATS_BASE_URL + "base_4.mp3",
+    src: BEATS_BASE_URL + "jazz_1.mp3",
     beat_drop: 21,
-    bpm: 90,
+    bpm: 89,
     spb: 11,
     name: "Jazz",
   },
   {
-    src: BEATS_BASE_URL + "base_5.mp3",
+    src: BEATS_BASE_URL + "rock_1.mp3",
     beat_drop: 19,
-    bpm: 100,
+    bpm: 115,
     spb: 10,
     name: "Rock",
   },
 ];
 
 export const BEAT_INITIAL = BEATS[0];
-
-export const getRandomBeat = (): Beat => {
-  const randomIndex = Math.floor(Math.random() * BEATS.length);
-  return BEATS[randomIndex];
-};
