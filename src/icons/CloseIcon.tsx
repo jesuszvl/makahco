@@ -1,7 +1,7 @@
 export default function CloseIcon({
   width = 28,
   height = 28,
-  stroke = "#ffffff",
+  stroke = '#ffffff',
 }) {
   return (
     <svg

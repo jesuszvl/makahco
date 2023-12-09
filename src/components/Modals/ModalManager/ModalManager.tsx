@@ -1,7 +1,7 @@
-import { useBeatStore } from "../../../store/beatStore";
-import { Mode, Option, Setting } from "../../../types/types";
-import { BEATS } from "../../../utils/beats";
-import SettingModal from "../SettingModal/SettingModal";
+import { useBeatStore } from '../../../store/beatStore';
+import { Mode, Option, Setting } from '../../../types/types';
+import { BEATS } from '../../../utils/beats';
+import SettingModal from '../SettingModal/SettingModal';
 
 const ModalManager = () => {
   const { isModalOpen, setting, closeModal, updateBeat, updateMode } =
@@ -16,7 +16,7 @@ const ModalManager = () => {
         onClose={closeModal}
         options={BEATS}
         onOptionClick={(option: Option) => {
-          if (typeof option !== "string") {
+          if (typeof option !== 'string') {
             updateBeat(option);
           }
         }}
@@ -31,7 +31,7 @@ const ModalManager = () => {
         onClose={closeModal}
         options={modes}
         onOptionClick={(option: Option) => {
-          if (typeof option === "string") {
+          if (typeof option === 'string') {
             updateMode(option);
           }
         }}

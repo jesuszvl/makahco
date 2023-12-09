@@ -1,20 +1,20 @@
-import { Howl } from "howler";
-import Modal from "react-modal";
+import { Howl } from 'howler';
+import Modal from 'react-modal';
 
-import { useCallback, useEffect, useState } from "react";
-import StimulusContent from "./components/StimulusContent/StimulusContent";
-import { useStopwatch } from "react-timer-hook";
-import PageContainer from "./components/PageContainer/PageContainer";
+import { useCallback, useEffect, useState } from 'react';
+import StimulusContent from './components/StimulusContent/StimulusContent';
+import { useStopwatch } from 'react-timer-hook';
+import PageContainer from './components/PageContainer/PageContainer';
 import {
   STIMULUS_INITIAL,
   getRandomImage,
   getRandomWords,
-} from "./utils/stimulus";
-import { useBeatStore } from "./store/beatStore";
-import SettingSelector from "./components/SettingSelector/SettingSelector";
-import { Mode, Stimulus } from "./types/types";
+} from './utils/stimulus';
+import { useBeatStore } from './store/beatStore';
+import SettingSelector from './components/SettingSelector/SettingSelector';
+import { Mode, Stimulus } from './types/types';
 
-if (process.env.NODE_ENV !== "test") Modal.setAppElement("#root");
+if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const App = () => {
   const { beat, mode } = useBeatStore();
@@ -30,11 +30,11 @@ const App = () => {
     const fetchNewStimulus = async () => {
       if (mode === Mode.VISUALES) {
         const randomImage = await getRandomImage();
-        setStimulus({ type: "image", values: [randomImage] });
+        setStimulus({ type: 'image', values: [randomImage] });
       } else {
         const wordsPerBar = mode === Mode.TERMINACIONES ? 4 : 1;
         const randomWords = await getRandomWords(wordsPerBar);
-        setStimulus({ type: "word", values: randomWords });
+        setStimulus({ type: 'word', values: randomWords });
       }
     };
 
@@ -42,13 +42,13 @@ const App = () => {
 
     // Are you ready?
     if (totalSeconds > 1 && countdownSeconds === 10) {
-      setStimulus({ type: "word", values: ["¿ESTAS LISTO?"] });
+      setStimulus({ type: 'word', values: ['¿ESTAS LISTO?'] });
     }
 
     // Se lo damos en...3, 2, 1
     if (countdownSeconds >= 2 && countdownSeconds <= 4) {
       setStimulus({
-        type: "word",
+        type: 'word',
         values: [(countdownSeconds - 1).toString()],
       });
     }
@@ -82,7 +82,7 @@ const App = () => {
     setSound(howlerSound);
 
     // Fires when the sound finishes playing.
-    howlerSound.on("end", function () {
+    howlerSound.on('end', function () {
       onStop();
     });
   };

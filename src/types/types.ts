@@ -16,17 +16,17 @@ export interface WordLibrary {
 }
 
 export enum Mode {
-  CLASICO = "CLÁSICO",
-  TERMINACIONES = "TERMINACIONES",
-  VISUALES = "VISUALES",
+  CLASICO = 'CLÁSICO',
+  TERMINACIONES = 'TERMINACIONES',
+  VISUALES = 'VISUALES',
 }
 
 export enum Setting {
-  BEAT = "BEAT",
-  MODO = "MODO",
+  BEAT = 'BEAT',
+  MODO = 'MODO',
 }
 
-export type ModalType = Setting | "none";
+export type ModalType = Setting | 'none';
 
 export interface Modal {
   type: ModalType;

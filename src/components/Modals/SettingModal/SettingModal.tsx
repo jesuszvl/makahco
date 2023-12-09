@@ -1,6 +1,6 @@
-import Modal from "react-modal";
-import styles from "./SettingModal.module.scss";
-import { Beat, Mode, Option } from "../../../types/types";
+import Modal from 'react-modal';
+import styles from './SettingModal.module.scss';
+import { Beat, Mode, Option } from '../../../types/types';
 
 type SettingModalProps = {
   options: Mode[] | Beat[];
@@ -17,18 +17,18 @@ const SettingModal = ({
 }: SettingModalProps) => {
   return (
     <Modal
-      className={styles["modal"]}
-      overlayClassName={styles["modal-overlay"]}
+      className={styles['modal']}
+      overlayClassName={styles['modal-overlay']}
       isOpen={isOpen}
       onRequestClose={onClose}
     >
-      <div className={styles["modal-content"]}>
-        {options.map((option) => {
-          const optionName = typeof option === "string" ? option : option.name;
+      <div className={styles['modal-content']}>
+        {options.map(option => {
+          const optionName = typeof option === 'string' ? option : option.name;
           return (
             <div
               key={optionName}
-              className={styles["modal-card"]}
+              className={styles['modal-card']}
               onClick={() => {
                 onOptionClick(option);
                 onClose();

@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { BEATS } from "../utils/beats";
-import { Beat, Mode, Setting } from "../types/types";
+import { create } from 'zustand';
+import { BEATS } from '../utils/beats';
+import { Beat, Mode, Setting } from '../types/types';
 
 interface BeatState {
   beat: Beat;
@@ -20,15 +20,15 @@ export const useBeatStore = create<BeatState>((set, get) => ({
   mode: Mode.CLASICO,
   setting: Setting.MODO,
   isModalOpen: false,
-  updateBeat: (newBeat) => set({ beat: newBeat }),
-  updateMode: (newMode) => set({ mode: newMode }),
-  updateSetting: (newSetting) => set({ setting: newSetting }),
+  updateBeat: newBeat => set({ beat: newBeat }),
+  updateMode: newMode => set({ mode: newMode }),
+  updateSetting: newSetting => set({ setting: newSetting }),
   openModal: () => set({ isModalOpen: true }),
   closeModal: () => set({ isModalOpen: false }),
   getCurrentSettingValue: () => {
     const { beat, mode, setting } = get();
     if (setting === Setting.MODO) return mode;
     if (setting === Setting.BEAT) return beat.name;
-    return "";
+    return '';
   },
 }));
