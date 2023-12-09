@@ -1,4 +1,4 @@
-@import "utils";
+@import 'utils';
 
 html,
 body {
@@ -16,7 +16,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: $main-yellow;
   color: black;
-  font-family: "Outfit", sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
 a {

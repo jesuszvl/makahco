@@ -1,13 +1,13 @@
-import { terminaciones, terminacionesList } from "./wordLibrary";
-import { createApi } from "unsplash-js";
+import { terminaciones, terminacionesList } from './wordLibrary';
+import { createApi } from 'unsplash-js';
 
 export const STIMULUS_INITIAL = {
-  type: "word",
-  values: ["TAP & RAP"],
+  type: 'word',
+  values: ['TAP & RAP'],
 };
 
 const unsplash = createApi({
-  accessKey: "XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08",
+  accessKey: 'XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08',
 });
 
 export const getRandomImage = async () => {
@@ -22,7 +22,7 @@ export const getRandomImage = async () => {
   } catch (error) {
     console.error(error);
   }
-  return "";
+  return '';
 };
 
 export const getRandomFourCategory = () => {

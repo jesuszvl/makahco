@@ -1,7 +1,7 @@
 export default function PlayIcon({
   width = 32,
   height = 32,
-  stroke = "#ffffff",
+  stroke = '#ffffff',
 }) {
   return (
     <svg

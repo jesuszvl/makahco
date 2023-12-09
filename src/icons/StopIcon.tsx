@@ -1,7 +1,7 @@
 export default function StopIcon({
   width = 32,
   height = 32,
-  stroke = "#ffffff",
+  stroke = '#ffffff',
 }) {
   return (
     <svg

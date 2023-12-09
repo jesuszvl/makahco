@@ -1,6 +1,6 @@
-import { useBeatStore } from "../../store/beatStore";
-import { Setting } from "../../types/types";
-import styles from "./SettingSelector.module.scss";
+import { useBeatStore } from '../../store/beatStore';
+import { Setting } from '../../types/types';
+import styles from './SettingSelector.module.scss';
 
 const SettingSelector = () => {
   const { setting, updateSetting, getCurrentSettingValue, openModal } =
@@ -20,28 +20,28 @@ const SettingSelector = () => {
   };
 
   return (
-    <div className={styles["setting-selector-container"]}>
+    <div className={styles['setting-selector-container']}>
       <button
-        className={styles["selector-button"]}
+        className={styles['selector-button']}
         onClick={() => {
           updateSetting(previousSetting());
         }}
       >
-        {"<<"}
+        {'<<'}
       </button>
-      <button className={styles["selector-button"]} onClick={openModal}>
-        <span className={styles["selector-button-type"]}>{setting}</span>
-        <span className={styles["selector-button-setting"]}>
+      <button className={styles['selector-button']} onClick={openModal}>
+        <span className={styles['selector-button-type']}>{setting}</span>
+        <span className={styles['selector-button-setting']}>
           {getCurrentSettingValue()}
         </span>
       </button>
       <button
-        className={styles["selector-button"]}
+        className={styles['selector-button']}
         onClick={() => {
           updateSetting(nextSetting());
         }}
       >
-        {">>"}
+        {'>>'}
       </button>
     </div>
   );
