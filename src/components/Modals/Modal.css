@@ -1,0 +1,25 @@
+.modal-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 300px;
+  width: calc(100dvw - 48px);
+  height: calc(100dvh - 86px);
+  outline: none;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fcd926;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999999;
+  background: rgba(21, 21, 21, 0.85);
+  transition: background 200ms;
+}

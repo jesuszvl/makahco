@@ -11,7 +11,7 @@ import {
   getRandomWords,
 } from './utils/stimulus';
 import { useBeatStore } from './store/beatStore';
-import SettingSelector from './components/SettingSelector/SettingSelector';
+import PlayBar from './components/PlayBar/PlayBar';
 import { Mode, Stimulus } from './types/types';
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
@@ -90,15 +90,14 @@ const App = () => {
   return (
     <PageContainer>
       <div className="free">
-        <StimulusContent
-          stimulus={stimulus}
+        <StimulusContent stimulus={stimulus} />
+        <PlayBar
+          minutes={minutes}
+          seconds={seconds}
           onPlay={onPlay}
           onStop={onStop}
           sound={sound}
-          minutes={minutes}
-          seconds={seconds}
         />
-        <SettingSelector />
       </div>
     </PageContainer>
   );

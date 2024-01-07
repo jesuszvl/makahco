@@ -21,12 +21,13 @@ export enum Mode {
   VISUALES = 'VISUALES',
 }
 
-export enum Setting {
+export enum Modals {
   BEAT = 'BEAT',
   MODO = 'MODO',
+  HELP = 'HELP',
 }
 
-export type ModalType = Setting | 'none';
+export type ModalType = Modals.BEAT | Modals.MODO | Modals.HELP;
 
 export interface Modal {
   type: ModalType;

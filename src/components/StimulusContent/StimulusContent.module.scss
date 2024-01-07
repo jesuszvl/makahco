@@ -7,16 +7,13 @@
   flex-direction: column;
   flex: 1;
   width: 100%;
-  cursor: pointer;
-  @include hoverable-dark;
 }
 
 .stimulus-image {
   position: relative;
   width: 300px;
   height: 300px;
-  border-radius: 10px;
-  border: 2px solid #8436b3;
+  border: 3px solid #8436b3;
   overflow: hidden;
   z-index: -1;
 
@@ -43,7 +40,6 @@
 
 .time-counter {
   position: absolute;
-  top: 16px;
+  bottom: 72px;
   font-size: 20px;
-  margin: 0;
 }

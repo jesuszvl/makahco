@@ -3,30 +3,11 @@ import styles from './StimulusContent.module.scss';
 
 interface StimulusContentProps {
   stimulus: Stimulus;
-  onPlay: () => void;
-  onStop: () => void;
-  minutes: number;
-  seconds: number;
-  sound: unknown;
 }
 
-const StimulusContent = ({
-  stimulus,
-  onPlay,
-  onStop,
-  sound,
-  minutes,
-  seconds,
-}: StimulusContentProps) => {
+const StimulusContent = ({ stimulus }: StimulusContentProps) => {
   return (
-    <div
-      className={styles['stimulus-content']}
-      onClick={sound ? onStop : onPlay}
-    >
-      <div className={styles['time-counter']}>
-        {minutes.toString().padStart(2, '0')}:
-        {seconds.toString().padStart(2, '0')}
-      </div>
+    <div className={styles['stimulus-content']}>
       <div className={styles['stimulus-word']}>
         <span className={styles['stimulus-words']}>
           {stimulus.type === 'image' ? (

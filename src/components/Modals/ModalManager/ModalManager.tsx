@@ -1,15 +1,16 @@
 import { useBeatStore } from '../../../store/beatStore';
-import { Mode, Option, Setting } from '../../../types/types';
+import { Mode, Option, Modals } from '../../../types/types';
 import { BEATS } from '../../../utils/beats';
+import HelpModal from '../HelpModal/HelpModal';
 import SettingModal from '../SettingModal/SettingModal';
 
 const ModalManager = () => {
-  const { isModalOpen, setting, closeModal, updateBeat, updateMode } =
+  const { isModalOpen, modalType, closeModal, updateBeat, updateMode } =
     useBeatStore();
 
   const modes: Mode[] = Object.values(Mode);
 
-  if (setting === Setting.BEAT) {
+  if (modalType === Modals.BEAT) {
     return (
       <SettingModal
         isOpen={isModalOpen}
@@ -24,7 +25,7 @@ const ModalManager = () => {
     );
   }
 
-  if (setting === Setting.MODO) {
+  if (modalType === Modals.MODO) {
     return (
       <SettingModal
         isOpen={isModalOpen}
@@ -37,6 +38,10 @@ const ModalManager = () => {
         }}
       />
     );
+  }
+
+  if (modalType === Modals.HELP) {
+    return <HelpModal isOpen={isModalOpen} onClose={closeModal} />;
   }
 
   return null;
