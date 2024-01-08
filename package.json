@@ -22,7 +22,7 @@
     "react-timer-hook": "^3.0.7",
     "sass": "^1.69.5",
     "unsplash-js": "^7.0.19",
-    "zustand": "^4.4.6"
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.4",
