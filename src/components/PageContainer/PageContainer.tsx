@@ -1,5 +1,5 @@
 import ModalManager from '../Modals/ModalManager/ModalManager';
-import styles from './PageContainer.module.scss';
+import './PageContainer.css';
 
 import { ReactNode } from 'react';
 
@@ -11,9 +11,7 @@ const PageContainer = ({ children }: PageContainerProps) => {
   return (
     <>
       <ModalManager />
-      <div className={styles['container']}>
-        <main>{children}</main>
-      </div>
+      <main className="page-container">{children}</main>
     </>
   );
 };

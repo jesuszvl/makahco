@@ -1,31 +1,40 @@
-import { Stimulus } from '../../types/types';
-import styles from './StimulusContent.module.scss';
+import { Stimulus, Word } from '../../types/types';
+import './StimulusContent.css';
 
 interface StimulusContentProps {
   stimulus: Stimulus;
 }
 
 const StimulusContent = ({ stimulus }: StimulusContentProps) => {
+  const renderWord = (word: Word) => {
+    return (
+      <span key={word.value}>
+        <h1 className="word">{word.value}</h1>
+        <p className="subword">{word.subword}</p>
+      </span>
+    );
+  };
+
+  const renderImage = (image: Word) => {
+    return (
+      <div className="stimulus-image">
+        <img className="stimulus-image" src={image.value} alt="" />
+      </div>
+    );
+  };
+
   return (
-    <div className={styles['stimulus-content']}>
-      <div className={styles['stimulus-word']}>
-        <span className={styles['stimulus-words']}>
-          {stimulus.type === 'image' ? (
-            <div className={styles['stimulus-image']}>
-              <img
-                className={styles['stimulus-image']}
-                src={stimulus.values[0]}
-                alt=""
-              />
-            </div>
-          ) : (
-            stimulus.values.map(word => {
-              return <span key={word}>{word}</span>;
-            })
-          )}
+    <section className="stimulus-content">
+      <div className="stimulus-word">
+        <span className="stimulus-words">
+          {stimulus.type === 'IMAGE'
+            ? renderImage(stimulus.values[0])
+            : stimulus.values.map(word => {
+                return renderWord(word);
+              })}
         </span>
       </div>
-    </div>
+    </section>
   );
 };
 

@@ -1,5 +1,3 @@
-@import '../../../styles/utils';
-
 .modal {
   position: absolute;
   top: 50%;
@@ -32,7 +30,7 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  background-color: $main-purple;
+  background-color: #8436b3;
   color: white;
 }
 
@@ -46,6 +44,4 @@
   font-weight: 600;
   font-size: 24px;
   text-transform: uppercase;
-
-  @include hoverable-dark;
 }

@@ -1,5 +1,3 @@
-@import '../../styles/utils';
-
 .stimulus-content {
   display: flex;
   align-items: center;
@@ -7,15 +5,21 @@
   flex-direction: column;
   flex: 1;
   width: 100%;
+  overflow: hidden;
 }
 
 .stimulus-image {
   position: relative;
   width: 300px;
   height: 300px;
-  border: 3px solid #8436b3;
   overflow: hidden;
   z-index: -1;
+  box-shadow:
+    rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px,
+    rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px,
+    rgba(0, 0, 0, 0.09) 0px -3px 5px;
 
   @media (max-width: 365px) {
     width: 250px;
@@ -25,11 +29,7 @@
 
 .stimulus-word {
   text-align: center;
-  font-size: 38px;
-  font-weight: bold;
   text-transform: uppercase;
-  line-height: 1;
-  margin: 0;
 }
 
 .stimulus-words {
@@ -38,8 +38,12 @@
   gap: 12px;
 }
 
-.time-counter {
-  position: absolute;
-  bottom: 72px;
-  font-size: 20px;
+.word {
+  font-size: 42px;
+  font-weight: 900;
+}
+
+.subword {
+  font-size: 24px;
+  font-weight: 400;
 }

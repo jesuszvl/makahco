@@ -41,4 +41,4 @@ export const BEATS: Beat[] = [
   },
 ];
 
-export const BEAT_INITIAL = BEATS[0];
+export const BEAT_INITIAL = BEATS[2];

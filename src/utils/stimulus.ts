@@ -1,9 +1,15 @@
+import { Stimulus, StimulusType, Word } from '../types/types';
 import { terminaciones, terminacionesList } from './wordLibrary';
 import { createApi } from 'unsplash-js';
 
-export const STIMULUS_INITIAL = {
-  type: 'word',
-  values: ['MAKAHCO'],
+export const STIMULUS_INITIAL: Stimulus = {
+  type: StimulusType.WORD,
+  values: [
+    {
+      value: 'MAKAHCO',
+      subword: 'PRESIONA PLAY PARA INICIAR',
+    },
+  ],
 };
 
 const unsplash = createApi({
@@ -33,10 +39,13 @@ export const getRandomFourCategory = () => {
 export const getRandomFromArray = (fourCategory: string, size = 1) => {
   const categorySet = terminaciones[fourCategory];
   const randomFour = categorySet.sort(() => 0.5 - Math.random()).slice(0, size);
-  return randomFour;
+  const randomFourWithoutSubword = randomFour.map(word => ({
+    value: word,
+  }));
+  return randomFourWithoutSubword;
 };
 
-export const getRandomWords = async (size = 4): Promise<string[]> => {
+export const getRandomWords = async (size = 4): Promise<Word[]> => {
   const randomFourCategory = getRandomFourCategory();
   return getRandomFromArray(randomFourCategory, size);
 };

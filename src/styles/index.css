@@ -1,5 +1,3 @@
-@import 'utils';
-
 html,
 body {
   height: 100%;
@@ -14,9 +12,19 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: $main-yellow;
+  background-color: #fcd926;
   color: black;
   font-family: 'Outfit', sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
 }
 
 a {
@@ -26,18 +34,4 @@ a {
 a:-webkit-any-link {
   text-decoration: none;
   color: inherit;
-}
-
-.free {
-  width: 100%;
-  display: flex;
-  flex: 1 1 auto;
-  flex-direction: column;
-  align-items: center;
-}
-
-.beat-container {
-  display: flex;
-  flex-direction: row;
-  gap: 4px;
 }

@@ -6,9 +6,19 @@ export interface Beat {
   name: string;
 }
 
+export enum StimulusType {
+  WORD = 'WORD',
+  IMAGE = 'IMAGE',
+}
+
+export interface Word {
+  value: string;
+  subword?: string;
+}
+
 export interface Stimulus {
-  type: string;
-  values: string[];
+  type: StimulusType;
+  values: Word[];
 }
 
 export interface WordLibrary {

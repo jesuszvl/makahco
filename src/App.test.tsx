@@ -5,6 +5,6 @@ describe('App', () => {
   test('should render app without crashing', () => {
     render(<App />);
 
-    expect(screen.getByText('TAP & RAP')).toBeDefined();
+    expect(screen.getByText('MAKAHCO')).toBeDefined();
   });
 });

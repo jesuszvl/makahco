@@ -1,71 +1,37 @@
-import BeatIcon from '../../icons/BeatIcon';
-import PlayIcon from '../../icons/PlayIcon';
-import SettingsIcon from '../../icons/SettingsIcon';
-import { useBeatStore } from '../../store/beatStore';
-import { Modals } from '../../types/types';
-import StopIcon from '../../icons/StopIcon';
-
 import './PlayBar.css';
-import HelpIcon from '../../icons/HelpIcon';
+import PlayBarMenu from './PlayBarMenu/PlayBarMenu';
+import PlayBarButton from './PlayBarButton/PlayBarButton';
+import PlayBarTimer from './PlayBarTimer/PlayBarTimer';
+import { useStopwatch } from 'react-timer-hook';
+import { useSoundStore } from '../../store/soundStore';
 
-interface PlayBarProps {
-  onPlay: () => void;
-  onStop: () => void;
-  sound: unknown;
-  minutes: number;
-  seconds: number;
-}
+const PlayBar = () => {
+  const { sound } = useSoundStore();
+  const { totalSeconds, start, reset, pause } = useStopwatch({
+    autoStart: false,
+  });
 
-const PlayBar = ({ minutes, seconds, onPlay, onStop, sound }: PlayBarProps) => {
-  const { openModal, beat, mode, updateModalType } = useBeatStore();
+  const remainingSeconds = Math.floor(sound.duration() - totalSeconds);
 
-  const openBeatModal = () => {
-    updateModalType(Modals.BEAT);
-    openModal();
-  };
+  console.log(remainingSeconds);
 
-  const openModeModal = () => {
-    updateModalType(Modals.MODO);
-    openModal();
-  };
-
-  const openHelpModal = () => {
-    updateModalType(Modals.HELP);
-    openModal();
-  };
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
 
   return (
-    <div className="playbar-container">
+    <section className="playbar-container">
       <div className="playbar">
-        <span className="playbar-info">
-          <span className="playbar-title">
-            {beat.name} - {mode}
-          </span>
-          <div>
-            {minutes.toString().padStart(2, '0')}:
-            {seconds.toString().padStart(2, '0')}
-          </div>
-        </span>
-        <button className="playbar-button" onClick={sound ? onStop : onPlay}>
-          {sound ? (
-            <StopIcon height={48} width={48} />
-          ) : (
-            <PlayIcon height={48} width={48} />
-          )}
-        </button>
-        <div className="playbar-settings">
-          <button className="playbar-button" onClick={openBeatModal}>
-            <BeatIcon width={24} height={24} />
-          </button>
-          <button className="playbar-button" onClick={openModeModal}>
-            <SettingsIcon width={24} height={24} />
-          </button>
-          <button className="playbar-button" onClick={openHelpModal}>
-            <HelpIcon width={24} height={24} />
-          </button>
-        </div>
+        <PlayBarTimer minutes={minutes} seconds={seconds} />
+        <PlayBarButton
+          handlePlay={start}
+          handleStop={() => {
+            pause();
+            reset();
+          }}
+        />
+        <PlayBarMenu />
       </div>
-    </div>
+    </section>
   );
 };
 

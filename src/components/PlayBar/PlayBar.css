@@ -1,7 +1,5 @@
 .playbar-container {
-  display: flex;
-  align-items: center;
-  width: 100vw;
+  width: 100%;
   background-color: #8436b3;
   color: white;
 }
@@ -10,42 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  padding: 12px;
   gap: 12px;
-
-  @media (min-width: 768px) {
-    padding: 12px 24px;
-  }
-}
-
-.playbar-button {
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.playbar-settings {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  flex: 1;
-}
-
-.playbar-info {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-  font-size: 12px;
-  flex: 1;
-}
-
-.playbar-title {
-  font-size: 14px;
-  font-weight: 800;
+  padding: 6px 12px;
 }

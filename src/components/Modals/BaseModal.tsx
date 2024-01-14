@@ -1,14 +1,14 @@
 import Modal from 'react-modal';
 
-import './Modal.css';
+import './BaseModal.css';
 
 type BaseModalProps = {
   isOpen: boolean;
   onClose: () => void;
-  content: React.ReactNode;
+  children?: React.ReactNode;
 };
 
-const BaseModal = ({ isOpen, onClose, content }: BaseModalProps) => {
+const BaseModal = ({ isOpen, onClose, children }: BaseModalProps) => {
   return (
     <Modal
       className="modal-container"
@@ -16,7 +16,7 @@ const BaseModal = ({ isOpen, onClose, content }: BaseModalProps) => {
       isOpen={isOpen}
       onRequestClose={onClose}
     >
-      <div className="modal-content">{content}</div>
+      <section className="modal-content">{children}</section>
     </Modal>
   );
 };

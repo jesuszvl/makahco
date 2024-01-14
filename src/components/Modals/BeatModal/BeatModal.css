@@ -1,0 +1,29 @@
+.beat-modal-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0px;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+}
+
+.beat-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.beat {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 0px;
+  text-transform: uppercase;
+}
+
+.beat-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-right: 16px;
+}
