@@ -1,9 +1,15 @@
+export type IconProps = Pick<
+  React.SVGProps<SVGSVGElement>,
+  'width' | 'height' | 'fill'
+>;
+
 export interface Beat {
   src: string;
   beat_drop: number;
   bpm: number;
   spb: number;
   name: string;
+  icon: React.FC<IconProps>;
 }
 
 export enum StimulusType {

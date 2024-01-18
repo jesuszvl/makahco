@@ -18,11 +18,19 @@ const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
     handlePlay();
   });
 
-  const onStop = useCallback(() => {
-    if (sound) sound.stop();
+  sound.on('end', () => {
     setIsPlaying(false);
     handleStop();
-  }, [sound, handleStop]);
+  });
+
+  sound.on('stop', () => {
+    setIsPlaying(false);
+    handleStop();
+  });
+
+  const onStop = useCallback(() => {
+    if (sound) sound.stop();
+  }, [sound]);
 
   const onPlay = useCallback(() => {
     if (sound) sound.play();

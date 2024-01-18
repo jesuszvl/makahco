@@ -1,3 +1,9 @@
+:root {
+  --purple: #8436b3;
+  --yellow: #fcd926;
+  --dark-purple: #5f2c8a;
+}
+
 html,
 body {
   height: 100%;
@@ -12,7 +18,7 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #fcd926;
+  background-color: var(--yellow);
   color: black;
   font-family: 'Outfit', sans-serif;
 }

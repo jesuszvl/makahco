@@ -1,6 +1,6 @@
 .playbar-container {
   width: 100%;
-  background-color: #8436b3;
+  background-color: var(--purple);
   color: white;
 }
 

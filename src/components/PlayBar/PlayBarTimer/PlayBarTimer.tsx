@@ -1,20 +1,24 @@
 import './PlayBarTimer.css';
 
 interface PlayBarTimerProps {
-  minutes: number;
-  seconds: number;
+  remainingSeconds: number;
+  isRunning: boolean;
 }
 
-const PlayBarTimer = ({ minutes, seconds }: PlayBarTimerProps) => {
-  const showLines = seconds === 0 && minutes === 0;
+const PlayBarTimer = ({ remainingSeconds, isRunning }: PlayBarTimerProps) => {
+  const minutes = Math.floor(remainingSeconds / 60);
+  const seconds = remainingSeconds % 60;
+
   return (
-    <span className="playbar-time">
-      {showLines
-        ? '-- : -- '
-        : `${minutes.toString().padStart(2, '0')}:${seconds
-            .toString()
-            .padStart(2, '0')}`}
-    </span>
+    <>
+      <span className="playbar-time">
+        {!isRunning
+          ? '--:--'
+          : `${minutes.toString().padStart(2, '0')}:${seconds
+              .toString()
+              .padStart(2, '0')}`}
+      </span>
+    </>
   );
 };
 

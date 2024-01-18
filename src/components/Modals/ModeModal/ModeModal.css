@@ -1,4 +1,4 @@
-.beat-modal-title {
+.mode-modal-title {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -7,25 +7,25 @@
   font-weight: 800;
 }
 
-.beat-list {
+.mode-list {
   display: flex;
   flex-direction: column;
 }
 
-.beat {
+.mode {
   all: unset;
   display: flex;
   align-items: center;
-  padding: 12px 24px;
+  justify-content: center;
+  padding: 24px 0px;
   cursor: pointer;
-  gap: 24px;
 
   &:hover {
     background-color: var(--dark-purple);
   }
 }
 
-.beat-title {
-  font-size: 24px;
+.mode-title {
+  font-size: 18px;
   font-weight: 600;
 }
