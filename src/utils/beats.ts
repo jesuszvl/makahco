@@ -1,5 +1,5 @@
 import BoomBapIcon from '../icons/BoomBapIcon';
-import DrillIcon from '../icons/Drillicon';
+import DrillIcon from '../icons/DrillIcon';
 import LionIcon from '../icons/LionIcon';
 import RockIcon from '../icons/RockIcon';
 import SaxIcon from '../icons/SaxIcon';
@@ -51,4 +51,4 @@ export const BEATS: Beat[] = [
   },
 ];
 
-export const BEAT_INITIAL = BEATS[2];
+export const BEAT_INITIAL = BEATS[0];

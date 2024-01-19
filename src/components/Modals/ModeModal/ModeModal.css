@@ -15,10 +15,9 @@
 .mode {
   all: unset;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px 0px;
+  padding: 12px 24px;
   cursor: pointer;
+  gap: 24px;
 
   &:hover {
     background-color: var(--dark-purple);
@@ -26,6 +25,12 @@
 }
 
 .mode-title {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
+}
+
+.mode-description {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
 }

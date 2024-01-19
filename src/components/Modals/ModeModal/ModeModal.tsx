@@ -12,23 +12,29 @@ type ModeModalProps = {
 
 const ModeModal = ({ modes, isOpen, onClose }: ModeModalProps) => {
   const { closeModal } = useModalStore();
-  const { updateMode } = useBeatStore();
+  const { updateModeIndex } = useBeatStore();
 
   return (
     <BaseModal isOpen={isOpen} onClose={onClose}>
       <h1 className="mode-modal-title">Elige un Modo</h1>
       <section className="mode-list">
-        {modes.map(mode => {
+        {modes.map((mode, index) => {
           return (
             <button
-              key={mode}
+              key={mode.name}
               className="mode"
               onClick={() => {
-                updateMode(mode);
+                updateModeIndex(index);
                 closeModal();
               }}
             >
-              <h2 className="mode-title">{mode}</h2>
+              <span className="mode-icon">
+                <mode.icon width={64} height={64} />
+              </span>
+              <span>
+                <h2 className="mode-title">{mode.name}</h2>
+                <p className="mode-description">{mode.description}</p>
+              </span>
             </button>
           );
         })}

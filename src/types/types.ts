@@ -31,10 +31,10 @@ export interface WordLibrary {
   [key: string]: string[];
 }
 
-export enum Mode {
-  CLASICO = 'CLÁSICO',
-  TERMINACIONES = 'TERMINACIONES',
-  VISUALES = 'VISUALES',
+export interface Mode {
+  name: string;
+  description: string;
+  icon: React.FC<IconProps>;
 }
 
 export enum Modals {
@@ -49,5 +49,3 @@ export interface Modal {
   type: ModalType;
   isOpen: boolean;
 }
-
-export type Option = Beat | Mode;

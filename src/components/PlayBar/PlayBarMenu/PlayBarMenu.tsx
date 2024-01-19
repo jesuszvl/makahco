@@ -1,13 +1,15 @@
-import BeatIcon from '../../../icons/BeatIcon';
-import SettingsIcon from '../../../icons/SettingsIcon';
 import { useModalStore } from '../../../store/modalStore';
+import { useBeatStore } from '../../../store/beatStore';
 import { Modals } from '../../../types/types';
-import HelpIcon from '../../../icons/HelpIcon';
 
 import './PlayBarMenu.css';
 
 const PlayBarMenu = () => {
   const { openModalType } = useModalStore();
+  const { getCurrentBeat, getCurrentMode } = useBeatStore();
+
+  const beat = getCurrentBeat();
+  const mode = getCurrentMode();
 
   return (
     <div className="playbar-menu">
@@ -15,19 +17,13 @@ const PlayBarMenu = () => {
         className="playbar-button"
         onClick={() => openModalType(Modals.BEAT)}
       >
-        <BeatIcon width={28} height={28} />
+        <beat.icon width={32} height={32} />
       </button>
       <button
         className="playbar-button"
         onClick={() => openModalType(Modals.MODO)}
       >
-        <SettingsIcon width={28} height={28} />
-      </button>
-      <button
-        className="playbar-button"
-        onClick={() => openModalType(Modals.HELP)}
-      >
-        <HelpIcon width={28} height={28} />
+        <mode.icon width={32} height={32} />
       </button>
     </div>
   );

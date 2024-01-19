@@ -1,24 +1,38 @@
 import { create } from 'zustand';
 import { devtools, persist, createJSONStorage } from 'zustand/middleware';
-import { BEATS } from '../utils/beats';
+
 import { Beat, Mode } from '../types/types';
+import { MODES } from '../utils/modes';
+import { BEATS } from '../utils/beats';
 
 interface BeatState {
-  beat: Beat;
-  mode: Mode;
-  updateBeat: (newBeat: Beat) => void;
-  updateMode: (newMode: Mode) => void;
+  beatIndex: number;
+  modeIndex: number;
+  updateBeatIndex: (newBeatIndex: number) => void;
+  updateModeIndex: (newModeIndex: number) => void;
+  getCurrentBeat: () => Beat;
+  getCurrentMode: () => Mode;
 }
 
 export const useBeatStore = create<BeatState>()(
   devtools(
     persist(
-      set => ({
-        beat: BEATS[0],
-        mode: Mode.CLASICO,
-        updateBeat: newBeat => set({ beat: newBeat }),
-        updateMode: newMode => set({ mode: newMode }),
-      }),
+      (set, get) => {
+        return {
+          beatIndex: 0,
+          modeIndex: 0,
+          updateBeatIndex: newBeatIndex => set({ beatIndex: newBeatIndex }),
+          updateModeIndex: newModeIndex => set({ modeIndex: newModeIndex }),
+          getCurrentBeat: () => {
+            const { beatIndex } = get();
+            return BEATS[beatIndex];
+          },
+          getCurrentMode: () => {
+            const { modeIndex } = get();
+            return MODES[modeIndex];
+          },
+        };
+      },
       { name: 'beat-store', storage: createJSONStorage(() => sessionStorage) },
     ),
   ),

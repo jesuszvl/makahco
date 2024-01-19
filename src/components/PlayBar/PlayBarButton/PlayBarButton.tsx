@@ -39,9 +39,9 @@ const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
   return (
     <button className="playbar-button" onClick={isPlaying ? onStop : onPlay}>
       {isPlaying ? (
-        <StopIcon height={54} width={54} />
+        <StopIcon height={64} width={64} />
       ) : (
-        <PlayIcon height={54} width={54} />
+        <PlayIcon height={64} width={64} />
       )}
     </button>
   );

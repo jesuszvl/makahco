@@ -12,7 +12,7 @@ type BeatModalProps = {
 };
 
 const BeatModal = ({ beats, isOpen, onClose }: BeatModalProps) => {
-  const { updateBeat } = useBeatStore();
+  const { updateBeatIndex } = useBeatStore();
   const { sound, updateSound } = useSoundStore();
   const { closeModal } = useModalStore();
 
@@ -20,7 +20,7 @@ const BeatModal = ({ beats, isOpen, onClose }: BeatModalProps) => {
     <BaseModal isOpen={isOpen} onClose={onClose}>
       <h1 className="beat-modal-title">Elige un Beat</h1>
       <section className="beat-list">
-        {beats.map(beat => {
+        {beats.map((beat, index) => {
           return (
             <button
               key={beat.name}
@@ -28,11 +28,13 @@ const BeatModal = ({ beats, isOpen, onClose }: BeatModalProps) => {
               onClick={() => {
                 if (sound) sound.stop();
                 updateSound(new Howl({ src: [beat.src] }));
-                updateBeat(beat);
+                updateBeatIndex(index);
                 closeModal();
               }}
             >
-              <beat.icon width={64} height={64} />
+              <span className="beat-icon">
+                <beat.icon width={64} height={64} />
+              </span>
               <span className="beat-info">
                 <h2 className="beat-title">{beat.name}</h2>
               </span>
