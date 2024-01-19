@@ -3,8 +3,8 @@
   align-items: center;
   justify-content: center;
   padding: 14px 0px;
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 900;
 }
 
 .beat-list {
@@ -15,17 +15,43 @@
 .beat {
   all: unset;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  padding: 12px 24px;
-  cursor: pointer;
   gap: 24px;
-
-  &:hover {
-    background-color: var(--dark-purple);
-  }
+  flex: 1;
+  text-align: center;
 }
 
 .beat-title {
+  font-size: 32px;
+  font-weight: 900;
+}
+
+.beat-selector {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.beat-selector-button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.beat-modal-button {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
   font-size: 24px;
-  font-weight: 600;
+  font-weight: 900;
 }

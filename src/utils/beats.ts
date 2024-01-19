@@ -14,7 +14,7 @@ export const BEATS: Beat[] = [
     beat_drop: 32,
     bpm: 139,
     spb: 14,
-    name: 'Boom Bap',
+    name: 'BOOM BAP',
     icon: BoomBapIcon,
   },
   {
@@ -22,7 +22,7 @@ export const BEATS: Beat[] = [
     beat_drop: 20,
     bpm: 96,
     spb: 10,
-    name: 'Reggae',
+    name: 'REGGAE',
     icon: LionIcon,
   },
   {
@@ -30,7 +30,7 @@ export const BEATS: Beat[] = [
     beat_drop: 22,
     bpm: 87,
     spb: 11,
-    name: 'Jazz',
+    name: 'JAZZ',
     icon: SaxIcon,
   },
   {
@@ -38,7 +38,7 @@ export const BEATS: Beat[] = [
     beat_drop: 32,
     bpm: 139,
     spb: 14,
-    name: 'Drill',
+    name: 'DRILL',
     icon: DrillIcon,
   },
   {
@@ -46,7 +46,7 @@ export const BEATS: Beat[] = [
     beat_drop: 32,
     bpm: 139,
     spb: 14,
-    name: 'Rock',
+    name: 'ROCK',
     icon: RockIcon,
   },
 ];

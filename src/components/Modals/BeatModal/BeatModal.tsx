@@ -2,8 +2,11 @@ import './BeatModal.css';
 import { Beat } from '../../../types/types';
 import BaseModal from '../BaseModal';
 import { useBeatStore } from '../../../store/beatStore';
-import { useSoundStore } from '../../../store/soundStore';
 import { useModalStore } from '../../../store/modalStore';
+import { useState } from 'react';
+import NextIcon from '../../../icons/NextIcon';
+import PreviousIcon from '../../../icons/PreviousIcon';
+import { BEATS } from '../../../utils/beats';
 
 type BeatModalProps = {
   beats: Beat[];
@@ -11,37 +14,50 @@ type BeatModalProps = {
   onClose: () => void;
 };
 
-const BeatModal = ({ beats, isOpen, onClose }: BeatModalProps) => {
-  const { updateBeatIndex } = useBeatStore();
-  const { sound, updateSound } = useSoundStore();
+const BeatModal = ({ isOpen, onClose }: BeatModalProps) => {
+  const { updateBeatIndex, beatIndex } = useBeatStore();
   const { closeModal } = useModalStore();
+
+  const [modalBeatIndex, setModalBeatIndex] = useState(beatIndex);
+
+  const onNext = () => {
+    setModalBeatIndex((modalBeatIndex + 1) % BEATS.length);
+  };
+
+  const onPrevious = () => {
+    setModalBeatIndex((modalBeatIndex - 1 + BEATS.length) % BEATS.length);
+  };
+
+  const currentBeat = BEATS[modalBeatIndex];
 
   return (
     <BaseModal isOpen={isOpen} onClose={onClose}>
-      <h1 className="beat-modal-title">Elige un Beat</h1>
-      <section className="beat-list">
-        {beats.map((beat, index) => {
-          return (
-            <button
-              key={beat.name}
-              className="beat"
-              onClick={() => {
-                if (sound) sound.stop();
-                updateSound(new Howl({ src: [beat.src] }));
-                updateBeatIndex(index);
-                closeModal();
-              }}
-            >
-              <span className="beat-icon">
-                <beat.icon width={64} height={64} />
-              </span>
-              <span className="beat-info">
-                <h2 className="beat-title">{beat.name}</h2>
-              </span>
-            </button>
-          );
-        })}
-      </section>
+      <h1 className="beat-modal-title">TIPO DE BEAT</h1>
+      <div className="beat-selector">
+        <button className="beat-selector-button" onClick={onPrevious}>
+          <PreviousIcon />
+        </button>
+        <section className="beat">
+          <span className="beat-icon">
+            <currentBeat.icon width={128} height={128} />
+          </span>
+          <span className="beat-info">
+            <h2 className="beat-title">{currentBeat.name}</h2>
+          </span>
+        </section>
+        <button className="beat-selector-button" onClick={onNext}>
+          <NextIcon />
+        </button>
+      </div>
+      <button
+        className="beat-modal-button"
+        onClick={() => {
+          updateBeatIndex(modalBeatIndex);
+          closeModal();
+        }}
+      >
+        ACEPTAR
+      </button>
     </BaseModal>
   );
 };

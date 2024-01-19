@@ -4,8 +4,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   min-width: 300px;
-  width: calc(100dvw - 48px);
-  height: calc(100dvh - 48px);
+  width: calc(100dvw - 32px);
+  height: calc(100dvh - 32px);
   outline: none;
   max-width: 500px;
   display: flex;
@@ -23,4 +23,10 @@
   z-index: 999999;
   background: rgba(21, 21, 21, 0.85);
   transition: background 200ms;
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
