@@ -23,14 +23,14 @@ const PlayBar = ({ onPlay, onStop }: PlayBarProps) => {
           className="playbar-button"
           onClick={() => openModalType(Modals.BEAT)}
         >
-          <beat.icon width={48} height={48} />
+          <beat.icon width={32} height={32} />
         </button>
         <PlayBarButton handlePlay={onPlay} handleStop={onStop} />
         <button
           className="playbar-button"
           onClick={() => openModalType(Modals.MODO)}
         >
-          <mode.icon width={48} height={48} />
+          <mode.icon width={32} height={32} />
         </button>
       </div>
     </section>
