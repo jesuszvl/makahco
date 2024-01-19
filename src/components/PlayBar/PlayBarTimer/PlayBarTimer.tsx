@@ -10,15 +10,13 @@ const PlayBarTimer = ({ remainingSeconds, isRunning }: PlayBarTimerProps) => {
   const seconds = remainingSeconds % 60;
 
   return (
-    <>
-      <span className="playbar-time">
-        {!isRunning
-          ? '--:--'
-          : `${minutes.toString().padStart(2, '0')}:${seconds
-              .toString()
-              .padStart(2, '0')}`}
-      </span>
-    </>
+    <span className="playbar-time">
+      {!isRunning
+        ? '--:--'
+        : `${minutes.toString().padStart(2, '0')}:${seconds
+            .toString()
+            .padStart(2, '0')}`}
+    </span>
   );
 };
 

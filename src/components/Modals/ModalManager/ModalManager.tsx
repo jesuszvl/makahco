@@ -1,11 +1,10 @@
 import { useModalStore } from '../../../store/modalStore';
 import { Modals } from '../../../types/types';
 import BeatModal from '../BeatModal/BeatModal';
-import HelpModal from '../HelpModal/HelpModal';
 import ModeModal from '../ModeModal/ModeModal';
 
 const ModalManager = () => {
-  const { isOpen, type, closeModal } = useModalStore();
+  const { isOpen, type } = useModalStore();
 
   if (type === Modals.BEAT) {
     return <BeatModal isOpen={isOpen} />;
@@ -13,10 +12,6 @@ const ModalManager = () => {
 
   if (type === Modals.MODO) {
     return <ModeModal isOpen={isOpen} />;
-  }
-
-  if (type === Modals.HELP) {
-    return <HelpModal isOpen={isOpen} onClose={closeModal} />;
   }
 
   return null;

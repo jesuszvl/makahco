@@ -1,4 +1,6 @@
 .playbar-time {
   font-size: 20px;
-  flex: 1;
+  padding: 12px;
+  width: 100%;
+  text-align: center;
 }

@@ -1,31 +1,37 @@
 import './PlayBar.css';
-import PlayBarMenu from './PlayBarMenu/PlayBarMenu';
 import PlayBarButton from './PlayBarButton/PlayBarButton';
-import PlayBarTimer from './PlayBarTimer/PlayBarTimer';
-import { useStopwatch } from 'react-timer-hook';
-import { useSoundStore } from '../../store/soundStore';
+import { useModalStore } from '../../store/modalStore';
+import { useBeatStore } from '../../store/beatStore';
+import { Modals } from '../../types/types';
 
-const PlayBar = () => {
-  const { sound } = useSoundStore();
-  const { totalSeconds, start, reset, isRunning } = useStopwatch({
-    autoStart: false,
-  });
+type PlayBarProps = {
+  onPlay: () => void;
+  onStop: () => void;
+};
 
-  const resetStopwatch = () => {
-    reset(new Date(0), false);
-  };
+const PlayBar = ({ onPlay, onStop }: PlayBarProps) => {
+  const { openModalType } = useModalStore();
+  const { getCurrentBeat, getCurrentMode } = useBeatStore();
 
-  const remainingSeconds = Math.floor(sound.duration() - totalSeconds);
+  const beat = getCurrentBeat();
+  const mode = getCurrentMode();
 
   return (
     <section className="playbar-container">
       <div className="playbar">
-        <PlayBarTimer
-          remainingSeconds={remainingSeconds}
-          isRunning={isRunning}
-        />
-        <PlayBarButton handlePlay={start} handleStop={resetStopwatch} />
-        <PlayBarMenu />
+        <button
+          className="playbar-button"
+          onClick={() => openModalType(Modals.BEAT)}
+        >
+          <beat.icon width={48} height={48} />
+        </button>
+        <PlayBarButton handlePlay={onPlay} handleStop={onStop} />
+        <button
+          className="playbar-button"
+          onClick={() => openModalType(Modals.MODO)}
+        >
+          <mode.icon width={48} height={48} />
+        </button>
       </div>
     </section>
   );
