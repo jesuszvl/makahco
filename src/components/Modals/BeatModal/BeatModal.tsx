@@ -1,5 +1,4 @@
 import './BeatModal.css';
-import { Beat } from '../../../types/types';
 import BaseModal from '../BaseModal';
 import { useBeatStore } from '../../../store/beatStore';
 import { useModalStore } from '../../../store/modalStore';
@@ -9,12 +8,10 @@ import PreviousIcon from '../../../icons/PreviousIcon';
 import { BEATS } from '../../../utils/beats';
 
 type BeatModalProps = {
-  beats: Beat[];
   isOpen: boolean;
-  onClose: () => void;
 };
 
-const BeatModal = ({ isOpen, onClose }: BeatModalProps) => {
+const BeatModal = ({ isOpen }: BeatModalProps) => {
   const { updateBeatIndex, beatIndex } = useBeatStore();
   const { closeModal } = useModalStore();
 
@@ -28,11 +25,16 @@ const BeatModal = ({ isOpen, onClose }: BeatModalProps) => {
     setModalBeatIndex((modalBeatIndex - 1 + BEATS.length) % BEATS.length);
   };
 
+  const handleClose = () => {
+    setModalBeatIndex(beatIndex);
+    closeModal();
+  };
+
   const currentBeat = BEATS[modalBeatIndex];
 
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose}>
-      <h1 className="beat-modal-title">TIPO DE BEAT</h1>
+    <BaseModal isOpen={isOpen} onClose={handleClose}>
+      <h1 className="beat-modal-title">BEAT</h1>
       <div className="beat-selector">
         <button className="beat-selector-button" onClick={onPrevious}>
           <PreviousIcon />

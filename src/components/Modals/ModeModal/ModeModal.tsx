@@ -1,44 +1,66 @@
 import './ModeModal.css';
-import { Mode } from '../../../types/types';
 import BaseModal from '../BaseModal';
 import { useModalStore } from '../../../store/modalStore';
 import { useBeatStore } from '../../../store/beatStore';
+import { MODES } from '../../../utils/modes';
+import { useState } from 'react';
+import NextIcon from '../../../icons/NextIcon';
+import PreviousIcon from '../../../icons/PreviousIcon';
 
 type ModeModalProps = {
-  modes: Mode[];
   isOpen: boolean;
-  onClose: () => void;
 };
 
-const ModeModal = ({ modes, isOpen, onClose }: ModeModalProps) => {
+const ModeModal = ({ isOpen }: ModeModalProps) => {
+  const { updateModeIndex, modeIndex } = useBeatStore();
   const { closeModal } = useModalStore();
-  const { updateModeIndex } = useBeatStore();
+
+  const [modalModeIndex, setModalModeIndex] = useState(modeIndex);
+
+  const onNext = () => {
+    setModalModeIndex((modalModeIndex + 1) % MODES.length);
+  };
+
+  const onPrevious = () => {
+    setModalModeIndex((modalModeIndex - 1 + MODES.length) % MODES.length);
+  };
+
+  const handleClose = () => {
+    setModalModeIndex(modeIndex);
+    closeModal();
+  };
+
+  const currentMode = MODES[modalModeIndex];
 
   return (
-    <BaseModal isOpen={isOpen} onClose={onClose}>
-      <h1 className="mode-modal-title">Elige un Modo</h1>
-      <section className="mode-list">
-        {modes.map((mode, index) => {
-          return (
-            <button
-              key={mode.name}
-              className="mode"
-              onClick={() => {
-                updateModeIndex(index);
-                closeModal();
-              }}
-            >
-              <span className="mode-icon">
-                <mode.icon width={64} height={64} />
-              </span>
-              <span>
-                <h2 className="mode-title">{mode.name}</h2>
-                <p className="mode-description">{mode.description}</p>
-              </span>
-            </button>
-          );
-        })}
-      </section>
+    <BaseModal isOpen={isOpen} onClose={handleClose}>
+      <h1 className="mode-modal-title">MODALIDAD</h1>
+      <div className="mode-selector">
+        <button className="mode-selector-button" onClick={onPrevious}>
+          <PreviousIcon />
+        </button>
+        <section className="mode">
+          <span className="mode-icon">
+            <currentMode.icon width={128} height={128} />
+          </span>
+          <span className="mode-info">
+            <h2 className="mode-title">{currentMode.name}</h2>
+            <p className="mode-description">{currentMode.description}</p>
+          </span>
+        </section>
+        <button className="mode-selector-button" onClick={onNext}>
+          <NextIcon />
+        </button>
+      </div>
+      <button
+        className="mode-modal-button"
+        onClick={() => {
+          updateModeIndex(modalModeIndex);
+          closeModal();
+        }}
+      >
+        ACEPTAR
+      </button>
     </BaseModal>
   );
 };

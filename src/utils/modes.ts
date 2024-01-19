@@ -5,17 +5,17 @@ import { Mode } from '../types/types';
 
 export const MODES: Mode[] = [
   {
-    name: 'Clásico',
+    name: 'CLÁSICO',
     description: '1 palabra cada patrón',
     icon: DiceOneIcon,
   },
   {
-    name: 'Terminaciones',
+    name: 'TERMINACIONES',
     description: '4 palabras que riman cada patrón',
     icon: DiceFourIcon,
   },
   {
-    name: 'Imágenes',
+    name: 'IMÁGENES',
     description: '1 imagen cada patrón',
     icon: CameraIcon,
   },
