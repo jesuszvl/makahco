@@ -12,6 +12,16 @@ export const STIMULUS_INITIAL: Stimulus = {
   ],
 };
 
+export const STIMULUS_LOADING: Stimulus = {
+  type: StimulusType.WORD,
+  values: [
+    {
+      value: 'MAKAHCO',
+      subword: 'PRESIONA PLAY PARA INICIAR',
+    },
+  ],
+};
+
 const unsplash = createApi({
   accessKey: 'XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08',
 });
