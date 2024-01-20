@@ -1,11 +1,11 @@
-import './PlayBarTimer.css';
+import './Timer.css';
 
-interface PlayBarTimerProps {
+interface TimerProps {
   remainingSeconds: number;
   isRunning: boolean;
 }
 
-const PlayBarTimer = ({ remainingSeconds, isRunning }: PlayBarTimerProps) => {
+const Timer = ({ remainingSeconds, isRunning }: TimerProps) => {
   const minutes = Math.floor(remainingSeconds / 60);
   const seconds = remainingSeconds % 60;
 
@@ -20,4 +20,4 @@ const PlayBarTimer = ({ remainingSeconds, isRunning }: PlayBarTimerProps) => {
   );
 };
 
-export default PlayBarTimer;
+export default Timer;
