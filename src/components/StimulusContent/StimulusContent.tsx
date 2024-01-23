@@ -1,16 +1,18 @@
 import { useState } from 'react';
-import { Stimulus, Word } from '../../types/types';
+import { Stimulus, Step, Word } from '../../types/types';
 import { STIMULUS_INITIAL } from '../../utils/stimulus';
 import './StimulusContent.css';
 import classNames from 'classnames';
 import { ThreeDots } from 'react-loader-spinner';
+import { useBeatStore } from '../../store/beatStore';
 
 interface StimulusContentProps {
+  stimulus: Stimulus;
   isRunning: boolean;
+  step: Step;
 }
 
-const StimulusContent = ({ isRunning }: StimulusContentProps) => {
-  const [stimulus] = useState<Stimulus>(STIMULUS_INITIAL);
+const StimulusContent = ({ isRunning, stimulus, step }: StimulusContentProps) => {
 
   const renderInitial = () => {
     return (
@@ -38,13 +40,18 @@ const StimulusContent = ({ isRunning }: StimulusContentProps) => {
     );
   };
 
-  const renderStimulus = () => {
-    return <ThreeDots color="#8436b3" width={100}/>;
-    return stimulus.type === 'IMAGE'
-    ? renderImage(stimulus.values[0])
-    : stimulus.values.map(word => {
-        return renderWord(word);
-      })
+  const renderLoading = () => {
+    return <ThreeDots color="#8436b3" width={100} height={100} ariaLabel="three-dots-loading"/>;
+  } 
+
+  const renderStep = () => {
+    if (step === Step.INITIAL) return renderInitial();
+    if (step === Step.LOADING) return renderLoading();
+    if (step === Step.COUNTDOWN) return renderWord(stimulus.values[0]);
+    if (step === Step.STIMULUS) {
+      if (stimulus.type === 'WORD') return renderWord(stimulus.values[0]);
+      if (stimulus.type === 'IMAGE') return renderImage(stimulus.values[0]);
+    }
   }
 
 
@@ -52,7 +59,7 @@ const StimulusContent = ({ isRunning }: StimulusContentProps) => {
     <section className="stimulus-content">
       <div className="stimulus-word">
         <span className="stimulus-words">
-          {isRunning ? renderStimulus() : renderInitial()}
+          {renderStep()}
         </span>
       </div>
     </section>

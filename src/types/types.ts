@@ -49,3 +49,10 @@ export interface Modal {
   type: ModalType;
   isOpen: boolean;
 }
+
+export enum Step {
+  INITIAL,
+  LOADING,
+  COUNTDOWN,
+  STIMULUS,
+}

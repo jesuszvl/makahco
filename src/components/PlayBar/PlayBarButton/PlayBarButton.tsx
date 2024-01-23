@@ -1,8 +1,8 @@
 import './PlayBarButton.css';
 import PlayIcon from '../../../icons/PlayIcon';
 import StopIcon from '../../../icons/StopIcon';
-import { useSoundStore } from '../../../store/soundStore';
 import { useCallback, useState } from 'react';
+import { useBeatStore } from '../../../store/beatStore';
 
 interface PlayBarButtonProps {
   handlePlay: () => void;
@@ -11,19 +11,17 @@ interface PlayBarButtonProps {
 
 const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
   const [isPlaying, setIsPlaying] = useState(false);
-  const { sound } = useSoundStore();
 
-  sound.on('play', () => {
-    setIsPlaying(true);
-    handlePlay();
-  });
+  const [sound, setSound] = useState<Howl | null>(null);
 
-  sound.on('end', () => {
+  const currentBeat = useBeatStore(state => state.getCurrentBeat());
+
+  sound?.on('end', () => {
     setIsPlaying(false);
     handleStop();
   });
 
-  sound.on('stop', () => {
+  sound?.on('stop', () => {
     setIsPlaying(false);
     handleStop();
   });
@@ -33,8 +31,17 @@ const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
   }, [sound]);
 
   const onPlay = useCallback(() => {
+    setIsPlaying(true);
+    handlePlay();
+    const sound = new Howl({
+      src: [currentBeat.src],
+      autoplay: true,
+      loop: true,
+      volume: 0.5,
+    });
+    setSound(sound);
     if (sound) sound.play();
-  }, [sound]);
+  }, [currentBeat, handlePlay]);
 
   return (
     <button className="playbar-button" onClick={isPlaying ? onStop : onPlay}>
