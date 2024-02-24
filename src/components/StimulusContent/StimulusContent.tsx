@@ -1,10 +1,7 @@
-import { useState } from 'react';
-import { Stimulus, Step, Word } from '../../types/types';
-import { STIMULUS_INITIAL } from '../../utils/stimulus';
 import './StimulusContent.css';
+import { Stimulus, Step, Word } from '../../types/types';
 import classNames from 'classnames';
 import { ThreeDots } from 'react-loader-spinner';
-import { useBeatStore } from '../../store/beatStore';
 
 interface StimulusContentProps {
   stimulus: Stimulus;

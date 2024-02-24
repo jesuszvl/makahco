@@ -17,7 +17,9 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 const App = () => {
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
   const [step, setStep] = useState<Step>(Step.INITIAL);
+
   const sound = useSoundStore(state => state.sound);
+
   const { getCurrentBeat } = useBeatStore();
   const currentBeat = getCurrentBeat();
 
@@ -25,47 +27,52 @@ const App = () => {
     autoStart: false,
   });
 
+  const onPlay = () => {
+    start();
+    setStep(Step.LOADING);
+  }
+
   const onStop = () => {
     reset(new Date(0), false);
     setStep(Step.INITIAL);
     setStimulus(STIMULUS_INITIAL);
   }
 
-  const onPlay = () => {
-    start();
-    setStep(Step.LOADING);
+  const setStimulusWord = (value: string) => {
+    setStimulus({
+      type: StimulusType.WORD,
+      values: [
+        {
+          value: value,
+        }
+      ]
+    })
   }
 
   useEffect(() => {
     const countdownSeconds = currentBeat.beat_drop - totalSeconds;
-    // Se lo damos en...3, 2, 1
-    if (countdownSeconds >= 2 && countdownSeconds <= 4) {
+
+    if (countdownSeconds === 3) {
       setStep(Step.COUNTDOWN);
-      setStimulus({
-        type: StimulusType.WORD,
-        values: [
-          {
-            value: (countdownSeconds - 1).toString(),
-          }
-        ]
-      })
     }
 
-    if (
-      (countdownSeconds < 0 && totalSeconds === currentBeat.beat_drop + 1) ||
-    (totalSeconds > currentBeat.beat_drop && countdownSeconds % currentBeat.spb === 0)
-    ) {
+    if (countdownSeconds === 1) {
       setStep(Step.STIMULUS);
-      setStimulus({
-        type: StimulusType.WORD,
-        values: [
-          {
-            value: 'WORD' + countdownSeconds.toString(),
-          }
-        ]
-      })
     }
-  }, [currentBeat, totalSeconds]);
+
+    if(step === Step.COUNTDOWN) {
+      setStimulusWord(countdownSeconds.toString());
+    }
+
+    if(step === Step.STIMULUS) {
+      if (
+        (countdownSeconds < 0 && totalSeconds === currentBeat.beat_drop + 1) ||
+      (totalSeconds > currentBeat.beat_drop && countdownSeconds % currentBeat.spb === 0)
+      ) {
+        setStimulusWord('WORD' + countdownSeconds.toString());
+      }
+    }
+  }, [currentBeat, totalSeconds, step]);
 
   const remainingSeconds = Math.floor(sound.duration() - totalSeconds);
   

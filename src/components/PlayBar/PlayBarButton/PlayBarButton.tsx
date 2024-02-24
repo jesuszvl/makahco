@@ -37,7 +37,7 @@ const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
       src: [currentBeat.src],
       autoplay: true,
       loop: true,
-      volume: 0.5,
+      volume: 0.1,
     });
     setSound(sound);
     if (sound) sound.play();
