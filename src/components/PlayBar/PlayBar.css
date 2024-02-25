@@ -1,0 +1,13 @@
+.playbar-container {
+  width: 100%;
+  background-color: var(--purple);
+  color: white;
+}
+
+.playbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 12px;
+  padding: 6px 12px;
+}

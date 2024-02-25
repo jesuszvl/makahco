@@ -1,36 +1,58 @@
+export type IconProps = Pick<
+  React.SVGProps<SVGSVGElement>,
+  'width' | 'height' | 'fill'
+>;
+
 export interface Beat {
   src: string;
   beat_drop: number;
   bpm: number;
   spb: number;
   name: string;
+  icon: React.FC<IconProps>;
+}
+
+export enum StimulusType {
+  WORD = 'WORD',
+  IMAGE = 'IMAGE',
+}
+
+export interface Word {
+  value: string;
+  subword?: string;
 }
 
 export interface Stimulus {
-  type: string;
-  values: string[];
+  type: StimulusType;
+  values: Word[];
 }
 
 export interface WordLibrary {
   [key: string]: string[];
 }
 
-export enum Mode {
-  CLASICO = 'CLÁSICO',
-  TERMINACIONES = 'TERMINACIONES',
-  VISUALES = 'VISUALES',
+export interface Mode {
+  name: string;
+  description: string;
+  icon: React.FC<IconProps>;
 }
 
-export enum Setting {
+export enum Modals {
   BEAT = 'BEAT',
   MODO = 'MODO',
+  HELP = 'HELP',
 }
 
-export type ModalType = Setting | 'none';
+export type ModalType = Modals.BEAT | Modals.MODO | Modals.HELP;
 
 export interface Modal {
   type: ModalType;
   isOpen: boolean;
 }
 
-export type Option = Beat | Mode;
+export enum Step {
+  INITIAL,
+  LOADING,
+  COUNTDOWN,
+  STIMULUS,
+}

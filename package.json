@@ -18,9 +18,9 @@
     "howler": "^2.2.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-loader-spinner": "^6.1.6",
     "react-modal": "^3.16.1",
     "react-timer-hook": "^3.0.7",
-    "sass": "^1.69.5",
     "unsplash-js": "^7.0.19",
     "zustand": "^4.4.6"
   },

@@ -1,50 +1,87 @@
-import { Stimulus } from '../../types/types';
-import styles from './StimulusContent.module.scss';
+import './StimulusContent.css';
+import { Stimulus, Step, Word } from '../../types/types';
+import classNames from 'classnames';
+import { ThreeDots } from 'react-loader-spinner';
 
 interface StimulusContentProps {
   stimulus: Stimulus;
-  onPlay: () => void;
-  onStop: () => void;
-  minutes: number;
-  seconds: number;
-  sound: unknown;
+  isRunning: boolean;
+  step: Step;
 }
 
 const StimulusContent = ({
+  isRunning,
   stimulus,
-  onPlay,
-  onStop,
-  sound,
-  minutes,
-  seconds,
+  step,
 }: StimulusContentProps) => {
+  const renderInitial = () => {
+    return (
+      <span>
+        <h1 className="word">MAKAHCO</h1>
+        <p className={classNames('subword', { animated: !isRunning })}>
+          PRESIONA PLAY PARA INICIAR
+        </p>
+      </span>
+    );
+  };
+
+  const renderWord = (word: Word) => {
+    return (
+      <span key={word.value}>
+        <h1 className="word">{word.value}</h1>
+        <p className="subword">{word.subword}</p>
+      </span>
+    );
+  };
+
+  const renderWords = (words: Word[]) => {
+    return (
+      <span>
+        {words.map((word, index) => (
+          <span key={index}>
+            <h1 className="word">{word.value}</h1>
+            <p className="subword">{word.subword}</p>
+          </span>
+        ))}
+      </span>
+    );
+  };
+
+  const renderImage = (image: Word) => {
+    return (
+      <div className="stimulus-image">
+        <img className="stimulus-image" src={image.value} alt="" />
+      </div>
+    );
+  };
+
+  const renderLoading = () => {
+    return (
+      <ThreeDots
+        color="#8436b3"
+        width={100}
+        height={100}
+        ariaLabel="three-dots-loading"
+      />
+    );
+  };
+
+  const renderStep = () => {
+    if (step === Step.INITIAL) return renderInitial();
+    if (step === Step.LOADING) return renderLoading();
+    if (step === Step.COUNTDOWN) return renderWord(stimulus.values[0]);
+    if (step === Step.STIMULUS) {
+      if (stimulus.type === 'WORD') return renderWords(stimulus.values);
+      if (stimulus.type === 'IMAGE') return renderImage(stimulus.values[0]);
+    }
+  };
+
   return (
-    <div
-      className={styles['stimulus-content']}
-      onClick={sound ? onStop : onPlay}
-    >
-      <div className={styles['time-counter']}>
-        {minutes.toString().padStart(2, '0')}:
-        {seconds.toString().padStart(2, '0')}
+    <section className="stimulus-content">
+      <div className="stimulus-word">
+        <span className="stimulus-words">{renderStep()}</span>
       </div>
-      <div className={styles['stimulus-word']}>
-        <span className={styles['stimulus-words']}>
-          {stimulus.type === 'image' ? (
-            <div className={styles['stimulus-image']}>
-              <img
-                className={styles['stimulus-image']}
-                src={stimulus.values[0]}
-                alt=""
-              />
-            </div>
-          ) : (
-            stimulus.values.map(word => {
-              return <span key={word}>{word}</span>;
-            })
-          )}
-        </span>
-      </div>
-    </div>
+    </section>
   );
 };
 

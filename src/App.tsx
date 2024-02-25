@@ -1,105 +1,106 @@
-import { Howl } from 'howler';
 import Modal from 'react-modal';
 
-import { useCallback, useEffect, useState } from 'react';
 import StimulusContent from './components/StimulusContent/StimulusContent';
-import { useStopwatch } from 'react-timer-hook';
+
 import PageContainer from './components/PageContainer/PageContainer';
+import PlayBar from './components/PlayBar/PlayBar';
+import { useStopwatch } from 'react-timer-hook';
+import { useSoundStore } from './store/soundStore';
+import Timer from './components/Timer/Timer';
+import { useBeatStore } from './store/beatStore';
+import { useEffect, useState } from 'react';
+import { Step, Stimulus, StimulusType } from './types/types';
 import {
   STIMULUS_INITIAL,
   getRandomImage,
   getRandomWords,
 } from './utils/stimulus';
-import { useBeatStore } from './store/beatStore';
-import SettingSelector from './components/SettingSelector/SettingSelector';
-import { Mode, Stimulus } from './types/types';
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const App = () => {
-  const { beat, mode } = useBeatStore();
-  const [sound, setSound] = useState<Howl | null>(null);
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
+  const [step, setStep] = useState<Step>(Step.INITIAL);
 
-  const { seconds, minutes, totalSeconds, start, reset } = useStopwatch({
+  const sound = useSoundStore(state => state.sound);
+
+  const { getCurrentBeat, getCurrentMode } = useBeatStore();
+  const currentBeat = getCurrentBeat();
+  const currentMode = getCurrentMode();
+
+  const { totalSeconds, start, reset, isRunning } = useStopwatch({
     autoStart: false,
   });
 
-  // Countdown effect
-  useEffect(() => {
-    const fetchNewStimulus = async () => {
-      if (mode === Mode.VISUALES) {
-        const randomImage = await getRandomImage();
-        setStimulus({ type: 'image', values: [randomImage] });
-      } else {
-        const wordsPerBar = mode === Mode.TERMINACIONES ? 4 : 1;
-        const randomWords = await getRandomWords(wordsPerBar);
-        setStimulus({ type: 'word', values: randomWords });
-      }
-    };
-
-    const countdownSeconds = beat.beat_drop - totalSeconds;
-
-    // Are you ready?
-    if (totalSeconds > 1 && countdownSeconds === 10) {
-      setStimulus({ type: 'word', values: ['¿ESTAS LISTO?'] });
-    }
-
-    // Se lo damos en...3, 2, 1
-    if (countdownSeconds >= 2 && countdownSeconds <= 4) {
-      setStimulus({
-        type: 'word',
-        values: [(countdownSeconds - 1).toString()],
-      });
-    }
-
-    // Fetching palabras
-    if (
-      (countdownSeconds < 0 && totalSeconds === beat.beat_drop + 1) ||
-      (totalSeconds > beat.beat_drop && countdownSeconds % beat.spb === 0)
-    ) {
-      fetchNewStimulus();
-    }
-  }, [totalSeconds, beat, mode]);
-
-  const onStop = useCallback(() => {
-    if (sound) sound.stop();
-    setSound(null);
-    setStimulus(STIMULUS_INITIAL);
-    reset(new Date(0), false);
-  }, [sound, reset]);
-
   const onPlay = () => {
-    const howlerSound = new Howl({
-      src: [beat.src],
-      html5: true,
-      volume: 0.5,
-    });
-
-    howlerSound.play();
     start();
+    setStep(Step.LOADING);
+  };
 
-    setSound(howlerSound);
+  const onStop = () => {
+    reset(new Date(0), false);
+    setStep(Step.INITIAL);
+    setStimulus(STIMULUS_INITIAL);
+  };
 
-    // Fires when the sound finishes playing.
-    howlerSound.on('end', function () {
-      onStop();
+  const setStimulusWord = (value: string) => {
+    setStimulus({
+      type: StimulusType.WORD,
+      values: [
+        {
+          value: value,
+        },
+      ],
     });
   };
 
+  useEffect(() => {
+    const fetchStimulus = async () => {
+      switch (currentMode.name) {
+        case 'TERMINACIONES':
+          setStimulus(await getRandomWords(4));
+          break;
+        case 'IMÁGENES':
+          setStimulus(await getRandomImage());
+          break;
+        default:
+          setStimulus(await getRandomWords(1));
+          break;
+      }
+    };
+
+    const countdownSeconds = currentBeat.beat_drop - totalSeconds;
+
+    if (countdownSeconds === 3) {
+      setStep(Step.COUNTDOWN);
+    }
+
+    if (countdownSeconds === 1) {
+      setStep(Step.STIMULUS);
+    }
+
+    if (step === Step.COUNTDOWN) {
+      setStimulusWord(countdownSeconds.toString());
+    }
+
+    if (step === Step.STIMULUS) {
+      if (
+        (countdownSeconds < 0 && totalSeconds === currentBeat.beat_drop + 1) ||
+        (totalSeconds > currentBeat.beat_drop &&
+          countdownSeconds % currentBeat.spb === 0)
+      ) {
+        fetchStimulus();
+      }
+    }
+  }, [currentBeat, currentMode, totalSeconds, step]);
+
+  const remainingSeconds = Math.floor(sound.duration() - totalSeconds);
+
   return (
     <PageContainer>
-      <div className="free">
-        <StimulusContent
-          stimulus={stimulus}
-          onPlay={onPlay}
-          onStop={onStop}
-          sound={sound}
-          minutes={minutes}
-          seconds={seconds}
-        />
-        <SettingSelector />
-      </div>
+      <Timer remainingSeconds={remainingSeconds} isRunning={isRunning} />
+      <StimulusContent stimulus={stimulus} isRunning={isRunning} step={step} />
+      <PlayBar onPlay={onPlay} onStop={onStop} />
     </PageContainer>
   );
 };
