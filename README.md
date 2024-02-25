@@ -1,6 +1,6 @@
 # Makahco
 
-The purpose of this project is to enhance my freestyle skills with this TS-based random word and image generator.
+Freestyle Tools for Beat Playing & Stimuli Generation
 
 ## Demo
 
