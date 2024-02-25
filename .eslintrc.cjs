@@ -15,6 +15,5 @@ module.exports = {
       { allowConstantExport: true },
     ],
     quotes: ['error', 'single'],
-    indent: ['error', 2], // enforce 2-space indentation/ enforce space before function parentheses
   },
 };

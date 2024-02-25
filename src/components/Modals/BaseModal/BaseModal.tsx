@@ -1,8 +1,8 @@
 import Modal from 'react-modal';
 
 import './BaseModal.css';
-import PreviousIcon from '../../icons/PreviousIcon';
-import NextIcon from '../../icons/NextIcon';
+import PreviousIcon from '../../../icons/PreviousIcon';
+import NextIcon from '../../../icons/NextIcon';
 
 type BaseModalProps = {
   isOpen: boolean;

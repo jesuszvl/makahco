@@ -1,4 +1,4 @@
-import { Stimulus, StimulusType, Word } from '../types/types';
+import { Stimulus, StimulusType } from '../types/types';
 import { terminaciones, terminacionesList } from './wordLibrary';
 import { createApi } from 'unsplash-js';
 
@@ -26,19 +26,26 @@ const unsplash = createApi({
   accessKey: 'XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08',
 });
 
-export const getRandomImage = async () => {
+export const getRandomImage = async (): Promise<Stimulus> => {
   try {
     const res = await unsplash.photos.getRandom({});
     if (!res.errors) {
       const randomImage = Array.isArray(res.response)
         ? res.response[0]
         : res.response;
-      return randomImage.urls.small;
+
+      return {
+        type: StimulusType.IMAGE,
+        values: [{ value: randomImage.urls.small, subword: '' }],
+      };
     }
   } catch (error) {
     console.error(error);
   }
-  return '';
+  return {
+    type: StimulusType.IMAGE,
+    values: [{ value: '', subword: '' }],
+  };
 };
 
 export const getRandomFourCategory = () => {
@@ -55,7 +62,10 @@ export const getRandomFromArray = (fourCategory: string, size = 1) => {
   return randomFourWithoutSubword;
 };
 
-export const getRandomWords = async (size = 4): Promise<Word[]> => {
-  const randomFourCategory = getRandomFourCategory();
-  return getRandomFromArray(randomFourCategory, size);
+export const getRandomWords = async (size = 4): Promise<Stimulus> => {
+  const values = getRandomFromArray(getRandomFourCategory(), size);
+  return {
+    type: StimulusType.WORD,
+    values,
+  };
 };

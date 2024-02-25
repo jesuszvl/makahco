@@ -1,5 +1,5 @@
 import './BeatModal.css';
-import BaseModal from '../BaseModal';
+import BaseModal from '../BaseModal/BaseModal';
 import { useBeatStore } from '../../../store/beatStore';
 import { useModalStore } from '../../../store/modalStore';
 import { useState } from 'react';

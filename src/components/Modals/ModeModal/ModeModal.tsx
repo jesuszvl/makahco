@@ -1,5 +1,5 @@
 import './ModeModal.css';
-import BaseModal from '../BaseModal';
+import BaseModal from '../BaseModal/BaseModal';
 import { useModalStore } from '../../../store/modalStore';
 import { useBeatStore } from '../../../store/beatStore';
 import { MODES } from '../../../utils/modes';
