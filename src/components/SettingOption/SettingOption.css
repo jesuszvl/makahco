@@ -1,0 +1,23 @@
+.setting-option {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid black;
+  gap: 16px;
+}
+
+.setting-info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.setting-option-title {
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.setting-option-description {
+  font-size: 16px;
+}

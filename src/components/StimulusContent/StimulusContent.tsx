@@ -17,7 +17,7 @@ const StimulusContent = ({
   const renderInitial = () => {
     return (
       <span>
-        <h1 className="word">MAKAHCO</h1>
+        <h1 className="word">makahco</h1>
         <p className={classNames('subword', { animated: !isRunning })}>
           PRESIONA PLAY PARA INICIAR
         </p>
@@ -58,7 +58,7 @@ const StimulusContent = ({
   const renderLoading = () => {
     return (
       <ThreeDots
-        color="#8436b3"
+        color="#000000"
         width={100}
         height={100}
         ariaLabel="three-dots-loading"

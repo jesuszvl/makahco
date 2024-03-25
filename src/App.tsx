@@ -6,7 +6,6 @@ import PageContainer from './components/PageContainer/PageContainer';
 import PlayBar from './components/PlayBar/PlayBar';
 import { useStopwatch } from 'react-timer-hook';
 import { useSoundStore } from './store/soundStore';
-import Timer from './components/Timer/Timer';
 import { useBeatStore } from './store/beatStore';
 import { useEffect, useState } from 'react';
 import { Step, Stimulus, StimulusType } from './types/types';
@@ -98,9 +97,13 @@ const App = () => {
 
   return (
     <PageContainer>
-      <Timer remainingSeconds={remainingSeconds} isRunning={isRunning} />
       <StimulusContent stimulus={stimulus} isRunning={isRunning} step={step} />
-      <PlayBar onPlay={onPlay} onStop={onStop} />
+      <PlayBar
+        onPlay={onPlay}
+        onStop={onStop}
+        remainingSeconds={remainingSeconds}
+        isRunning={isRunning}
+      />
     </PageContainer>
   );
 };

@@ -1,6 +1,6 @@
 export type IconProps = Pick<
   React.SVGProps<SVGSVGElement>,
-  'width' | 'height' | 'fill'
+  'width' | 'height' | 'fill' | 'color'
 >;
 
 export interface Beat {
@@ -56,3 +56,15 @@ export enum Step {
   COUNTDOWN,
   STIMULUS,
 }
+
+export type SettingOption = {
+  icon: React.FC<IconProps>;
+  title: string;
+  description: string;
+};
+
+export type Setting = {
+  name: string;
+  description: string;
+  options?: SettingOption[];
+};
