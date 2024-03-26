@@ -75,7 +75,7 @@ export const SETTINGS: Setting[] = [
         icon: MexicoIcon,
       },
       {
-        title: 'Inglés',
+        title: 'English',
         description: 'Inglés',
         icon: UnitedStatesIcon,
       },
@@ -87,7 +87,7 @@ export const SETTINGS: Setting[] = [
     options: [
       {
         title: 'Makahco Light',
-        description: 'Fondo blanco',
+        description: 'Fondo Claro',
         icon: SunIcon,
       },
       {

@@ -1,8 +1,8 @@
 .playbar-container {
   width: 100%;
-  background-color: var(--yellow);
-  color: black;
-  border-top: 2px solid black;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
+  border-top: 2px solid var(--secondary-color);
 }
 
 .playbar {

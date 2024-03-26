@@ -3,6 +3,7 @@ import PlayIcon from '../../../icons/PlayIcon';
 import StopIcon from '../../../icons/StopIcon';
 import { useCallback, useState } from 'react';
 import { useBeatStore } from '../../../store/beatStore';
+import { useSettingsStore } from '../../../store/settingsStore';
 
 interface PlayBarButtonProps {
   handlePlay: () => void;
@@ -10,6 +11,7 @@ interface PlayBarButtonProps {
 }
 
 const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
+  const { theme } = useSettingsStore();
   const [isPlaying, setIsPlaying] = useState(false);
 
   const [sound, setSound] = useState<Howl | null>(null);
@@ -46,9 +48,9 @@ const PlayBarButton = ({ handlePlay, handleStop }: PlayBarButtonProps) => {
   return (
     <button className="playbar-button" onClick={isPlaying ? onStop : onPlay}>
       {isPlaying ? (
-        <StopIcon height={64} width={64} />
+        <StopIcon height={64} width={64} color={theme.secondaryColor} />
       ) : (
-        <PlayIcon height={64} width={64} />
+        <PlayIcon height={64} width={64} color={theme.secondaryColor} />
       )}
     </button>
   );

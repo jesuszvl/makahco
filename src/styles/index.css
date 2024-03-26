@@ -2,6 +2,10 @@
   --purple: #8436b3;
   --yellow: #fcd926;
   --dark-purple: #5f2c8a;
+  ---black: #000000;
+
+  --main-color: #fcd926;
+  --secondary-color: #000000;
 }
 
 html,
@@ -18,8 +22,8 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--yellow);
-  color: black;
+  background-color: var(--main-color);
+  color: var(--secondary-color);
   font-family: 'Outfit', sans-serif;
 }
 

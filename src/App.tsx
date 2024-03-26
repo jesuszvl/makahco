@@ -1,5 +1,5 @@
+import './styles/index.css';
 import Modal from 'react-modal';
-
 import StimulusContent from './components/StimulusContent/StimulusContent';
 
 import PageContainer from './components/PageContainer/PageContainer';
@@ -14,12 +14,14 @@ import {
   getRandomImage,
   getRandomWords,
 } from './utils/stimulus';
+import { useSettingsStore } from './store/settingsStore';
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const App = () => {
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
   const [step, setStep] = useState<Step>(Step.INITIAL);
+  const { stimulusType, theme } = useSettingsStore();
 
   const sound = useSoundStore(state => state.sound);
 
