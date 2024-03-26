@@ -1,0 +1,42 @@
+import { create } from 'zustand';
+import { devtools } from 'zustand/middleware';
+
+type Theme = {
+  mainColor: string;
+  secondaryColor: string;
+};
+
+interface SettingsState {
+  stimulusType: string;
+  beat: string;
+  language: string;
+  theme: Theme;
+  setStimulusType: (stimulusType: string) => void;
+  setBeat: (beat: string) => void;
+  setLanguage: (language: string) => void;
+  setTheme: (theme: Theme) => void;
+}
+
+export const useSettingsStore = create<SettingsState>()(
+  devtools(set => ({
+    stimulusType: 'CLASICO',
+    beat: 'NORMAL',
+    language: 'ES',
+    theme: { mainColor: '#fcd926', secondaryColor: '#000000' },
+    setStimulusType: stimulusType => set({ stimulusType }),
+    setBeat: beat => set({ beat }),
+    setLanguage: language => set({ language }),
+    setTheme: theme => {
+      document.documentElement.style.setProperty(
+        '--main-color',
+        theme.mainColor,
+      );
+      document.documentElement.style.setProperty(
+        '--secondary-color',
+        theme.secondaryColor,
+      );
+
+      set({ theme });
+    },
+  })),
+);

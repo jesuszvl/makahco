@@ -1,37 +1,27 @@
 import './PlayBar.css';
 import PlayBarButton from './PlayBarButton/PlayBarButton';
-import { useModalStore } from '../../store/modalStore';
-import { useBeatStore } from '../../store/beatStore';
-import { Modals } from '../../types/types';
+import Timer from '../Timer/Timer';
+import MenuButton from '../MenuButton/MenuButton';
 
 type PlayBarProps = {
   onPlay: () => void;
   onStop: () => void;
+  remainingSeconds: number;
+  isRunning: boolean;
 };
 
-const PlayBar = ({ onPlay, onStop }: PlayBarProps) => {
-  const { openModalType } = useModalStore();
-  const { getCurrentBeat, getCurrentMode } = useBeatStore();
-
-  const beat = getCurrentBeat();
-  const mode = getCurrentMode();
-
+const PlayBar = ({
+  onPlay,
+  onStop,
+  remainingSeconds,
+  isRunning,
+}: PlayBarProps) => {
   return (
     <section className="playbar-container">
       <div className="playbar">
-        <button
-          className="playbar-button"
-          onClick={() => openModalType(Modals.BEAT)}
-        >
-          <beat.icon width={32} height={32} />
-        </button>
+        <Timer remainingSeconds={remainingSeconds} isRunning={isRunning} />
         <PlayBarButton handlePlay={onPlay} handleStop={onStop} />
-        <button
-          className="playbar-button"
-          onClick={() => openModalType(Modals.MODO)}
-        >
-          <mode.icon width={32} height={32} />
-        </button>
+        <MenuButton />
       </div>
     </section>
   );

@@ -1,4 +1,6 @@
-import ModalManager from '../Modals/ModalManager/ModalManager';
+import { useModalStore } from '../../store/modalStore';
+import MenuModal from '../Modals/MenuModal/MenuModal';
+
 import './PageContainer.css';
 
 import { ReactNode } from 'react';
@@ -8,9 +10,11 @@ type PageContainerProps = {
 };
 
 const PageContainer = ({ children }: PageContainerProps) => {
+  const { isOpen } = useModalStore();
+
   return (
     <>
-      <ModalManager />
+      <MenuModal isOpen={isOpen} />
       <main className="page-container">{children}</main>
     </>
   );

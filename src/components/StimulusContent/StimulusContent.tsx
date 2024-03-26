@@ -2,6 +2,7 @@ import './StimulusContent.css';
 import { Stimulus, Step, Word } from '../../types/types';
 import classNames from 'classnames';
 import { ThreeDots } from 'react-loader-spinner';
+import { useSettingsStore } from '../../store/settingsStore';
 
 interface StimulusContentProps {
   stimulus: Stimulus;
@@ -14,10 +15,11 @@ const StimulusContent = ({
   stimulus,
   step,
 }: StimulusContentProps) => {
+  const { theme } = useSettingsStore();
   const renderInitial = () => {
     return (
       <span>
-        <h1 className="word">MAKAHCO</h1>
+        <h1 className="word">makahco</h1>
         <p className={classNames('subword', { animated: !isRunning })}>
           PRESIONA PLAY PARA INICIAR
         </p>
@@ -58,7 +60,7 @@ const StimulusContent = ({
   const renderLoading = () => {
     return (
       <ThreeDots
-        color="#8436b3"
+        color={theme.secondaryColor}
         width={100}
         height={100}
         ariaLabel="three-dots-loading"
