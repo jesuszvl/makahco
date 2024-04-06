@@ -40,9 +40,17 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     }
     if (activeSetting?.name === 'Apariencia') {
       if (option.title === 'Makahco Light') {
-        setTheme({ mainColor: COLORS.yellow, secondaryColor: COLORS.darkgray });
+        setTheme({
+          mainColor: COLORS.yellow,
+          secondaryColor: COLORS.darkgray,
+          mainHoverColor: COLORS.hoverYellow,
+        });
       } else {
-        setTheme({ mainColor: COLORS.darkgray, secondaryColor: COLORS.yellow });
+        setTheme({
+          mainColor: COLORS.darkgray,
+          secondaryColor: COLORS.yellow,
+          mainHoverColor: COLORS.hoverGray,
+        });
       }
     }
   };
