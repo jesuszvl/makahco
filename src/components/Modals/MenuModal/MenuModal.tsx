@@ -8,6 +8,7 @@ import { SETTINGS } from '../../../utils/settings';
 import MenuOption from '../../MenuOption/MenuOption';
 import SettingOption from '../../SettingOption/SettingOption';
 import { useSettingsStore } from '../../../store/settingsStore';
+import { COLORS } from '../../../utils/colors';
 
 type MenuModalProps = {
   isOpen: boolean;
@@ -39,12 +40,11 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     }
     if (activeSetting?.name === 'Apariencia') {
       if (option.title === 'Makahco Light') {
-        setTheme({ mainColor: '#fcd926', secondaryColor: '#000000' });
+        setTheme({ mainColor: COLORS.yellow, secondaryColor: COLORS.darkgray });
       } else {
-        setTheme({ mainColor: '#000000', secondaryColor: '#fcd926' });
+        setTheme({ mainColor: COLORS.darkgray, secondaryColor: COLORS.yellow });
       }
     }
-    setActiveSetting(null);
   };
 
   const onClose = () => {

@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
+import { COLORS } from '../utils/colors';
 
 type Theme = {
   mainColor: string;
@@ -22,7 +23,10 @@ export const useSettingsStore = create<SettingsState>()(
     stimulusType: 'CLASICO',
     beat: 'NORMAL',
     language: 'ES',
-    theme: { mainColor: '#fcd926', secondaryColor: '#000000' },
+    theme: {
+      mainColor: COLORS.yellow,
+      secondaryColor: COLORS.darkgray,
+    },
     setStimulusType: stimulusType => set({ stimulusType }),
     setBeat: beat => set({ beat }),
     setLanguage: language => set({ language }),
