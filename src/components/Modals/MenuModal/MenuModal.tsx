@@ -3,7 +3,7 @@ import BaseModal from '../BaseModal/BaseModal';
 import { useModalStore } from '../../../store/modalStore';
 
 import { useState } from 'react';
-import { Setting } from '../../../types/types';
+import { Setting, SettingsOption } from '../../../types/types';
 import { SETTINGS } from '../../../utils/settings';
 import MenuOption from '../../MenuOption/MenuOption';
 import SettingOption from '../../SettingOption/SettingOption';
@@ -17,7 +17,6 @@ type MenuModalProps = {
 const DEFAULT_TITLE = 'Configuración';
 
 const MenuModal = ({ isOpen }: MenuModalProps) => {
-  const { closeModal } = useModalStore();
   const {
     setStimulusType,
     setBeat,
@@ -28,15 +27,24 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     beat,
     language,
   } = useSettingsStore();
+  const { closeModal } = useModalStore();
 
   const [activeSetting, setActiveSetting] = useState<Setting | null>(null);
+
+  const isSettingActive = activeSetting !== null;
+  const modalTitle = activeSetting ? activeSetting.name : DEFAULT_TITLE;
+
+  const onClose = () => {
+    setActiveSetting(null);
+    closeModal();
+  };
 
   const onMenuOptionClick = (setting: Setting) => {
     const isActiveSetting = activeSetting !== setting;
     setActiveSetting(isActiveSetting ? setting : null);
   };
 
-  const onSettingOptionClick = option => {
+  const onSettingOptionClick = (option: SettingsOption) => {
     if (activeSetting?.name === 'Estímulo') {
       setStimulusType(option.title);
     }
@@ -55,26 +63,7 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     }
   };
 
-  const onClose = () => {
-    setActiveSetting(null);
-    closeModal();
-  };
-
-  const isSettingActive = activeSetting !== null;
-
-  const modalTitle = activeSetting ? activeSetting.name : DEFAULT_TITLE;
-
-  const renderSettingsMenu = () => {
-    return SETTINGS.map(setting => (
-      <MenuOption
-        key={setting.name}
-        option={setting}
-        onOptionClick={() => onMenuOptionClick(setting)}
-      />
-    ));
-  };
-
-  const isSettingOptionActive = option => {
+  const isSettingOptionActive = (option: SettingsOption) => {
     if (activeSetting?.name === 'Estímulo') {
       return option.title === stimulusType;
     }
@@ -87,6 +76,16 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     if (activeSetting?.name === 'Apariencia') {
       return option.title === theme.name;
     }
+  };
+
+  const renderSettingsMenu = () => {
+    return SETTINGS.map(setting => (
+      <MenuOption
+        key={setting.name}
+        option={setting}
+        onOptionClick={() => onMenuOptionClick(setting)}
+      />
+    ));
   };
 
   const renderSettingStep = () => {

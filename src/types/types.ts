@@ -44,7 +44,7 @@ export enum Step {
   STIMULUS,
 }
 
-export type SettingOption = {
+export type SettingsOption = {
   icon: React.FC<IconProps>;
   title: string;
   description: string;
@@ -53,7 +53,7 @@ export type SettingOption = {
 export type Setting = {
   name: string;
   description: string;
-  options?: SettingOption[];
+  options?: SettingsOption[];
 };
 
 export type Theme = {
