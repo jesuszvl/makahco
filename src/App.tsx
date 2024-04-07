@@ -1,12 +1,11 @@
+import './styles/index.css';
 import Modal from 'react-modal';
-
 import StimulusContent from './components/StimulusContent/StimulusContent';
 
 import PageContainer from './components/PageContainer/PageContainer';
 import PlayBar from './components/PlayBar/PlayBar';
 import { useStopwatch } from 'react-timer-hook';
 import { useSoundStore } from './store/soundStore';
-import Timer from './components/Timer/Timer';
 import { useBeatStore } from './store/beatStore';
 import { useEffect, useState } from 'react';
 import { Step, Stimulus, StimulusType } from './types/types';
@@ -15,12 +14,15 @@ import {
   getRandomImage,
   getRandomWords,
 } from './utils/stimulus';
+import { useSettingsStore } from './store/settingsStore';
+import { setCSSVariables } from './utils/themes';
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
 const App = () => {
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
   const [step, setStep] = useState<Step>(Step.INITIAL);
+  const { stimulusType, theme } = useSettingsStore();
 
   const sound = useSoundStore(state => state.sound);
 
@@ -53,6 +55,10 @@ const App = () => {
       ],
     });
   };
+
+  useEffect(() => {
+    setCSSVariables(theme);
+  }, [theme]);
 
   useEffect(() => {
     const fetchStimulus = async () => {
@@ -98,9 +104,13 @@ const App = () => {
 
   return (
     <PageContainer>
-      <Timer remainingSeconds={remainingSeconds} isRunning={isRunning} />
       <StimulusContent stimulus={stimulus} isRunning={isRunning} step={step} />
-      <PlayBar onPlay={onPlay} onStop={onStop} />
+      <PlayBar
+        onPlay={onPlay}
+        onStop={onStop}
+        remainingSeconds={remainingSeconds}
+        isRunning={isRunning}
+      />
     </PageContainer>
   );
 };

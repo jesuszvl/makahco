@@ -1,10 +1,11 @@
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
+import { expect } from 'vitest';
 import App from './App';
 
 describe('App', () => {
   test('should render app without crashing', () => {
-    render(<App />);
+    const { getByText } = render(<App />);
 
-    expect(screen.getByText('MAKAHCO')).toBeDefined();
+    expect(getByText('makahco')).not.toBeNull();
   });
 });

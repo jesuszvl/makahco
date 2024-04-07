@@ -1,6 +1,6 @@
 export type IconProps = Pick<
   React.SVGProps<SVGSVGElement>,
-  'width' | 'height' | 'fill'
+  'width' | 'height' | 'fill' | 'color'
 >;
 
 export interface Beat {
@@ -37,22 +37,29 @@ export interface Mode {
   icon: React.FC<IconProps>;
 }
 
-export enum Modals {
-  BEAT = 'BEAT',
-  MODO = 'MODO',
-  HELP = 'HELP',
-}
-
-export type ModalType = Modals.BEAT | Modals.MODO | Modals.HELP;
-
-export interface Modal {
-  type: ModalType;
-  isOpen: boolean;
-}
-
 export enum Step {
   INITIAL,
   LOADING,
   COUNTDOWN,
   STIMULUS,
 }
+
+export type SettingsOption = {
+  icon: React.FC<IconProps>;
+  title: string;
+  description: string;
+};
+
+export type Setting = {
+  name: string;
+  description: string;
+  options?: SettingsOption[];
+};
+
+export type Theme = {
+  name: string;
+  primaryColor: string;
+  secondaryColor: string;
+  hoverPrimaryColor: string;
+  hoverSecondaryColor: string;
+};

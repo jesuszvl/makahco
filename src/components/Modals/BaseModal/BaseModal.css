@@ -1,17 +1,18 @@
 .modal-container {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  min-width: 300px;
-  width: calc(100dvw - 32px);
-  height: calc(100dvh - 32px);
-  outline: none;
-  max-width: 500px;
+  max-width: 620px;
+  width: 100dvw;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: #8436b3;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  margin-left: auto;
+  margin-right: auto;
+
+  @media (min-width: 768px) {
+    height: 80dvh;
+    margin-top: 20dvh;
+  }
 }
 
 .modal-overlay {
@@ -29,42 +30,51 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+
+  @media (min-width: 768px) {
+    border-left: 1px solid var(--secondary-color);
+    border-right: 1px solid var(--secondary-color);
+  }
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid var(--secondary-color);
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
 }
 
 .modal-title {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 14px 0px;
-  font-size: 28px;
-  font-weight: 900;
-}
-
-.modal-button {
-  all: unset;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
   font-size: 24px;
   font-weight: 900;
 }
 
-.modal-selector {
+.modal-cta {
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  flex: 1;
+  padding: 8px;
 }
 
-.modal-selector-button {
+.modal-close {
   all: unset;
   cursor: pointer;
+  position: absolute;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
+  right: 16px;
+}
+
+.modal-back {
+  all: unset;
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  left: 16px;
 }

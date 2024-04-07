@@ -2,6 +2,10 @@ import { Stimulus, StimulusType } from '../types/types';
 import { terminaciones, terminacionesList } from './wordLibrary';
 import { createApi } from 'unsplash-js';
 
+const unsplash = createApi({
+  accessKey: 'XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08',
+});
+
 export const STIMULUS_INITIAL: Stimulus = {
   type: StimulusType.WORD,
   values: [
@@ -21,10 +25,6 @@ export const STIMULUS_LOADING: Stimulus = {
     },
   ],
 };
-
-const unsplash = createApi({
-  accessKey: 'XQUR9hAy9HQRFMAyzLhsIbz6U_M9tfEa5R_kMJvXc08',
-});
 
 export const getRandomImage = async (): Promise<Stimulus> => {
   try {

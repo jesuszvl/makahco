@@ -2,6 +2,12 @@
   --purple: #8436b3;
   --yellow: #fcd926;
   --dark-purple: #5f2c8a;
+  ---black: #000000;
+
+  --primary-color: #fcd926;
+  --secondary-color: #121313;
+  --hover-primary-color: #d7b61d;
+  --hover-secondary-color: #fcd926;
 }
 
 html,
@@ -18,8 +24,8 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--yellow);
-  color: black;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
   font-family: 'Outfit', sans-serif;
 }
 
@@ -40,4 +46,31 @@ a {
 a:-webkit-any-link {
   text-decoration: none;
   color: inherit;
+}
+
+.ReactModal__Content {
+  transform: translateY(100%);
+  transition: transform 300ms ease-in-out;
+}
+
+.ReactModal__Content--after-open {
+  transform: translateY(0);
+}
+
+.ReactModal__Content--before-close {
+  transform: translateY(100%);
+}
+
+.ReactModal__Overlay {
+  opacity: 0;
+  transition: opacity 250ms ease-in-out;
+}
+
+.ReactModal__Overlay--after-open {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  opacity: 1;
+}
+
+.ReactModal__Overlay--before-close {
+  opacity: 0;
 }
