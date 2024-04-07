@@ -4,9 +4,10 @@
   --dark-purple: #5f2c8a;
   ---black: #000000;
 
-  --main-color: #fcd926;
+  --primary-color: #fcd926;
   --secondary-color: #121313;
-  --main-hover-color: #d7b61d;
+  --hover-primary-color: #d7b61d;
+  --hover-secondary-color: #fcd926;
 }
 
 html,
@@ -23,7 +24,7 @@ body {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--main-color);
+  background-color: var(--primary-color);
   color: var(--secondary-color);
   font-family: 'Outfit', sans-serif;
 }

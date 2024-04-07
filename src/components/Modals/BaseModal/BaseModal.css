@@ -4,7 +4,7 @@
   height: 100dvh;
   display: flex;
   flex-direction: column;
-  background-color: var(--main-color);
+  background-color: var(--primary-color);
   color: var(--secondary-color);
   margin-left: auto;
   margin-right: auto;
@@ -45,7 +45,7 @@
   padding: 16px;
   border-bottom: 1px solid var(--secondary-color);
   background-color: var(--secondary-color);
-  color: var(--main-color);
+  color: var(--primary-color);
 }
 
 .modal-title {

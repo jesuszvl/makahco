@@ -15,6 +15,7 @@ import {
   getRandomWords,
 } from './utils/stimulus';
 import { useSettingsStore } from './store/settingsStore';
+import { setCSSVariables } from './utils/themes';
 
 if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 
@@ -54,6 +55,10 @@ const App = () => {
       ],
     });
   };
+
+  useEffect(() => {
+    setCSSVariables(theme);
+  }, [theme]);
 
   useEffect(() => {
     const fetchStimulus = async () => {

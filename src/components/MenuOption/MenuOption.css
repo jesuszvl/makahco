@@ -9,7 +9,7 @@
   border-bottom: 1px solid var(--secondary-color);
 
   &:hover {
-    background-color: var(--main-hover-color);
+    background-color: var(--hover-primary-color);
   }
 }
 

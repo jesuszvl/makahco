@@ -1,12 +1,7 @@
 import { create } from 'zustand';
 import { createJSONStorage, devtools, persist } from 'zustand/middleware';
-import { COLORS } from '../utils/colors';
-
-type Theme = {
-  mainColor: string;
-  secondaryColor: string;
-  mainHoverColor: string;
-};
+import { Theme } from '../types/types';
+import { setCSSVariables, THEMES } from '../utils/themes';
 
 interface SettingsState {
   stimulusType: string;
@@ -23,31 +18,15 @@ export const useSettingsStore = create<SettingsState>()(
   devtools(
     persist(
       set => ({
-        stimulusType: 'CLASICO',
+        stimulusType: 'Clásico',
         beat: 'NORMAL',
         language: 'ES',
-        theme: {
-          mainColor: COLORS.yellow,
-          secondaryColor: COLORS.darkgray,
-          mainHoverColor: COLORS.hoverYellow,
-        },
+        theme: THEMES[0],
         setStimulusType: stimulusType => set({ stimulusType }),
         setBeat: beat => set({ beat }),
         setLanguage: language => set({ language }),
         setTheme: theme => {
-          document.documentElement.style.setProperty(
-            '--main-color',
-            theme.mainColor,
-          );
-          document.documentElement.style.setProperty(
-            '--secondary-color',
-            theme.secondaryColor,
-          );
-          document.documentElement.style.setProperty(
-            '--main-hover-color',
-            theme.mainHoverColor,
-          );
-
+          setCSSVariables(theme);
           set({ theme });
         },
       }),

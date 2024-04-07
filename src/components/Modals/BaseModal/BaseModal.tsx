@@ -34,12 +34,16 @@ const BaseModal = ({
         <div className="modal-header">
           {isOnStep && (
             <button className="modal-back" onClick={onBack}>
-              <ChevronLeftIcon width={24} height={24} color={theme.mainColor} />
+              <ChevronLeftIcon
+                width={24}
+                height={24}
+                color={theme.primaryColor}
+              />
             </button>
           )}
           <h1 className="modal-title">{title}</h1>
           <button className="modal-close" onClick={onClose}>
-            <CloseIcon width={16} height={16} color={theme.mainColor} />
+            <CloseIcon width={16} height={16} color={theme.primaryColor} />
           </button>
         </div>
         {children}

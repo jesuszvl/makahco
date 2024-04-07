@@ -8,7 +8,7 @@ import { SETTINGS } from '../../../utils/settings';
 import MenuOption from '../../MenuOption/MenuOption';
 import SettingOption from '../../SettingOption/SettingOption';
 import { useSettingsStore } from '../../../store/settingsStore';
-import { COLORS } from '../../../utils/colors';
+import { THEMES } from '../../../utils/themes';
 
 type MenuModalProps = {
   isOpen: boolean;
@@ -18,8 +18,16 @@ const DEFAULT_TITLE = 'Configuración';
 
 const MenuModal = ({ isOpen }: MenuModalProps) => {
   const { closeModal } = useModalStore();
-  const { setStimulusType, setBeat, setLanguage, setTheme, theme } =
-    useSettingsStore();
+  const {
+    setStimulusType,
+    setBeat,
+    setLanguage,
+    setTheme,
+    theme,
+    stimulusType,
+    beat,
+    language,
+  } = useSettingsStore();
 
   const [activeSetting, setActiveSetting] = useState<Setting | null>(null);
 
@@ -40,17 +48,9 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     }
     if (activeSetting?.name === 'Apariencia') {
       if (option.title === 'Makahco Light') {
-        setTheme({
-          mainColor: COLORS.yellow,
-          secondaryColor: COLORS.darkgray,
-          mainHoverColor: COLORS.hoverYellow,
-        });
+        setTheme(THEMES[0]);
       } else {
-        setTheme({
-          mainColor: COLORS.darkgray,
-          secondaryColor: COLORS.yellow,
-          mainHoverColor: COLORS.hoverGray,
-        });
+        setTheme(THEMES[1]);
       }
     }
   };
@@ -74,6 +74,21 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
     ));
   };
 
+  const isSettingOptionActive = option => {
+    if (activeSetting?.name === 'Estímulo') {
+      return option.title === stimulusType;
+    }
+    if (activeSetting?.name === 'Beat') {
+      return option.title === beat;
+    }
+    if (activeSetting?.name === 'Idioma') {
+      return option.title === language;
+    }
+    if (activeSetting?.name === 'Apariencia') {
+      return option.title === theme.name;
+    }
+  };
+
   const renderSettingStep = () => {
     return (
       <div className="setting-step">
@@ -90,6 +105,7 @@ const MenuModal = ({ isOpen }: MenuModalProps) => {
             title={option.title}
             description={option.description}
             onClick={() => onSettingOptionClick(option)}
+            isActive={isSettingOptionActive(option)}
           />
         ))}
       </div>

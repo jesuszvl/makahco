@@ -1,14 +1,20 @@
-.setting-option {
+.setting-option-container {
   cursor: pointer;
   display: flex;
   align-items: center;
+  justify-content: space-between;
   padding: 16px;
   border-bottom: 1px solid var(--secondary-color);
   gap: 16px;
 
   &:hover {
-    background-color: var(--main-hover-color);
+    background-color: var(--hover-primary-color);
   }
+}
+
+.setting-option {
+  display: flex;
+  gap: 16px;
 }
 
 .setting-info {
@@ -25,4 +31,7 @@
 
 .setting-option-description {
   font-size: 16px;
+}
+
+.check-icon {
 }
