@@ -22,7 +22,7 @@ if (process.env.NODE_ENV !== 'test') Modal.setAppElement('#root');
 const App = () => {
   const [stimulus, setStimulus] = useState<Stimulus>(STIMULUS_INITIAL);
   const [step, setStep] = useState<Step>(Step.INITIAL);
-  const { stimulusType, theme } = useSettingsStore();
+  const { theme } = useSettingsStore();
 
   const sound = useSoundStore(state => state.sound);
 
